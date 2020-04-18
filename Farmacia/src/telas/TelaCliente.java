@@ -22,7 +22,7 @@ public class TelaCliente extends javax.swing.JFrame {
     }
 
     public void validaNumerico(String confirma) {
- try {           
+    try {           
             if (!confirma.matches("[0-9]*")) {
                 JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
             }
@@ -376,7 +376,7 @@ public class TelaCliente extends javax.swing.JFrame {
             if (!confirma.equals("         -  ")) {
                 if (!confirma.matches("[0-9]*")) {
                     JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
-                    txtCodCliente.setText(null);
+                    txtCliCpf.setText(null);
                 }
             }
         } catch (Exception e) {
@@ -390,7 +390,7 @@ public class TelaCliente extends javax.swing.JFrame {
             if (!confirma.equals("  /  /    ")) {
                 if (!confirma.matches("[0-9]*")) {
                     JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
-                    txtCodCliente.setText(null);
+                    txtCliData.setText(null);
                 }
             }
         } catch (Exception e) {
