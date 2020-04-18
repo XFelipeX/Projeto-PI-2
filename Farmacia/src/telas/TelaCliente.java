@@ -21,29 +21,11 @@ public class TelaCliente extends javax.swing.JFrame {
     }
     
     public void validaNumerico(){
-        try {
-            String confirma = txtCodCliente.getText();
-            if (!confirma.matches("[0-9]*")) {
-                JOptionPane.showMessageDialog(null,"Preencha o campo com valor numérico","Atenção",JOptionPane.WARNING_MESSAGE);
-                txtCodCliente.setText(null);
-            }         
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        
     }
     
     public void validaString(){
-        try {
-            String confirma = txtCliNome.getText();
-            if(confirma!=null){
-            if (!confirma.matches("[A-z]*")) {
-                JOptionPane.showMessageDialog(null,"Este campo não pode ser preenchido com números");
-                txtCliNome.setText(null);
-            }  
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+       
     }
 
     /**
@@ -75,12 +57,13 @@ public class TelaCliente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtCodCliente = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txtCliCpf = new javax.swing.JFormattedTextField();
         txtCliData = new javax.swing.JFormattedTextField();
         btnPesquisar = new javax.swing.JButton();
         btnAdicionar = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -115,7 +98,7 @@ public class TelaCliente extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Nome:");
+        jLabel3.setText("*Nome:");
 
         jLabel2.setText("Cod_Cliente:");
 
@@ -127,7 +110,7 @@ public class TelaCliente extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("CPF:");
+        jLabel4.setText("*CPF:");
 
         txtCliEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -147,7 +130,7 @@ public class TelaCliente extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("E-mail:");
+        jLabel6.setText("*E-mail:");
 
         txtCodCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -160,21 +143,21 @@ public class TelaCliente extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Telefone:");
+        jLabel7.setText("*Telefone:");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########-##")));
+            txtCliCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtCliCpf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jFormattedTextField1MouseExited(evt);
+                txtCliCpfMouseExited(evt);
             }
         });
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtCliCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
+                txtCliCpfActionPerformed(evt);
             }
         });
 
@@ -214,7 +197,7 @@ public class TelaCliente extends javax.swing.JFrame {
                                     .addComponent(txtCliEmail)
                                     .addComponent(txtCliEndereco)
                                     .addComponent(txtCliComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                                    .addComponent(jFormattedTextField1)
+                                    .addComponent(txtCliCpf)
                                     .addComponent(txtCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtCliTelefone)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -244,7 +227,7 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCliCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -287,6 +270,8 @@ public class TelaCliente extends javax.swing.JFrame {
 
         btnExcluir.setText("Excluir");
 
+        jLabel12.setText("*Campos obrigatórios");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -294,16 +279,21 @@ public class TelaCliente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnExcluir)
-                        .addComponent(btnAdicionar, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(btnAtualizar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnExcluir)
+                                .addComponent(btnAdicionar, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(btnAtualizar, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel12)))
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdicionar, btnAtualizar, btnExcluir, btnPesquisar});
@@ -311,8 +301,13 @@ public class TelaCliente extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel12)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,51 +332,150 @@ public class TelaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodClienteActionPerformed
 
     private void txtCodClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodClienteMouseExited
-        validaNumerico();
+        try {
+            String confirma = txtCodCliente.getText();
+            if (!confirma.matches("[0-9]*")) {
+                JOptionPane.showMessageDialog(null,"Preencha o campo com valor numérico","Atenção",JOptionPane.WARNING_MESSAGE);
+                txtCodCliente.setText(null);
+            }         
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_txtCodClienteMouseExited
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+    private void txtCliCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCliCpfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+    }//GEN-LAST:event_txtCliCpfActionPerformed
 
     private void txtCliNomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliNomeMouseExited
-        validaString();
+         try {
+            String confirma = txtCliNome.getText();
+            if(confirma!=null){
+            if (!confirma.matches("[A-z]*")) {
+                JOptionPane.showMessageDialog(null,"Este campo não pode ser preenchido com números");
+                txtCliNome.setText(null);
+            }  
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_txtCliNomeMouseExited
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (txtCliNome.getText().isEmpty()||txtCliCpf.getText().isEmpty()||txtCliEmail.getText().isEmpty()||txtCliTelefone.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios","Atenção",JOptionPane.WARNING_MESSAGE);
+                
+            } 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
-    private void jFormattedTextField1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField1MouseExited
-       validaNumerico();
-    }//GEN-LAST:event_jFormattedTextField1MouseExited
+    private void txtCliCpfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliCpfMouseExited
+       try {
+            String confirma = txtCliCpf.getText();
+            if (!confirma.matches("[0-9]*")) {
+                JOptionPane.showMessageDialog(null,"Preencha o campo com valor numérico","Atenção",JOptionPane.WARNING_MESSAGE);
+                txtCodCliente.setText(null);
+            }         
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_txtCliCpfMouseExited
 
     private void txtCliDataMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliDataMouseExited
-        validaNumerico();
+        try {
+            String confirma = txtCliData.getText();
+            if (!confirma.matches("[0-9]*")) {
+                JOptionPane.showMessageDialog(null,"Preencha o campo com valor numérico","Atenção",JOptionPane.WARNING_MESSAGE);
+                txtCodCliente.setText(null);
+            }         
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_txtCliDataMouseExited
 
     private void txtCliEmailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliEmailMouseExited
-        validaString();
+         try {
+            String confirma = txtCliEmail.getText();
+            if(confirma!=null){
+            if (!confirma.matches("[A-z]*")) {
+                JOptionPane.showMessageDialog(null,"Este campo não pode ser preenchido com números");
+                txtCliNome.setText(null);
+            }  
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_txtCliEmailMouseExited
 
     private void txtCliTelefoneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliTelefoneMouseExited
-        validaNumerico();
+        try {
+            String confirma = txtCliTelefone.getText();
+            if (!confirma.matches("[0-9]*")) {
+                JOptionPane.showMessageDialog(null,"Preencha o campo com valor numérico","Atenção",JOptionPane.WARNING_MESSAGE);
+                txtCodCliente.setText(null);
+            }         
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_txtCliTelefoneMouseExited
 
     private void txtCliEnderecoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliEnderecoMouseExited
-        validaString();
+         try {
+            String confirma = txtCliEndereco.getText();
+            if(confirma!=null){
+            if (!confirma.matches("[A-z]*")) {
+                JOptionPane.showMessageDialog(null,"Este campo não pode ser preenchido com números");
+                txtCliNome.setText(null);
+            }  
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_txtCliEnderecoMouseExited
 
     private void txtCliComplementoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliComplementoMouseExited
-        validaString();
+         try {
+            String confirma = txtCliComplemento.getText();
+            if(confirma!=null){
+            if (!confirma.matches("[A-z]*")) {
+                JOptionPane.showMessageDialog(null,"Este campo não pode ser preenchido com números");
+                txtCliNome.setText(null);
+            }  
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_txtCliComplementoMouseExited
 
     private void txtCliCidadeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliCidadeMouseExited
-        validaString();
+         try {
+            String confirma = txtCliCidade.getText();
+            if(confirma!=null){
+            if (!confirma.matches("[A-z]*")) {
+                JOptionPane.showMessageDialog(null,"Este campo não pode ser preenchido com números");
+                txtCliNome.setText(null);
+            }  
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_txtCliCidadeMouseExited
 
     private void txtCliUfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliUfMouseExited
-        validaString();
+         try {
+            String confirma = txtCliUf.getText();
+            if(confirma!=null){
+            if (!confirma.matches("[A-z]*")) {
+                JOptionPane.showMessageDialog(null,"Este campo não pode ser preenchido com números");
+                txtCliNome.setText(null);
+            }  
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_txtCliUfMouseExited
 
     /**
@@ -424,10 +518,10 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -439,6 +533,7 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtCliCidade;
     private javax.swing.JTextField txtCliComplemento;
+    private javax.swing.JFormattedTextField txtCliCpf;
     private javax.swing.JFormattedTextField txtCliData;
     private javax.swing.JTextField txtCliEmail;
     private javax.swing.JTextField txtCliEndereco;
