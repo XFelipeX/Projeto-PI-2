@@ -5,6 +5,8 @@
  */
 package telas;
 
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 /**
  *
  * @author trodrsil
@@ -17,7 +19,27 @@ public class Funcionarios extends javax.swing.JFrame {
     public Funcionarios() {
         initComponents();
     }
+    public void validaNumerico(String confirma) {
+        try {           
+            if (!confirma.matches("[0-9]*")) {
+                JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 
+    public void validaString(String confirma) {
+         try {
+            if (confirma != null) {
+                if (!confirma.matches("[A-z]*")) {
+                    JOptionPane.showMessageDialog(null, "Este campo não pode ser preenchido com números");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,6 +73,7 @@ public class Funcionarios extends javax.swing.JFrame {
         jLabelFuncao = new javax.swing.JLabel();
         jTextFieldFuncao = new javax.swing.JTextField();
         jTextFieldSalario = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
         jButtonIncluir = new javax.swing.JButton();
         jButtonAtualizar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
@@ -187,6 +210,8 @@ public class Funcionarios extends javax.swing.JFrame {
                     .addComponent(jTextFieldSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         jButtonIncluir.setText("Incluir Registro");
 
         jButtonAtualizar.setText("Atualizar");
@@ -205,6 +230,37 @@ public class Funcionarios extends javax.swing.JFrame {
 
         jButtonPesquisar.setText("Pesquisar");
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonIncluir, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(jButtonAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAtualizar, jButtonExcluir, jButtonIncluir, jButtonPesquisar});
+
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+        );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonAtualizar, jButtonExcluir, jButtonIncluir, jButtonPesquisar});
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -217,52 +273,89 @@ public class Funcionarios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonIncluir, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                    .addComponent(jButtonAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(95, 95, 95))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(150, 150, 150))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAtualizar, jButtonExcluir, jButtonIncluir, jButtonPesquisar});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60))))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonAtualizar, jButtonExcluir, jButtonIncluir, jButtonPesquisar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+ 
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
-    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluirActionPerformed
+    
+    private void jTextFieldCPFFuncMouseExited(java.awt.event.MouseEvent evt) {                                      
+        try {
+            String confirma = jTextFieldCPFFunc.getText();
+           
+            if (!confirma.equals("         -  ")) {
+                if (!confirma.matches("[0-9]*")) {
+                    JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    jTextFieldCPFFunc.setText(null);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }          
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jTextFieldCodFuncMouseExited(java.awt.event.MouseEvent evt) {                                          
+        validaNumerico(jTextFieldCodFunc.getText());
+    }                                         
+
+    private void jTextFieldNomeFuncMouseExited(java.awt.event.ActionEvent evt) {                                          
+        validaString(jTextFieldNomeFunc.getText());
+    }
+    
+    private void jTextFieldLogradouroFuncMouseExited(java.awt.event.MouseEvent evt) {                                       
+        validaString(jTextFieldLogradouroFunc.getText());
+    }                                   
+
+                        
+    
+    private void jTextFieldNumFuncMouseExited(java.awt.event.MouseEvent evt) {                                        
+        validaNumerico(jTextFieldNumFunc.getText());
+    }                                       
+
+    private void jTextFieldComplemMouseExited(java.awt.event.MouseEvent evt) {                                           
+        validaNumerico(jTextFieldComplem.getText());
+    }                                          
+
+    private void jTextFieldUFMouseExited(java.awt.event.MouseEvent evt) {                                           
+        validaString(jTextFieldUF.getText());
+    }                                          
+
+    private void jTextFieldTelefoneMouseExited(java.awt.event.MouseEvent evt) {                                              
+        validaNumerico(jTextFieldTelefone.getText());
+    }                                             
+
+    private void jTextFieldEmailMouseExited(java.awt.event.MouseEvent evt) {                                         
+        validaString(jTextFieldEmail.getText());
+    }                                        
+
+    private void jTextFieldFuncaoMouseExited(java.awt.event.MouseEvent evt) {                                     
+        validaString(jTextFieldFuncao.getText());
+    } 
+    
+    private void jTextFieldSalarioMouseExited(java.awt.event.MouseEvent evt) {                                     
+        validaNumerico(jTextFieldSalario.getText());
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -294,7 +387,7 @@ public class Funcionarios extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtualizar;
     private javax.swing.JButton jButtonExcluir;
@@ -313,6 +406,7 @@ public class Funcionarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JLabel jLabelUF;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldCPFFunc;
     private javax.swing.JTextField jTextFieldCodFunc;
     private javax.swing.JTextField jTextFieldComplem;
