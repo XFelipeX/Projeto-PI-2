@@ -6,6 +6,7 @@
 package telas;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -19,13 +20,27 @@ public class TelaCliente extends javax.swing.JFrame {
     public TelaCliente() {
         initComponents();
     }
-    
-    public void validaNumerico(){
-        
+
+    public void validaNumerico(String confirma) {
+ try {           
+            if (!confirma.matches("[0-9]*")) {
+                JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
-    
-    public void validaString(){
-       
+
+    public void validaString(String confirma) {
+         try {
+            if (confirma != null) {
+                if (!confirma.matches("[A-z]*")) {
+                    JOptionPane.showMessageDialog(null, "Este campo não pode ser preenchido com números");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     /**
@@ -328,19 +343,11 @@ public class TelaCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodClienteActionPerformed
-    
+
     }//GEN-LAST:event_txtCodClienteActionPerformed
 
     private void txtCodClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodClienteMouseExited
-        try {
-            String confirma = txtCodCliente.getText();
-            if (!confirma.matches("[0-9]*")) {
-                JOptionPane.showMessageDialog(null,"Preencha o campo com valor numérico","Atenção",JOptionPane.WARNING_MESSAGE);
-                txtCodCliente.setText(null);
-            }         
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        validaNumerico(txtCodCliente.getText());
     }//GEN-LAST:event_txtCodClienteMouseExited
 
     private void txtCliCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCliCpfActionPerformed
@@ -348,37 +355,30 @@ public class TelaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCliCpfActionPerformed
 
     private void txtCliNomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliNomeMouseExited
-         try {
-            String confirma = txtCliNome.getText();
-            if(confirma!=null){
-            if (!confirma.matches("[A-z]*")) {
-                JOptionPane.showMessageDialog(null,"Este campo não pode ser preenchido com números");
-                txtCliNome.setText(null);
-            }  
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        validaString(txtCliNome.getText());
     }//GEN-LAST:event_txtCliNomeMouseExited
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         try {
-            if (txtCliNome.getText().isEmpty()||txtCliCpf.getText().isEmpty()||txtCliEmail.getText().isEmpty()||txtCliTelefone.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios","Atenção",JOptionPane.WARNING_MESSAGE);
-                
-            } 
+            if (txtCliNome.getText().isEmpty() || txtCliCpf.getText().isEmpty() || txtCliEmail.getText().isEmpty() || txtCliTelefone.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
+
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void txtCliCpfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliCpfMouseExited
-       try {
+        try {
             String confirma = txtCliCpf.getText();
-            if (!confirma.matches("[0-9]*")) {
-                JOptionPane.showMessageDialog(null,"Preencha o campo com valor numérico","Atenção",JOptionPane.WARNING_MESSAGE);
-                txtCodCliente.setText(null);
-            }         
+           
+            if (!confirma.equals("         -  ")) {
+                if (!confirma.matches("[0-9]*")) {
+                    JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    txtCodCliente.setText(null);
+                }
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -387,95 +387,39 @@ public class TelaCliente extends javax.swing.JFrame {
     private void txtCliDataMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliDataMouseExited
         try {
             String confirma = txtCliData.getText();
-            if (!confirma.matches("[0-9]*")) {
-                JOptionPane.showMessageDialog(null,"Preencha o campo com valor numérico","Atenção",JOptionPane.WARNING_MESSAGE);
-                txtCodCliente.setText(null);
-            }         
+            if (!confirma.equals("  /  /    ")) {
+                if (!confirma.matches("[0-9]*")) {
+                    JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    txtCodCliente.setText(null);
+                }
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_txtCliDataMouseExited
 
     private void txtCliEmailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliEmailMouseExited
-         try {
-            String confirma = txtCliEmail.getText();
-            if(confirma!=null){
-            if (!confirma.matches("[A-z]*")) {
-                JOptionPane.showMessageDialog(null,"Este campo não pode ser preenchido com números");
-                txtCliNome.setText(null);
-            }  
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        validaString(txtCliEmail.getText());
     }//GEN-LAST:event_txtCliEmailMouseExited
 
     private void txtCliTelefoneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliTelefoneMouseExited
-        try {
-            String confirma = txtCliTelefone.getText();
-            if (!confirma.matches("[0-9]*")) {
-                JOptionPane.showMessageDialog(null,"Preencha o campo com valor numérico","Atenção",JOptionPane.WARNING_MESSAGE);
-                txtCodCliente.setText(null);
-            }         
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        validaNumerico(txtCliTelefone.getText());
     }//GEN-LAST:event_txtCliTelefoneMouseExited
 
     private void txtCliEnderecoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliEnderecoMouseExited
-         try {
-            String confirma = txtCliEndereco.getText();
-            if(confirma!=null){
-            if (!confirma.matches("[A-z]*")) {
-                JOptionPane.showMessageDialog(null,"Este campo não pode ser preenchido com números");
-                txtCliNome.setText(null);
-            }  
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        validaString(txtCliEndereco.getText());
     }//GEN-LAST:event_txtCliEnderecoMouseExited
 
     private void txtCliComplementoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliComplementoMouseExited
-         try {
-            String confirma = txtCliComplemento.getText();
-            if(confirma!=null){
-            if (!confirma.matches("[A-z]*")) {
-                JOptionPane.showMessageDialog(null,"Este campo não pode ser preenchido com números");
-                txtCliNome.setText(null);
-            }  
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        validaString(txtCliComplemento.getText());
     }//GEN-LAST:event_txtCliComplementoMouseExited
 
     private void txtCliCidadeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliCidadeMouseExited
-         try {
-            String confirma = txtCliCidade.getText();
-            if(confirma!=null){
-            if (!confirma.matches("[A-z]*")) {
-                JOptionPane.showMessageDialog(null,"Este campo não pode ser preenchido com números");
-                txtCliNome.setText(null);
-            }  
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        validaString(txtCliCidade.getText());
     }//GEN-LAST:event_txtCliCidadeMouseExited
 
     private void txtCliUfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliUfMouseExited
-         try {
-            String confirma = txtCliUf.getText();
-            if(confirma!=null){
-            if (!confirma.matches("[A-z]*")) {
-                JOptionPane.showMessageDialog(null,"Este campo não pode ser preenchido com números");
-                txtCliNome.setText(null);
-            }  
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        validaString(txtCliUf.getText());
     }//GEN-LAST:event_txtCliUfMouseExited
 
     /**
