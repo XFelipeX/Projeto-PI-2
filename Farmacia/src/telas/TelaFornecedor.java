@@ -19,7 +19,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
     public TelaFornecedor() {
         initComponents();
     }
-    
+
     public void validaNumerico(String confirma) {
         try {
             if (!confirma.matches("[0-9]*")) {
@@ -53,13 +53,13 @@ public class TelaFornecedor extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        ftxtCnpj = new javax.swing.JFormattedTextField();
         txtUf = new javax.swing.JTextField();
         txtTelComercial1 = new javax.swing.JTextField();
         txtEndereco = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtCnpj = new javax.swing.JTextField();
         txtCelular = new javax.swing.JTextField();
         txtRazaoSocial = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -84,6 +84,22 @@ public class TelaFornecedor extends javax.swing.JFrame {
         jLabel1.setText("Fornecedor");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        try {
+            ftxtCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        ftxtCnpj.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ftxtCnpjMouseExited(evt);
+            }
+        });
+        ftxtCnpj.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ftxtCnpjKeyTyped(evt);
+            }
+        });
 
         txtUf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -111,6 +127,12 @@ public class TelaFornecedor extends javax.swing.JFrame {
         txtCelular.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 txtCelularMouseExited(evt);
+            }
+        });
+
+        txtRazaoSocial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtRazaoSocialMouseExited(evt);
             }
         });
 
@@ -177,9 +199,10 @@ public class TelaFornecedor extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTelComercial1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(ftxtCnpj, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtTelComercial1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -210,7 +233,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ftxtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -326,6 +349,29 @@ public class TelaFornecedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUfActionPerformed
 
+    private void ftxtCnpjMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ftxtCnpjMouseExited
+        try {
+            String confirma = ftxtCnpj.getText();
+
+            if (!confirma.equals("  .   .   /    -  ")) {
+                if (!confirma.matches("[0-9]*")) {
+                    JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    ftxtCnpj.setText(null);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_ftxtCnpjMouseExited
+
+    private void ftxtCnpjKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftxtCnpjKeyTyped
+       
+    }//GEN-LAST:event_ftxtCnpjKeyTyped
+
+    private void txtRazaoSocialMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRazaoSocialMouseExited
+        validaString(txtRazaoSocial.getText());
+    }//GEN-LAST:event_txtRazaoSocialMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -362,6 +408,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField ftxtCnpj;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -380,7 +427,6 @@ public class TelaFornecedor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtCelular;
     private javax.swing.JTextField txtCidade;
-    private javax.swing.JTextField txtCnpj;
     private javax.swing.JTextField txtCodFornecedor;
     private javax.swing.JTextField txtComplemento;
     private javax.swing.JTextField txtEndereco;
