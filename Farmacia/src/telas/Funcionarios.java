@@ -6,7 +6,7 @@
 package telas;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+
 /**
  *
  * @author trodrsil
@@ -19,6 +19,7 @@ public class Funcionarios extends javax.swing.JFrame {
     public Funcionarios() {
         initComponents();
     }
+    
     public void validaNumerico(String confirma) {
         try {           
             if (!confirma.matches("[0-9]*")) {
@@ -34,6 +35,7 @@ public class Funcionarios extends javax.swing.JFrame {
             if (confirma != null) {
                 if (!confirma.matches("[A-z]*")) {
                     JOptionPane.showMessageDialog(null, "Este campo não pode ser preenchido com números");
+                    
                 }
             }
         } catch (Exception e) {
@@ -56,7 +58,6 @@ public class Funcionarios extends javax.swing.JFrame {
         jLabelNomeFunc = new javax.swing.JLabel();
         jTextFieldNomeFunc = new javax.swing.JTextField();
         jLabelCPFFunc = new javax.swing.JLabel();
-        jTextFieldCPFFunc = new javax.swing.JTextField();
         jLabelLogradouroFunc = new javax.swing.JLabel();
         jTextFieldLogradouroFunc = new javax.swing.JTextField();
         jLabelNumFunc = new javax.swing.JLabel();
@@ -73,6 +74,7 @@ public class Funcionarios extends javax.swing.JFrame {
         jLabelFuncao = new javax.swing.JLabel();
         jTextFieldFuncao = new javax.swing.JTextField();
         jTextFieldSalario = new javax.swing.JTextField();
+        jFormattedTextFieldCPFFunc = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jButtonIncluir = new javax.swing.JButton();
         jButtonAtualizar = new javax.swing.JButton();
@@ -86,27 +88,98 @@ public class Funcionarios extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jTextFieldCodFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextFieldCodFuncMouseExited(evt);
+            }
+        });
+
         jLabelSalarioFunc.setText("Salário: ");
 
         jLabelNomeFunc.setText("Nome:");
+
+        jTextFieldNomeFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextFieldNomeFuncMouseExited(evt);
+            }
+        });
 
         jLabelCPFFunc.setText("CPF:");
 
         jLabelLogradouroFunc.setText("Logradouro:");
 
+        jTextFieldLogradouroFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextFieldLogradouroFuncMouseExited(evt);
+            }
+        });
+
         jLabelNumFunc.setText("Número:");
+
+        jTextFieldNumFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextFieldNumFuncMouseExited(evt);
+            }
+        });
 
         jLabelComplemFunc.setText("Complemento: ");
 
+        jTextFieldComplem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextFieldComplemMouseExited(evt);
+            }
+        });
+
         jLabelUF.setText("UF:");
+
+        jTextFieldUF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextFieldUFMouseExited(evt);
+            }
+        });
 
         jLabelTelefone.setText("Telefone:");
 
+        jTextFieldTelefone.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextFieldTelefoneMouseExited(evt);
+            }
+        });
+
         jLabelEmail.setText("E-mail:");
+
+        jTextFieldEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextFieldEmailMouseExited(evt);
+            }
+        });
 
         jLabelCod.setText("Código:");
 
         jLabelFuncao.setText("Função:");
+
+        jTextFieldFuncao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextFieldFuncaoMouseExited(evt);
+            }
+        });
+
+        jTextFieldSalario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextFieldSalarioMouseExited(evt);
+            }
+        });
+
+        try {
+            jFormattedTextFieldCPFFunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldCPFFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jFormattedTextFieldCPFFuncMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -126,7 +199,7 @@ public class Funcionarios extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelCPFFunc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldCPFFunc))
+                        .addComponent(jFormattedTextFieldCPFFunc))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelLogradouroFunc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -173,10 +246,10 @@ public class Funcionarios extends javax.swing.JFrame {
                     .addComponent(jLabelNomeFunc)
                     .addComponent(jTextFieldNomeFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCPFFunc)
-                    .addComponent(jTextFieldCPFFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jFormattedTextFieldCPFFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelLogradouroFunc)
                     .addComponent(jTextFieldLogradouroFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -298,63 +371,71 @@ public class Funcionarios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
-    
-    private void jTextFieldCPFFuncMouseExited(java.awt.event.MouseEvent evt) {                                      
+    private void jTextFieldCodFuncMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldCodFuncMouseExited
+        // TODO add your handling code here:
+        validaNumerico(jTextFieldCodFunc.getText());
+    }//GEN-LAST:event_jTextFieldCodFuncMouseExited
+
+    private void jTextFieldNomeFuncMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeFuncMouseExited
+        // TODO add your handling code here:
+        validaString(jTextFieldNomeFunc.getText());
+    }//GEN-LAST:event_jTextFieldNomeFuncMouseExited
+
+    private void jFormattedTextFieldCPFFuncMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCPFFuncMouseExited
+        // TODO add your handling code here:
         try {
-            String confirma = jTextFieldCPFFunc.getText();
+            String confirma = jFormattedTextFieldCPFFunc.getText();
            
             if (!confirma.equals("         -  ")) {
                 if (!confirma.matches("[0-9]*")) {
                     JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
-                    jTextFieldCPFFunc.setText(null);
+                    jFormattedTextFieldCPFFunc.setText(null);
                 }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    }          
+    }//GEN-LAST:event_jFormattedTextFieldCPFFuncMouseExited
 
-    private void jTextFieldCodFuncMouseExited(java.awt.event.MouseEvent evt) {                                          
-        validaNumerico(jTextFieldCodFunc.getText());
-    }                                         
-
-    private void jTextFieldNomeFuncMouseExited(java.awt.event.ActionEvent evt) {                                          
-        validaString(jTextFieldNomeFunc.getText());
-    }
-    
-    private void jTextFieldLogradouroFuncMouseExited(java.awt.event.MouseEvent evt) {                                       
+    private void jTextFieldLogradouroFuncMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldLogradouroFuncMouseExited
+        // TODO add your handling code here:
         validaString(jTextFieldLogradouroFunc.getText());
-    }                                   
+    }//GEN-LAST:event_jTextFieldLogradouroFuncMouseExited
 
-                        
-    
-    private void jTextFieldNumFuncMouseExited(java.awt.event.MouseEvent evt) {                                        
+    private void jTextFieldNumFuncMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNumFuncMouseExited
+        // TODO add your handling code here:
         validaNumerico(jTextFieldNumFunc.getText());
-    }                                       
+    }//GEN-LAST:event_jTextFieldNumFuncMouseExited
 
-    private void jTextFieldComplemMouseExited(java.awt.event.MouseEvent evt) {                                           
+    private void jTextFieldComplemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldComplemMouseExited
+        // TODO add your handling code here:
         validaNumerico(jTextFieldComplem.getText());
-    }                                          
+    }//GEN-LAST:event_jTextFieldComplemMouseExited
 
-    private void jTextFieldUFMouseExited(java.awt.event.MouseEvent evt) {                                           
+    private void jTextFieldUFMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldUFMouseExited
+        // TODO add your handling code here:
         validaString(jTextFieldUF.getText());
-    }                                          
+    }//GEN-LAST:event_jTextFieldUFMouseExited
 
-    private void jTextFieldTelefoneMouseExited(java.awt.event.MouseEvent evt) {                                              
+    private void jTextFieldTelefoneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldTelefoneMouseExited
+        // TODO add your handling code here:
         validaNumerico(jTextFieldTelefone.getText());
-    }                                             
+    }//GEN-LAST:event_jTextFieldTelefoneMouseExited
 
-    private void jTextFieldEmailMouseExited(java.awt.event.MouseEvent evt) {                                         
+    private void jTextFieldEmailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldEmailMouseExited
+        // TODO add your handling code here:
         validaString(jTextFieldEmail.getText());
-    }                                        
+    }//GEN-LAST:event_jTextFieldEmailMouseExited
 
-    private void jTextFieldFuncaoMouseExited(java.awt.event.MouseEvent evt) {                                     
+    private void jTextFieldFuncaoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldFuncaoMouseExited
+        // TODO add your handling code here:
         validaString(jTextFieldFuncao.getText());
-    } 
-    
-    private void jTextFieldSalarioMouseExited(java.awt.event.MouseEvent evt) {                                     
+    }//GEN-LAST:event_jTextFieldFuncaoMouseExited
+
+    private void jTextFieldSalarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSalarioMouseExited
+        // TODO add your handling code here:
         validaNumerico(jTextFieldSalario.getText());
-    }
+    }//GEN-LAST:event_jTextFieldSalarioMouseExited
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -393,6 +474,7 @@ public class Funcionarios extends javax.swing.JFrame {
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonIncluir;
     private javax.swing.JButton jButtonPesquisar;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCPFFunc;
     private javax.swing.JLabel jLabelCPFFunc;
     private javax.swing.JLabel jLabelCod;
     private javax.swing.JLabel jLabelComplemFunc;
@@ -407,7 +489,6 @@ public class Funcionarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelUF;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextFieldCPFFunc;
     private javax.swing.JTextField jTextFieldCodFunc;
     private javax.swing.JTextField jTextFieldComplem;
     private javax.swing.JTextField jTextFieldEmail;
