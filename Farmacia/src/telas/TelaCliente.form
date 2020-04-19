@@ -115,23 +115,19 @@
                               <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtCliNome" max="32767" attributes="0"/>
-                                      <Component id="txtCliEmail" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtCliEndereco" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtCliComplemento" pref="256" max="32767" attributes="0"/>
-                                      <Component id="txtCliCpf" max="32767" attributes="0"/>
-                                      <Component id="txtCodCliente" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
-                                      <Component id="txtCliTelefone" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="txtCliNome" max="32767" attributes="0"/>
+                              <Component id="txtCliEmail" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtCliEndereco" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtCliComplemento" pref="256" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtCliData" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Component id="txtCodCliente" min="-2" pref="64" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="txtCliTelefone" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtCliCpf" alignment="1" max="32767" attributes="0"/>
+                              <Component id="txtCliData" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -144,7 +140,7 @@
                           <Component id="txtCliUf" min="-2" pref="64" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -295,23 +291,13 @@
             <Property name="text" type="java.lang.String" value="*Telefone:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtCliCpf">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="#########-##" subtype="-1" type="5"/>
-            </Property>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="txtCliCpf">
           <Events>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtCliCpfMouseExited"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCliCpfActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtCliData">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="##/##/####" subtype="-1" type="5"/>
-            </Property>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="txtCliData">
           <Events>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtCliDataMouseExited"/>
           </Events>

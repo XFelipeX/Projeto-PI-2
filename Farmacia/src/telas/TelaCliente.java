@@ -72,8 +72,8 @@ public class TelaCliente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtCodCliente = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtCliCpf = new javax.swing.JFormattedTextField();
-        txtCliData = new javax.swing.JFormattedTextField();
+        txtCliCpf = new javax.swing.JTextField();
+        txtCliData = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         btnAdicionar = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
@@ -160,11 +160,6 @@ public class TelaCliente extends javax.swing.JFrame {
 
         jLabel7.setText("*Telefone:");
 
-        try {
-            txtCliCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
         txtCliCpf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 txtCliCpfMouseExited(evt);
@@ -176,11 +171,6 @@ public class TelaCliente extends javax.swing.JFrame {
             }
         });
 
-        try {
-            txtCliData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
         txtCliData.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 txtCliDataMouseExited(evt);
@@ -204,20 +194,18 @@ public class TelaCliente extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9))
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCliNome)
+                            .addComponent(txtCliEmail)
+                            .addComponent(txtCliEndereco)
+                            .addComponent(txtCliComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCliNome)
-                                    .addComponent(txtCliEmail)
-                                    .addComponent(txtCliEndereco)
-                                    .addComponent(txtCliComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                                    .addComponent(txtCliCpf)
-                                    .addComponent(txtCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCliTelefone)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtCliData, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtCliTelefone)
+                            .addComponent(txtCliCpf, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtCliData)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -226,7 +214,7 @@ public class TelaCliente extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCliUf, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,10 +338,6 @@ public class TelaCliente extends javax.swing.JFrame {
         validaNumerico(txtCodCliente.getText());
     }//GEN-LAST:event_txtCodClienteMouseExited
 
-    private void txtCliCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCliCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCliCpfActionPerformed
-
     private void txtCliNomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliNomeMouseExited
         validaString(txtCliNome.getText());
     }//GEN-LAST:event_txtCliNomeMouseExited
@@ -368,35 +352,6 @@ public class TelaCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnAdicionarActionPerformed
-
-    private void txtCliCpfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliCpfMouseExited
-        try {
-            String confirma = txtCliCpf.getText();
-           
-            if (!confirma.equals("         -  ")) {
-                if (!confirma.matches("[0-9]*")) {
-                    JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
-                    txtCliCpf.setText(null);
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }//GEN-LAST:event_txtCliCpfMouseExited
-
-    private void txtCliDataMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliDataMouseExited
-        try {
-            String confirma = txtCliData.getText();
-            if (!confirma.equals("  /  /    ")) {
-                if (!confirma.matches("[0-9]*")) {
-                    JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
-                    txtCliData.setText(null);
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }//GEN-LAST:event_txtCliDataMouseExited
 
     private void txtCliEmailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliEmailMouseExited
         validaString(txtCliEmail.getText());
@@ -421,6 +376,19 @@ public class TelaCliente extends javax.swing.JFrame {
     private void txtCliUfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliUfMouseExited
         validaString(txtCliUf.getText());
     }//GEN-LAST:event_txtCliUfMouseExited
+
+    private void txtCliCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCliCpfActionPerformed
+        
+    }//GEN-LAST:event_txtCliCpfActionPerformed
+
+    private void txtCliCpfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliCpfMouseExited
+        validaNumerico(txtCliCpf.getText());
+    }//GEN-LAST:event_txtCliCpfMouseExited
+
+    private void txtCliDataMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliDataMouseExited
+    //sem validacao por enquanto    
+    //validaString(txtCliData.getText());
+    }//GEN-LAST:event_txtCliDataMouseExited
 
     /**
      * @param args the command line arguments
@@ -477,8 +445,8 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtCliCidade;
     private javax.swing.JTextField txtCliComplemento;
-    private javax.swing.JFormattedTextField txtCliCpf;
-    private javax.swing.JFormattedTextField txtCliData;
+    private javax.swing.JTextField txtCliCpf;
+    private javax.swing.JTextField txtCliData;
     private javax.swing.JTextField txtCliEmail;
     private javax.swing.JTextField txtCliEndereco;
     private javax.swing.JTextField txtCliNome;
