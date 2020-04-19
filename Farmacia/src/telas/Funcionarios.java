@@ -379,6 +379,7 @@ public class Funcionarios extends javax.swing.JFrame {
     private void jTextFieldNomeFuncMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeFuncMouseExited
         // TODO add your handling code here:
         validaString(jTextFieldNomeFunc.getText());
+        //Evento Nome
     }//GEN-LAST:event_jTextFieldNomeFuncMouseExited
 
     private void jFormattedTextFieldCPFFuncMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCPFFuncMouseExited
