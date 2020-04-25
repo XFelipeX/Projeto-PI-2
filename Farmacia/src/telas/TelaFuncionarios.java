@@ -12,17 +12,17 @@ import javax.swing.JTextField;
  *
  * @author trodrsil
  */
-public class Funcionarios extends javax.swing.JFrame {
+public class TelaFuncionarios extends javax.swing.JFrame {
 
     /**
      * Creates new form Funcionarios
      */
-    public Funcionarios() {
+    public TelaFuncionarios() {
         initComponents();
     }
-    
+
     public void validaNumerico(String confirma) {
-        try {           
+        try {
             if (!confirma.matches("[0-9]*")) {
                 JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
             }
@@ -32,17 +32,18 @@ public class Funcionarios extends javax.swing.JFrame {
     }
 
     public void validaString(String confirma) {
-         try {
+        try {
             if (confirma != null) {
                 if (!confirma.matches("[A-z]*")) {
                     JOptionPane.showMessageDialog(null, "Este campo não pode ser preenchido com números");
-                    
+
                 }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,35 +55,35 @@ public class Funcionarios extends javax.swing.JFrame {
 
         jLabelTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jTextFieldCodFunc = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         jLabelSalarioFunc = new javax.swing.JLabel();
         jLabelNomeFunc = new javax.swing.JLabel();
-        jTextFieldNomeFunc = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         jLabelCPFFunc = new javax.swing.JLabel();
         jLabelLogradouroFunc = new javax.swing.JLabel();
-        jTextFieldLogradouroFunc = new javax.swing.JTextField();
+        txtLogradouro = new javax.swing.JTextField();
         jLabelNumFunc = new javax.swing.JLabel();
-        jTextFieldNumFunc = new javax.swing.JTextField();
+        txtNum = new javax.swing.JTextField();
         jLabelComplemFunc = new javax.swing.JLabel();
-        jTextFieldComplem = new javax.swing.JTextField();
+        txtComplemento = new javax.swing.JTextField();
         jLabelUF = new javax.swing.JLabel();
-        jTextFieldUF = new javax.swing.JTextField();
+        txtUf = new javax.swing.JTextField();
         jLabelTelefone = new javax.swing.JLabel();
-        jTextFieldTelefone = new javax.swing.JTextField();
+        txtTelefone = new javax.swing.JTextField();
         jLabelEmail = new javax.swing.JLabel();
-        jTextFieldEmail = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabelCod = new javax.swing.JLabel();
         jLabelFuncao = new javax.swing.JLabel();
-        jTextFieldFuncao = new javax.swing.JTextField();
-        jTextFieldSalario = new javax.swing.JTextField();
-        jFormattedTextFieldCPFFunc = new javax.swing.JFormattedTextField();
+        txtFuncao = new javax.swing.JTextField();
+        txtSalario = new javax.swing.JTextField();
         jLabelDataNascFunc = new javax.swing.JLabel();
-        jTextFieldDataNascFunc = new javax.swing.JTextField();
+        txtData = new javax.swing.JTextField();
+        txtCpf = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jButtonIncluir = new javax.swing.JButton();
-        jButtonAtualizar = new javax.swing.JButton();
-        jButtonExcluir = new javax.swing.JButton();
-        jButtonPesquisar = new javax.swing.JButton();
+        btnAdicionar = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,92 +92,85 @@ public class Funcionarios extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextFieldCodFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldCodFuncMouseExited(evt);
+                txtCodigoMouseExited(evt);
             }
         });
 
         jLabelSalarioFunc.setText("Salário: ");
 
-        jLabelNomeFunc.setText("Nome:");
+        jLabelNomeFunc.setText("*Nome:");
 
-        jTextFieldNomeFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtNome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldNomeFuncMouseExited(evt);
+                txtNomeMouseExited(evt);
             }
         });
 
-        jLabelCPFFunc.setText("CPF:");
+        jLabelCPFFunc.setText("*CPF:");
 
         jLabelLogradouroFunc.setText("Lograd.:");
 
-        jTextFieldLogradouroFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtLogradouro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldLogradouroFuncMouseExited(evt);
+                txtLogradouroMouseExited(evt);
             }
         });
 
         jLabelNumFunc.setText("Núm.:");
 
-        jTextFieldNumFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtNum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldNumFuncMouseExited(evt);
+                txtNumMouseExited(evt);
             }
         });
 
         jLabelComplemFunc.setText("Complem.: ");
 
-        jTextFieldComplem.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtComplemento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldComplemMouseExited(evt);
+                txtComplementoMouseExited(evt);
             }
         });
 
         jLabelUF.setText("UF:");
 
-        jTextFieldUF.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtUf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldUFMouseExited(evt);
+                txtUfMouseExited(evt);
             }
         });
 
         jLabelTelefone.setText("Telef.:");
 
-        jTextFieldTelefone.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtTelefone.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldTelefoneMouseExited(evt);
+                txtTelefoneMouseExited(evt);
             }
         });
 
-        jLabelEmail.setText("E-mail:");
+        jLabelEmail.setText("*E-mail:");
 
-        jTextFieldEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldEmailMouseExited(evt);
+                txtEmailMouseExited(evt);
             }
         });
 
         jLabelCod.setText("Código:");
 
-        jLabelFuncao.setText("Função:");
+        jLabelFuncao.setText("*Função:");
 
-        jTextFieldFuncao.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtFuncao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldFuncaoMouseExited(evt);
+                txtFuncaoMouseExited(evt);
             }
         });
 
-        jTextFieldSalario.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtSalario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldSalarioMouseExited(evt);
-            }
-        });
-
-        jFormattedTextFieldCPFFunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        jFormattedTextFieldCPFFunc.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jFormattedTextFieldCPFFuncMouseExited(evt);
+                txtSalarioMouseExited(evt);
             }
         });
 
@@ -193,52 +187,51 @@ public class Funcionarios extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabelCod)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextFieldCodFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabelNomeFunc)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextFieldNomeFunc))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabelCPFFunc)
-                            .addGap(18, 18, 18)
-                            .addComponent(jFormattedTextFieldCPFFunc)
-                            .addGap(73, 73, 73))
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabelLogradouroFunc)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextFieldLogradouroFunc))
+                            .addComponent(txtLogradouro))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabelEmail)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextFieldEmail))
+                            .addComponent(txtEmail))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabelFuncao)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextFieldFuncao))
+                            .addComponent(txtFuncao))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabelSalarioFunc)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextFieldSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabelNumFunc)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextFieldNumFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabelComplemFunc)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextFieldComplem))
+                            .addComponent(txtComplemento))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabelUF)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextFieldUF, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUf, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabelTelefone)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextFieldTelefone)))
+                            .addComponent(txtTelefone))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelNomeFunc)
+                                .addComponent(jLabelCPFFunc))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNome)
+                                .addComponent(txtCpf))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelDataNascFunc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldDataNascFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -247,69 +240,74 @@ public class Funcionarios extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCod)
-                    .addComponent(jTextFieldCodFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNomeFunc)
-                    .addComponent(jTextFieldNomeFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCPFFunc)
-                    .addComponent(jFormattedTextFieldCPFFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDataNascFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDataNascFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldLogradouroFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelLogradouroFunc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNumFunc)
-                    .addComponent(jTextFieldNumFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelComplemFunc)
-                    .addComponent(jTextFieldComplem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelUF)
-                    .addComponent(jTextFieldUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelTelefone)
-                    .addComponent(jTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelEmail)
-                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelFuncao)
-                    .addComponent(jTextFieldFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelSalarioFunc)
-                    .addComponent(jTextFieldSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButtonIncluir.setText("Incluir Registro");
-
-        jButtonAtualizar.setText("Atualizar");
-        jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
+        btnAdicionar.setText("Incluir Registro");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAtualizarActionPerformed(evt);
+                btnAdicionarActionPerformed(evt);
             }
         });
 
-        jButtonExcluir.setText("Excluir");
-        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluirActionPerformed(evt);
+                btnAtualizarActionPerformed(evt);
             }
         });
 
-        jButtonPesquisar.setText("Pesquisar");
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        btnPesquisar.setText("Pesquisar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -318,30 +316,30 @@ public class Funcionarios extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonIncluir, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                    .addComponent(jButtonAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAtualizar, jButtonExcluir, jButtonIncluir, jButtonPesquisar});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdicionar, btnAtualizar, btnExcluir, btnPesquisar});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonAtualizar, jButtonExcluir, jButtonIncluir, jButtonPesquisar});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdicionar, btnAtualizar, btnExcluir, btnPesquisar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -373,82 +371,77 @@ public class Funcionarios extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- 
-    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
-    private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAtualizarActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void jTextFieldCodFuncMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldCodFuncMouseExited
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         // TODO add your handling code here:
-        validaNumerico(jTextFieldCodFunc.getText());
-    }//GEN-LAST:event_jTextFieldCodFuncMouseExited
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
-    private void jTextFieldNomeFuncMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeFuncMouseExited
+    private void txtCodigoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoMouseExited
         // TODO add your handling code here:
-        validaString(jTextFieldNomeFunc.getText());
+        validaNumerico(txtCodigo.getText());
+    }//GEN-LAST:event_txtCodigoMouseExited
+
+    private void txtNomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNomeMouseExited
+        // TODO add your handling code here:
+        validaString(txtNome.getText());
         //Evento Nome
-    }//GEN-LAST:event_jTextFieldNomeFuncMouseExited
+    }//GEN-LAST:event_txtNomeMouseExited
 
-    private void jFormattedTextFieldCPFFuncMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCPFFuncMouseExited
+    private void txtLogradouroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLogradouroMouseExited
         // TODO add your handling code here:
+        validaString(txtLogradouro.getText());
+    }//GEN-LAST:event_txtLogradouroMouseExited
+
+    private void txtNumMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNumMouseExited
+        // TODO add your handling code here:
+        validaNumerico(txtNum.getText());
+    }//GEN-LAST:event_txtNumMouseExited
+
+    private void txtComplementoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtComplementoMouseExited
+        // TODO add your handling code here:
+        validaNumerico(txtComplemento.getText());
+    }//GEN-LAST:event_txtComplementoMouseExited
+
+    private void txtUfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUfMouseExited
+        // TODO add your handling code here:
+        validaString(txtUf.getText());
+    }//GEN-LAST:event_txtUfMouseExited
+
+    private void txtTelefoneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefoneMouseExited
+        // TODO add your handling code here:
+        validaNumerico(txtTelefone.getText());
+    }//GEN-LAST:event_txtTelefoneMouseExited
+
+    private void txtEmailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseExited
+        // TODO add your handling code here:
+        validaString(txtEmail.getText());
+    }//GEN-LAST:event_txtEmailMouseExited
+
+    private void txtFuncaoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFuncaoMouseExited
+        // TODO add your handling code here:
+        validaString(txtFuncao.getText());
+    }//GEN-LAST:event_txtFuncaoMouseExited
+
+    private void txtSalarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSalarioMouseExited
+        // TODO add your handling code here:
+        validaNumerico(txtSalario.getText());
+    }//GEN-LAST:event_txtSalarioMouseExited
+
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         try {
-            String confirma = jFormattedTextFieldCPFFunc.getText();
-           
-            if (!confirma.equals("         -  ")) {
-                if (!confirma.matches("[0-9]*")) {
-                    JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
-                    jFormattedTextFieldCPFFunc.setText(null);
-                }
+            if (txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || txtEmail.getText().isEmpty() || txtFuncao.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
+
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    }//GEN-LAST:event_jFormattedTextFieldCPFFuncMouseExited
+    }//GEN-LAST:event_btnAdicionarActionPerformed
 
-    private void jTextFieldLogradouroFuncMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldLogradouroFuncMouseExited
-        // TODO add your handling code here:
-        validaString(jTextFieldLogradouroFunc.getText());
-    }//GEN-LAST:event_jTextFieldLogradouroFuncMouseExited
-
-    private void jTextFieldNumFuncMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNumFuncMouseExited
-        // TODO add your handling code here:
-        validaNumerico(jTextFieldNumFunc.getText());
-    }//GEN-LAST:event_jTextFieldNumFuncMouseExited
-
-    private void jTextFieldComplemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldComplemMouseExited
-        // TODO add your handling code here:
-        validaNumerico(jTextFieldComplem.getText());
-    }//GEN-LAST:event_jTextFieldComplemMouseExited
-
-    private void jTextFieldUFMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldUFMouseExited
-        // TODO add your handling code here:
-        validaString(jTextFieldUF.getText());
-    }//GEN-LAST:event_jTextFieldUFMouseExited
-
-    private void jTextFieldTelefoneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldTelefoneMouseExited
-        // TODO add your handling code here:
-        validaNumerico(jTextFieldTelefone.getText());
-    }//GEN-LAST:event_jTextFieldTelefoneMouseExited
-
-    private void jTextFieldEmailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldEmailMouseExited
-        // TODO add your handling code here:
-        validaString(jTextFieldEmail.getText());
-    }//GEN-LAST:event_jTextFieldEmailMouseExited
-
-    private void jTextFieldFuncaoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldFuncaoMouseExited
-        // TODO add your handling code here:
-        validaString(jTextFieldFuncao.getText());
-    }//GEN-LAST:event_jTextFieldFuncaoMouseExited
-
-    private void jTextFieldSalarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSalarioMouseExited
-        // TODO add your handling code here:
-        validaNumerico(jTextFieldSalario.getText());
-    }//GEN-LAST:event_jTextFieldSalarioMouseExited
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -463,30 +456,30 @@ public class Funcionarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Funcionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Funcionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Funcionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Funcionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Funcionarios().setVisible(true);
+                new TelaFuncionarios().setVisible(true);
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAtualizar;
-    private javax.swing.JButton jButtonExcluir;
-    private javax.swing.JButton jButtonIncluir;
-    private javax.swing.JButton jButtonPesquisar;
-    private javax.swing.JFormattedTextField jFormattedTextFieldCPFFunc;
+    private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnAtualizar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel jLabelCPFFunc;
     private javax.swing.JLabel jLabelCod;
     private javax.swing.JLabel jLabelComplemFunc;
@@ -502,16 +495,17 @@ public class Funcionarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelUF;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextFieldCodFunc;
-    private javax.swing.JTextField jTextFieldComplem;
-    private javax.swing.JTextField jTextFieldDataNascFunc;
-    private javax.swing.JTextField jTextFieldEmail;
-    private javax.swing.JTextField jTextFieldFuncao;
-    private javax.swing.JTextField jTextFieldLogradouroFunc;
-    private javax.swing.JTextField jTextFieldNomeFunc;
-    private javax.swing.JTextField jTextFieldNumFunc;
-    private javax.swing.JTextField jTextFieldSalario;
-    private javax.swing.JTextField jTextFieldTelefone;
-    private javax.swing.JTextField jTextFieldUF;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtComplemento;
+    private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtData;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtFuncao;
+    private javax.swing.JTextField txtLogradouro;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNum;
+    private javax.swing.JTextField txtSalario;
+    private javax.swing.JTextField txtTelefone;
+    private javax.swing.JTextField txtUf;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@
 package telas;
 
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,7 +51,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("X - Sistema para controle de OS");
+        setTitle("X - Sistema ");
         setResizable(false);
 
         Desktop.setPreferredSize(new java.awt.Dimension(652, 640));
@@ -105,6 +106,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuCadPro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
         menuCadPro.setText("Produto");
+        menuCadPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadProActionPerformed(evt);
+            }
+        });
         menuCad.add(menuCadPro);
 
         jMenuBar1.add(menuCad);
@@ -122,6 +128,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuRel.add(menuRelCli);
 
         MenuRelMen.setText("Relatório Mensal");
+        MenuRelMen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuRelMenActionPerformed(evt);
+            }
+        });
         menuRel.add(MenuRelMen);
 
         jMenuBar1.add(menuRel);
@@ -156,6 +167,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         menuSair.setText("Sair");
+        menuSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSairActionPerformed(evt);
+            }
+        });
         menuOpc.add(menuSair);
 
         jMenuBar1.add(menuOpc);
@@ -189,7 +205,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuCadForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadForActionPerformed
-        // TODO add your handling code here:
+        TelaFornecedor fornecedor = new TelaFornecedor();
+        fornecedor.setVisible(true);
     }//GEN-LAST:event_menuCadForActionPerformed
 
     private void menuCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadCliActionPerformed
@@ -208,11 +225,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuCadCliActionPerformed
 
     private void menuCadFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadFunActionPerformed
-        // TODO add your handling code here:
+        TelaFuncionarios funcionarios = new TelaFuncionarios();
+        funcionarios.setVisible(true);
     }//GEN-LAST:event_menuCadFunActionPerformed
 
     private void menuRelCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelCliActionPerformed
-        // TODO add your handling code here:
+        TelaRelatorioCliente cliente = new TelaRelatorioCliente();
+        cliente.setVisible(true);
     }//GEN-LAST:event_menuRelCliActionPerformed
 
     private void menuServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuServicosActionPerformed
@@ -224,6 +243,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         compra.setVisible(true);
         Desktop.add(compra);
     }//GEN-LAST:event_menuServCompraActionPerformed
+
+    private void menuCadProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadProActionPerformed
+        TelaProduto produto = new TelaProduto();
+        produto.setVisible(true);
+    }//GEN-LAST:event_menuCadProActionPerformed
+
+    private void MenuRelMenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRelMenActionPerformed
+        TelaRelatorioVendas mensal = new TelaRelatorioVendas();
+        mensal.setVisible(true);
+    }//GEN-LAST:event_MenuRelMenActionPerformed
+
+    private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
+          int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?","Atenção",JOptionPane.YES_NO_OPTION);
+        if (sair == JOptionPane.YES_OPTION){
+            System.exit(0); // encerrar o sistema
+        }
+    }//GEN-LAST:event_menuSairActionPerformed
 
     /**
      * @param args the command line arguments
