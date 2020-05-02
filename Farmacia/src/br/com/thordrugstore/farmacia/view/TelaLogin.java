@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package telas;
+package br.com.thordrugstore.farmacia.view;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import moduloconexao.Main;
+import br.com.thordrugstore.farmacia.conexao.Main;
 import javax.swing.JOptionPane;
 
 /**

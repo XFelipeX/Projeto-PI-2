@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package telas;
+package br.com.thordrugstore.farmacia.view;
 
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
