@@ -25,7 +25,7 @@ public class TelaLogin extends javax.swing.JFrame {
      * Creates new form TelaLogin
      */
     public void logar() {
-        String sql = "select * from funcionarios where id=? and senha=? ";
+        String sql = "select * from funcionarios where idUsuario=? and senha=? ";
         try {
             //consultando o banco de dados, o ? é substituido pelas variaveis.
             pst = conexao.prepareStatement(sql);

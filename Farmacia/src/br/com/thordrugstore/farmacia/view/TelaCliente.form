@@ -122,7 +122,7 @@
                               <Component id="txtCliEndereco" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtCliComplemento" pref="256" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="txtCodCliente" min="-2" pref="64" max="-2" attributes="0"/>
+                                  <Component id="txtCodCli" min="-2" pref="64" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="txtCliTelefone" alignment="0" max="32767" attributes="0"/>
@@ -150,7 +150,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCodCli" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -280,10 +280,10 @@
             <Property name="text" type="java.lang.String" value="*E-mail:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCodCliente">
+        <Component class="javax.swing.JTextField" name="txtCodCli">
           <Events>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtCodClienteMouseExited"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodClienteActionPerformed"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtCodCliMouseExited"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodCliActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">

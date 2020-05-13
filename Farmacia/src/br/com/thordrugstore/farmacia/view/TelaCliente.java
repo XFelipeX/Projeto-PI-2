@@ -5,6 +5,13 @@
  */
 package br.com.thordrugstore.farmacia.view;
 
+import br.com.thordrugstore.farmacia.controller.ClienteController;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -14,15 +21,13 @@ import javax.swing.JTextField;
  */
 public class TelaCliente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCliente
-     */
     public TelaCliente() {
         initComponents();
+
     }
 
     public void validaNumerico(String confirma) {
-    try {           
+        try {
             if (!confirma.matches("[0-9]*")) {
                 JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
             }
@@ -32,7 +37,7 @@ public class TelaCliente extends javax.swing.JFrame {
     }
 
     public void validaString(String confirma) {
-         try {
+        try {
             if (confirma != null) {
                 if (!confirma.matches("[A-z]*")) {
                     JOptionPane.showMessageDialog(null, "Este campo não pode ser preenchido com números");
@@ -70,7 +75,7 @@ public class TelaCliente extends javax.swing.JFrame {
         txtCliComplemento = new javax.swing.JTextField();
         txtCliNome = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtCodCliente = new javax.swing.JTextField();
+        txtCodCli = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtCliCpf = new javax.swing.JTextField();
         txtCliData = new javax.swing.JTextField();
@@ -147,14 +152,14 @@ public class TelaCliente extends javax.swing.JFrame {
 
         jLabel6.setText("*E-mail:");
 
-        txtCodCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtCodCli.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtCodClienteMouseExited(evt);
+                txtCodCliMouseExited(evt);
             }
         });
-        txtCodCliente.addActionListener(new java.awt.event.ActionListener() {
+        txtCodCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodClienteActionPerformed(evt);
+                txtCodCliActionPerformed(evt);
             }
         });
 
@@ -201,7 +206,7 @@ public class TelaCliente extends javax.swing.JFrame {
                             .addComponent(txtCliEndereco)
                             .addComponent(txtCliComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtCliTelefone)
                             .addComponent(txtCliCpf, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -222,7 +227,7 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -330,13 +335,13 @@ public class TelaCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodClienteActionPerformed
+    private void txtCodCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodCliActionPerformed
 
-    }//GEN-LAST:event_txtCodClienteActionPerformed
+    }//GEN-LAST:event_txtCodCliActionPerformed
 
-    private void txtCodClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodClienteMouseExited
-        validaNumerico(txtCodCliente.getText());
-    }//GEN-LAST:event_txtCodClienteMouseExited
+    private void txtCodCliMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodCliMouseExited
+        validaNumerico(txtCodCli.getText());
+    }//GEN-LAST:event_txtCodCliMouseExited
 
     private void txtCliNomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliNomeMouseExited
         validaString(txtCliNome.getText());
@@ -347,6 +352,23 @@ public class TelaCliente extends javax.swing.JFrame {
             if (txtCliNome.getText().isEmpty() || txtCliCpf.getText().isEmpty() || txtCliEmail.getText().isEmpty() || txtCliTelefone.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
 
+            } else {
+                int codcli = Integer.parseInt(txtCodCli.getText());
+                String nome = txtCliNome.getText();
+                String cpf = txtCliCpf.getText();
+                String data = txtCliData.getText();
+                String email = txtCliEmail.getText();
+                String telefone = txtCliTelefone.getText();
+                String endereco = txtCliEndereco.getText();
+                String complemento = txtCliComplemento.getText();
+                String cidade = txtCliCidade.getText();
+                String uf = txtCliUf.getText();
+        
+                if (ClienteController.salvar(codcli, nome, cpf, data, email, telefone, endereco, complemento, cidade, uf)) {
+                    JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Falha no cadastro!");
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -378,7 +400,7 @@ public class TelaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCliUfMouseExited
 
     private void txtCliCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCliCpfActionPerformed
-        
+
     }//GEN-LAST:event_txtCliCpfActionPerformed
 
     private void txtCliCpfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliCpfMouseExited
@@ -386,8 +408,8 @@ public class TelaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCliCpfMouseExited
 
     private void txtCliDataMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliDataMouseExited
-    //sem validacao por enquanto    
-    //validaString(txtCliData.getText());
+        //sem validacao por enquanto    
+        //validaString(txtCliData.getText());
     }//GEN-LAST:event_txtCliDataMouseExited
 
     /**
@@ -452,6 +474,6 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtCliNome;
     private javax.swing.JTextField txtCliTelefone;
     private javax.swing.JTextField txtCliUf;
-    private javax.swing.JTextField txtCodCliente;
+    private javax.swing.JTextField txtCodCli;
     // End of variables declaration//GEN-END:variables
 }
