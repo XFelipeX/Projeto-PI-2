@@ -15,7 +15,9 @@ import java.sql.SQLException;
  */
 public class ModuloConexao {
 
-        public static Connection conector() {
+    public static Connection CONEXAO;
+
+    public static Connection conector() {
         java.sql.Connection conexao = null;
         //chamando o driver importado da biblioteca
         //Armazenando informacoes referente ao banco
@@ -24,12 +26,31 @@ public class ModuloConexao {
         String password = "";
         //Estabelecendo a conexao com o banco
         try {
-           // Class.forName(driver);
+            // Class.forName(driver);
             conexao = DriverManager.getConnection(url, user, password);
             return conexao;
         } catch (Exception e) {
             System.out.println(e);
             return null;
         }
+
+    }
+
+    public static boolean fecharConexao() {
+        boolean retorno = false;
+
+        try {
+            if (CONEXAO != null) {
+                if (!CONEXAO.isClosed()) {
+                    CONEXAO.close();
+                }
+            }
+            retorno = true;
+
+        } catch (SQLException e) {
+            retorno = false;
+        }
+
+        return retorno;
     }
 }
