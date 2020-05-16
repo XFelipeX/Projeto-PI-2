@@ -5,8 +5,10 @@
  */
 package br.com.thordrugstore.farmacia.view;
 
+import br.com.thordrugstore.farmacia.controller.FornecedorController;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+
+
 /**
  *
  * @author JHK
@@ -366,10 +368,27 @@ public class TelaFornecedor extends javax.swing.JFrame {
             if (txtRazaoSocial.getText().isEmpty() || txtCnpj.getText().isEmpty() || txtTelComercial1.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
 
+            } else {
+                int fornecedorcod = Integer.parseInt(txtCodFornecedor.getText());
+                String razaoSocial = txtRazaoSocial.getText();
+                String cnpj = txtCnpj.getText();
+                String telComercial1 = txtTelComercial1.getText();
+                String telComercial2 = txtTelComercial2.getText();
+                String celular = txtCelular.getText();
+                String endereco = txtEndereco.getText();
+                String complemento = txtComplemento.getText();
+                String cidade = txtCidade.getText();
+                String uf = txtUf.getText();
+                
+                if (FornecedorController.salvar(fornecedorcod, razaoSocial, cnpj, telComercial1, telComercial2, celular, endereco, complemento, cidade, uf)) {
+                    JOptionPane.showMessageDialog(this, "Fornecedor cadastrado com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Falha no cadastro!");
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-        }           
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

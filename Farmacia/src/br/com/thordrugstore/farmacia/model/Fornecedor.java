@@ -14,7 +14,7 @@ public class Fornecedor {
     private String razaoSocial;
     private String cnpj;
     private String telComercial1;
-    private String telComercaial2;
+    private String telComercial2;
     private String celular;
     private String endereco;
     private String complemento;
@@ -80,15 +80,15 @@ public class Fornecedor {
     /**
      * @return the telComercaial2
      */
-    public String getTelComercaial2() {
-        return telComercaial2;
+    public String getTelComercial2() {
+        return telComercial2;
     }
 
     /**
      * @param telComercaial2 the telComercaial2 to set
      */
-    public void setTelComercaial2(String telComercaial2) {
-        this.telComercaial2 = telComercaial2;
+    public void setTelComercial2(String telComercial2) {
+        this.telComercial2 = telComercial2;
     }
 
     /**
