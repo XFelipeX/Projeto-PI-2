@@ -14,6 +14,7 @@ public class Produto {
     private String nomeProduto;
     private String descricao;
     private double valor;
+    private int qtdProduto;
 
     public int getCodProduto() {
         return codProduto;
@@ -54,5 +55,5 @@ public class Produto {
     public void setQtdProduto(int qtdProduto) {
         this.qtdProduto = qtdProduto;
     }
-    private int qtdProduto;
+    
 }
