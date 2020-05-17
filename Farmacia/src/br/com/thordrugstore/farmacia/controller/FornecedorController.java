@@ -5,8 +5,14 @@
  */
 package br.com.thordrugstore.farmacia.controller;
 
+import br.com.thordrugstore.farmacia.DAO.ClienteDAO;
 import br.com.thordrugstore.farmacia.DAO.FornecedorDAO;
+import br.com.thordrugstore.farmacia.model.Cliente;
 import br.com.thordrugstore.farmacia.model.Fornecedor;
+import java.text.ParseException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -31,5 +37,39 @@ public class FornecedorController {
         return FornecedorDAO.salvar(obj);
     }
     
-
+    public static boolean atualizar(JTable tblFornecedores, Fornecedor fornecedor) {
+        boolean retorno = false;
+        if(tblFornecedores.getRowCount()>0){
+            if(FornecedorDAO.atualizar(fornecedor)){
+                retorno =true;
+            }else{
+                retorno = false;
+            }
+            
+        }else{
+            retorno = false;
+        }
+        return retorno;
+    }
+    
+    public static ArrayList<Fornecedor> pesquisar(){
+        ArrayList<Fornecedor> listaFornecedores = FornecedorDAO.pesquisar();
+        
+        return listaFornecedores;
+    }
+    
+    public static ArrayList<Fornecedor> pesquiar(String razaoSocial) throws ParseException{
+        ArrayList<Fornecedor> listaFornecedores = FornecedorDAO.pesquisar(razaoSocial);
+        
+        return listaFornecedores;
+    }
+    
+    public static boolean excluir(int id){
+        int i = JOptionPane.showConfirmDialog(null, "Tem certeza que quer excluir?","Atenção",JOptionPane.YES_NO_OPTION);
+        if(i==JOptionPane.YES_OPTION){
+            return FornecedorDAO.excluir(id);
+        }
+        
+        return false;
+    }    
 }
