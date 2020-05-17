@@ -6,9 +6,7 @@
 package br.com.thordrugstore.farmacia.view;
 
 import br.com.thordrugstore.farmacia.DAO.FornecedorDAO;
-import br.com.thordrugstore.farmacia.controller.ClienteController;
 import br.com.thordrugstore.farmacia.controller.FornecedorController;
-import br.com.thordrugstore.farmacia.model.Cliente;
 import br.com.thordrugstore.farmacia.model.Fornecedor;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -216,6 +214,11 @@ public class TelaFornecedor extends javax.swing.JFrame {
                 txtCodFornecedorMouseExited(evt);
             }
         });
+        txtCodFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodFornecedorActionPerformed(evt);
+            }
+        });
 
         txtCidade.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -398,6 +401,11 @@ public class TelaFornecedor extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblFornecedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblFornecedoresMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblFornecedores);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -513,9 +521,11 @@ public class TelaFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesquisarRazaoSocialActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (FornecedorController.excluir(Integer.valueOf(txtCodFornecedor.getText()))) {
-            limparCampos();
-        };
+        if (!txtCodFornecedor.getText().equals("")) {
+            if (FornecedorController.excluir(Integer.valueOf(txtCodFornecedor.getText()))) {
+                limparCampos();
+            };
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -529,12 +539,12 @@ public class TelaFornecedor extends javax.swing.JFrame {
         fornecedor.setComplemento(txtComplemento.getText());
         fornecedor.setCidade(txtCidade.getText());
         fornecedor.setUf(txtUf.getText());
-        
-        if (FornecedorController.atualizar(tblFornecedores, fornecedor)){
-            
+
+        if (FornecedorController.atualizar(tblFornecedores, fornecedor)) {
+
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -557,11 +567,11 @@ public class TelaFornecedor extends javax.swing.JFrame {
             tblFornecedores.setModel(tabela);
 
             tabela.setRowCount(0);
-            
-            for(Fornecedor f : listaFornecedor){
+
+            for (Fornecedor f : listaFornecedor) {
                 tabela.addRow(new Object[]{f.getFonecedorcod(), f.getRazaoSocial(), f.getCnpj(), f.getTelComercial1(), f.getTelComercial2(), f.getCelular(), f.getEndereco(), f.getComplemento(), f.getCidade(), f.getUf()});
             }
-            
+
             tblFornecedores.getColumnModel().getColumn(0).setPreferredWidth(50);
             tblFornecedores.getColumnModel().getColumn(1).setPreferredWidth(50);
             tblFornecedores.getColumnModel().getColumn(2).setPreferredWidth(50);
@@ -577,6 +587,14 @@ public class TelaFornecedor extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tblFornecedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFornecedoresMouseClicked
+        setarCampos();
+    }//GEN-LAST:event_tblFornecedoresMouseClicked
+
+    private void txtCodFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodFornecedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodFornecedorActionPerformed
 
     /**
      * @param args the command line arguments
