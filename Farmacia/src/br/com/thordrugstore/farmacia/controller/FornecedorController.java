@@ -13,10 +13,11 @@ import br.com.thordrugstore.farmacia.model.Fornecedor;
  * @author JHK
  */
 public class FornecedorController {
+    
     public static boolean salvar(int fornecedorcod,String razaoSocial, String cnpj, String telComercial1, String telComercial2, String celular, String endereco, String complemento, String cidade, String uf) {
         Fornecedor obj = new Fornecedor();
 
-        obj.setFonecedorcod(fornecedorcod);
+        //obj.setFonecedorcod(fornecedorcod);
         obj.setRazaoSocial(razaoSocial);
         obj.setCnpj(cnpj);
         obj.setTelComercial1(telComercial1);
@@ -29,5 +30,6 @@ public class FornecedorController {
 
         return FornecedorDAO.salvar(obj);
     }
+    
 
 }
