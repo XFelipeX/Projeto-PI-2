@@ -9,6 +9,7 @@ import br.com.thordrugstore.farmacia.DAO.ClienteDAO;
 import br.com.thordrugstore.farmacia.model.Cliente;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.sql.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;

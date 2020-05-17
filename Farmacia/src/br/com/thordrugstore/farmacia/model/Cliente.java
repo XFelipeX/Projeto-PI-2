@@ -5,6 +5,8 @@
  */
 package br.com.thordrugstore.farmacia.model;
 
+import java.sql.Date;
+
 /**
  *
  * @author lipes

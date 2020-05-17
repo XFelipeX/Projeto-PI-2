@@ -12,11 +12,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
+
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -40,6 +43,7 @@ public class ClienteDAO {
                 //pst.setInt(1, p.getCodcli());
                 pst.setString(1, p.getNome());
                 pst.setString(2, p.getCpf());
+                //pst.setDate(3, new Date(p.getDataNascimento().getTime()));
                 pst.setString(3, p.getDataNascimento());
                 pst.setString(4, p.getEmail());
                 pst.setString(5, p.getTelefone());
@@ -92,6 +96,7 @@ public class ClienteDAO {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, p.getNome());
             pst.setString(2, p.getCpf());
+            //pst.setDate(3, new Date(p.getDataNascimento().getTime()));
             pst.setString(3, p.getDataNascimento());
             pst.setString(4, p.getEmail());
             pst.setString(5, p.getTelefone());
@@ -179,14 +184,7 @@ public class ClienteDAO {
                 c.setCodcli(resultado.getInt("cod_cli"));
                 c.setNome(resultado.getString("nome"));
                 c.setCpf(resultado.getString("cpf"));
-
-                String data = resultado.getString("data_nascimento");
-                SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-                Date dataFormatada = formato.parse(data);
-                data = formato.format(dataFormatada);
-
-                c.setDataNascimento(data);
-
+                c.setDataNascimento(resultado.getString("data_nascimento"));
                 c.setEmail(resultado.getString("email"));
                 c.setTelefone(resultado.getString("telefone"));
                 c.setEndereco(resultado.getString("endereco"));

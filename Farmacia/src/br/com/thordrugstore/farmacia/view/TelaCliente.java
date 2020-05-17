@@ -14,6 +14,8 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.sql.Date;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,27 +29,26 @@ public class TelaCliente extends javax.swing.JFrame {
 
     public TelaCliente() {
         initComponents();
-     
+        
+        setLocationRelativeTo(null);
         cliente = new Cliente();
 
         carregarTabela();
     }
 
-    public static String formatarData(String s) throws ParseException {
-        String d = s.replace("/", "");
-        if (!d.trim().equals("")) {
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate data = LocalDate.parse(d, formato);
-            System.out.println(data);
-            return data.toString();
-        }
-
-        return "1111.11.11";
-    }
-
-    public void validaNumerico(String confirma) {
+    public void validaNumerico(String confirma) {//!confirma.matches("[0-9]*")
         try {
-            if (!confirma.matches("[0-9]*")) {
+            //int x = Integer.parseInt(confirma);
+            boolean temNumero = true;
+            for (int i = 0; i < confirma.length(); i++) {
+                if (Character.isDigit(confirma.charAt(i))) {
+                    temNumero = true;
+                } else {
+                    temNumero = false;
+                    break;
+                }
+            }
+            if (temNumero == false) {
                 JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
@@ -58,8 +59,17 @@ public class TelaCliente extends javax.swing.JFrame {
     public void validaString(String confirma) {
         try {
             if (confirma != null) {
-                if (!confirma.matches("[A-z]*")) {
-                    JOptionPane.showMessageDialog(null, "Este campo não pode ser preenchido com números");
+                boolean temLetra = true;
+                for (int i = 0; i < confirma.length(); i++) {
+                    if (Character.isLetter(confirma.charAt(i))) {
+                        temLetra = true;
+                    } else {
+                        temLetra = false;
+                        break;
+                    }
+                }
+                if (temLetra == false) {
+                    JOptionPane.showMessageDialog(null, "O campo não pode ser preenchido com numeros", "Atenção", JOptionPane.WARNING_MESSAGE);
                 }
             }
         } catch (Exception e) {
@@ -174,6 +184,7 @@ public class TelaCliente extends javax.swing.JFrame {
         txtCliPesquisarNome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(982, 753));
         setSize(new java.awt.Dimension(0, 0));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -241,6 +252,11 @@ public class TelaCliente extends javax.swing.JFrame {
         txtCliNome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 txtCliNomeMouseExited(evt);
+            }
+        });
+        txtCliNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCliNomeActionPerformed(evt);
             }
         });
 
@@ -490,7 +506,7 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(982, 753));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -515,6 +531,7 @@ public class TelaCliente extends javax.swing.JFrame {
                 //int codcli = Integer.parseInt(txtCodCli.getText());
                 String nome = txtCliNome.getText();
                 String cpf = txtCliCpf.getText();
+                //Date data = new Date(Integer.parseInt(txtCliData.getText().replace("/", "")));
                 String data = txtCliData.getText();
                 String email = txtCliEmail.getText();
                 String telefone = txtCliTelefone.getText();
@@ -523,9 +540,9 @@ public class TelaCliente extends javax.swing.JFrame {
                 String cidade = txtCliCidade.getText();
                 String uf = txtCliUf.getText();
                 //  System.out.println(data);
-                String dataFormatada = formatarData(data);
+                //String dataFormatada = formatarData(data);
                 //System.out.println(dataFormatada);
-                if (ClienteController.salvar( nome, cpf, dataFormatada, email, telefone, endereco, complemento, cidade, uf)) {
+                if (ClienteController.salvar(nome, cpf, data, email, telefone, endereco, complemento, cidade, uf)) {
                     JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
                     limparCampos();
                 } else {
@@ -535,7 +552,7 @@ public class TelaCliente extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-        } 
+        }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void txtCliEmailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliEmailMouseExited
@@ -620,9 +637,12 @@ public class TelaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCliPesquisarNomeActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        if (ClienteController.excluir(Integer.valueOf(txtCodCli.getText()))) {
-            limparCampos();
-        };
+        if (!txtCodCli.getText().equals("")) {
+            if (ClienteController.excluir(Integer.valueOf(txtCodCli.getText()))) {
+                limparCampos();
+            };
+        }
+
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
@@ -630,28 +650,42 @@ public class TelaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_tblClientesMouseClicked
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        cliente.setCodcli(Integer.parseInt(txtCodCli.getText()));
-        cliente.setNome(txtCliNome.getText());
-        cliente.setCpf(txtCliCpf.getText());
-        cliente.setDataNascimento(txtCliData.getText().replace("  /  /    ", "1111/11/11"));
-        cliente.setEmail(txtCliEmail.getText());
-        cliente.setTelefone(txtCliTelefone.getText());
-        cliente.setEndereco(txtCliEndereco.getText());
-        cliente.setComplemento(txtCliComplemento.getText());
-        cliente.setCidade(txtCliComplemento.getText());
-        cliente.setUf(txtCliUf.getText());
-        if (ClienteController.atualizar(tblClientes, cliente)) {
-            JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso!");
-            limparCampos();
-        } else {
-            JOptionPane.showMessageDialog(null, "Error dados não atualizados!");
+        try {
+            if (txtCliNome.getText().isEmpty() || txtCliCpf.getText().isEmpty() || txtCliEmail.getText().isEmpty() || txtCliTelefone.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
+            } else {
+                cliente.setCodcli(Integer.parseInt(txtCodCli.getText()));
+                cliente.setNome(txtCliNome.getText());
+                cliente.setCpf(txtCliCpf.getText());
+                //cliente.setDataNascimento(new Date(Integer.parseInt(txtCliData.getText().replace("/", ""))));
+                cliente.setDataNascimento(txtCliData.getText());
+                cliente.setEmail(txtCliEmail.getText());
+                cliente.setTelefone(txtCliTelefone.getText());
+                cliente.setEndereco(txtCliEndereco.getText());
+                cliente.setComplemento(txtCliComplemento.getText());
+                cliente.setCidade(txtCliComplemento.getText());
+                cliente.setUf(txtCliUf.getText());
+                if (ClienteController.atualizar(tblClientes, cliente)) {
+                    JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso!");
+                    limparCampos();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error dados não atualizados!");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
+
 
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void txtCliEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCliEnderecoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCliEnderecoActionPerformed
+
+    private void txtCliNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCliNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCliNomeActionPerformed
 
     /**
      * @param args the command line arguments

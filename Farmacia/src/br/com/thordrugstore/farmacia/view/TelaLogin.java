@@ -8,7 +8,7 @@ package br.com.thordrugstore.farmacia.view;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import br.com.thordrugstore.farmacia.conexao.Main;
+import br.com.thordrugstore.farmacia.utils.ModuloConexao;
 import javax.swing.JOptionPane;
 
 /**
@@ -61,7 +61,7 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
 
-        conexao = Main.conector();
+        conexao = ModuloConexao.conector();
 
         
     }
