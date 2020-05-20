@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import br.com.thordrugstore.farmacia.utils.ModuloConexao;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,6 +44,8 @@ public class TelaLogin extends javax.swing.JFrame {
                     principal.menuCadFun.setEnabled(true);
                     principal.menuRel.setEnabled(true);
                     principal.menuCadFor.setEnabled(true);
+                    principal.lblUsuario.setText(rs.getString(4));
+                    principal.lblUsuario.setForeground(Color.red);
                     this.dispose();
                 } else {
                     TelaPrincipal principal = new TelaPrincipal();

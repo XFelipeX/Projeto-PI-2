@@ -40,16 +40,14 @@ public class ClienteController {
 
     public static boolean atualizar(JTable tblClientes, Cliente cliente) {
         boolean retorno = false;
-        if(tblClientes.getRowCount()>0)
-        {   
-            if(ClienteDAO.atualizar(cliente)){
+        if (tblClientes.getRowCount() > 0) {
+            if (ClienteDAO.atualizar(cliente)) {
                 retorno = true;
-            }else{
+            } else {
                 retorno = false;
             }
-           
-            
-        }else{
+
+        } else {
             retorno = false;
         }
 
@@ -60,21 +58,21 @@ public class ClienteController {
     public static ArrayList<Cliente> pesquisar() {
         ArrayList<Cliente> listaClientes = ClienteDAO.pesquisar();
 
-        
         return listaClientes;
     }
-    public static ArrayList<Cliente> pesquisar(String nome) throws ParseException{
+
+    public static ArrayList<Cliente> pesquisar(String nome) throws ParseException {
         ArrayList<Cliente> listaClientes = ClienteDAO.pesquisar(nome);
 
-        
         return listaClientes;
     }
-    public static boolean excluir(int id){
-        int i = JOptionPane.showConfirmDialog(null, "Tem certeza que quer excluir?","Atenção",JOptionPane.YES_NO_OPTION);
-        if(i==JOptionPane.YES_OPTION){
+
+    public static boolean excluir(int id) {
+        int i = JOptionPane.showConfirmDialog(null, "Tem certeza que quer excluir?", "Atenção", JOptionPane.YES_NO_OPTION);
+        if (i == JOptionPane.YES_OPTION) {
             return ClienteDAO.excluir(id);
         }
-               
+
         return false;
     }
 }
