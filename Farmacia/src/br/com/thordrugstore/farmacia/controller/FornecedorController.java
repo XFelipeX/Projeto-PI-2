@@ -5,9 +5,7 @@
  */
 package br.com.thordrugstore.farmacia.controller;
 
-import br.com.thordrugstore.farmacia.DAO.ClienteDAO;
 import br.com.thordrugstore.farmacia.DAO.FornecedorDAO;
-import br.com.thordrugstore.farmacia.model.Cliente;
 import br.com.thordrugstore.farmacia.model.Fornecedor;
 import java.text.ParseException;
 import java.util.ArrayList;

@@ -7,13 +7,14 @@ package br.com.thordrugstore.farmacia.model;
 
 /**
  *
- * @author JHK
+ * @author Marcus
  */
 public class Produto {
+    
     private int codProduto;
     private String nomeProduto;
     private String descricao;
-    private double valor;
+    private float valor;
     private int qtdProduto;
 
     public int getCodProduto() {
@@ -40,11 +41,11 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public double getValor() {
+    public float getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(float valor) {
         this.valor = valor;
     }
 
