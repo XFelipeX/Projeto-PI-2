@@ -324,9 +324,10 @@ public class TelaProduto extends javax.swing.JFrame {
                 //int codProduto = Integer.parseInt(txtCodigo.getText());
                 String nomeProduto = txtNome.getText();
                 String descricao = txtDescricao.getText();
-                String valor = txtValor.getText();
-                String qtdProduto = txtQtdProduto.getText();
-                
+                //tive q fazer isso nao sei como q explica
+                float valor = Float.parseFloat(txtValor.getText());
+                int qtdProduto = Integer.parseInt(txtQtdProduto.getText());
+                           
                 if (ProdutoController.salvar(nomeProduto,descricao, valor, qtdProduto)) {
                     JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
                     limparCampos();
