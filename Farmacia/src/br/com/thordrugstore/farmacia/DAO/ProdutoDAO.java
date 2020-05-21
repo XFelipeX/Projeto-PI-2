@@ -40,7 +40,7 @@ public class ProdutoDAO {
                
                 pst.setString(1, x.getNomeProduto());
                 pst.setString(2, x.getDescricao());
-                pst.setFloat(2,  x.getValor());
+                pst.setFloat(3,  x.getValor());
                 pst.setInt(4, x.getQtdProduto());
                 
 
