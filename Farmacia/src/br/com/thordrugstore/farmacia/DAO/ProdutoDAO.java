@@ -79,7 +79,7 @@ public class ProdutoDAO {
         Connection conexao = null;
         String sql = null;
         PreparedStatement pst = null;
-        sql = "update produtos set nome_produto =?,desc_prod =?,val_unit =?,qtd_prod =? where codp =? ";
+        sql = "update produtos set nome_prod =?,desc_prod =?,val_unit =?,qtd_prod =? where codp =? ";
 
         try {
             conexao = ModuloConexao.conector();
