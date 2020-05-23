@@ -324,11 +324,12 @@ public class TelaProduto extends javax.swing.JFrame {
                 //int codProduto = Integer.parseInt(txtCodigo.getText());
                 String nomeProduto = txtNome.getText();
                 String descricao = txtDescricao.getText();
-                String valor = txtValor.getText();
-                String qtdProduto = txtQtdProduto.getText();
-                
+                //tive q fazer isso nao sei como q explica
+                float valor = Float.parseFloat(txtValor.getText());
+                int qtdProduto = Integer.parseInt(txtQtdProduto.getText());
+                           
                 if (ProdutoController.salvar(nomeProduto,descricao, valor, qtdProduto)) {
-                    JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                    JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
                     limparCampos();
                 } else {
 
@@ -360,7 +361,7 @@ public class TelaProduto extends javax.swing.JFrame {
                 produto.setQtdProduto(Integer.parseInt(txtQtdProduto.getText()));
                 
                 if (ProdutoController.atualizar(tblProdutos, produto)) {
-                    JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso!");
+                    JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
                     limparCampos();
                 } else {
                     JOptionPane.showMessageDialog(null, "Error dados não atualizados!");
@@ -370,21 +371,6 @@ public class TelaProduto extends javax.swing.JFrame {
             System.out.println(e);
         }
         
-        
-       
-        /*
-        produto.setCodProduto(Integer.parseInt(txtCodigo.getText()));
-        produto.setNomeProduto(txtNome.getText());
-        produto.setDescricao(txtDescricao.getText());
-        //produto.setValor(txtValor.getText());
-       // produto.setQtdProduto(txtQtdProduto.getText());
-        
-        
-        if (ProdutoController.atualizar(tblProdutos, produto)){
-            
-        }
-
-        */        
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed

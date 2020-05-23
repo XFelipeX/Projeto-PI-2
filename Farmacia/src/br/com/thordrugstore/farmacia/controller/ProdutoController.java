@@ -19,21 +19,17 @@ import javax.swing.JTable;
 public class ProdutoController {
     
     
-     public static boolean salvar(int codProduto, String nomeProduto, String descricao, float valor, int qtdProduto) {
+     public static boolean salvar(String nomeProduto, String descricao, float valor, int qtdProduto) {
         Produto obj = new Produto();
 
-        //BBBB
-        
         obj.setNomeProduto(nomeProduto);
         obj.setDescricao(descricao);
         obj.setValor(valor);
         obj.setQtdProduto(qtdProduto);
-        
 
         return ProdutoDAO.salvar(obj);
 
     }
-     
 
     public static boolean atualizar(JTable tblProdutos, Produto produto) {
         boolean retorno = false;
@@ -75,9 +71,9 @@ public class ProdutoController {
         return false;
     }
 
-    public static boolean salvar(String nomeProduto, String descricao, String valor, String qtdProduto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    public static boolean salvar(String nomeProduto, String descricao, String valor, String qtdProduto) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     
 }
