@@ -14,7 +14,10 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -81,7 +84,7 @@ public class TelaCliente extends javax.swing.JFrame {
         ArrayList<Cliente> listaClientes = ClienteDAO.pesquisar();
 
         DefaultTableModel tabela = new DefaultTableModel();
-        tabela.addColumn("ID");
+        tabela.addColumn("COD");
         tabela.addColumn("Nome");
         tabela.addColumn("CPF");
         tabela.addColumn("Data Nasc");
@@ -111,12 +114,12 @@ public class TelaCliente extends javax.swing.JFrame {
         tblClientes.getColumnModel().getColumn(9).setPreferredWidth(50);
     }
 
-    public void setarCampos() {
+    public void setarCampos() throws ParseException {
         int setar = tblClientes.getSelectedRow();
         txtCodCli.setText(tblClientes.getModel().getValueAt(setar, 0).toString());
         txtCliNome.setText(tblClientes.getModel().getValueAt(setar, 1).toString());
         txtCliCpf.setText(tblClientes.getModel().getValueAt(setar, 2).toString());
-        txtCliData.setText(tblClientes.getModel().getValueAt(setar, 3).toString());
+        txtCliData.setText(tblClientes.getModel().getValueAt(setar, 3).toString().replace("-", ""));
         txtCliEmail.setText(tblClientes.getModel().getValueAt(setar, 4).toString());
         txtCliTelefone.setText(tblClientes.getModel().getValueAt(setar, 5).toString());
         txtCliEndereco.setText(tblClientes.getModel().getValueAt(setar, 6).toString());
@@ -548,8 +551,10 @@ public class TelaCliente extends javax.swing.JFrame {
                 //int codcli = Integer.parseInt(txtCodCli.getText());
                 String nome = txtCliNome.getText();
                 String cpf = txtCliCpf.getText();
-                //Date data = new Date(Integer.parseInt(txtCliData.getText().replace("/", "")));
-                String data = txtCliData.getText();
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                Date dataFormatada = formato.parse(txtCliData.getText());
+                cliente.setDataNascimento(dataFormatada);
+                Date data = cliente.getDataNascimento();
                 String email = txtCliEmail.getText();
                 String telefone = txtCliTelefone.getText();
                 String endereco = txtCliEndereco.getText();
@@ -663,7 +668,11 @@ public class TelaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
-        setarCampos();
+        try {
+            setarCampos();
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tblClientesMouseClicked
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
@@ -675,7 +684,7 @@ public class TelaCliente extends javax.swing.JFrame {
                 cliente.setNome(txtCliNome.getText());
                 cliente.setCpf(txtCliCpf.getText());
                 //cliente.setDataNascimento(new Date(Integer.parseInt(txtCliData.getText().replace("/", ""))));
-                cliente.setDataNascimento(txtCliData.getText());
+                cliente.setDataNascimento((Date) txtCliData.getValue());
                 cliente.setEmail(txtCliEmail.getText());
                 cliente.setTelefone(txtCliTelefone.getText());
                 cliente.setEndereco(txtCliEndereco.getText());

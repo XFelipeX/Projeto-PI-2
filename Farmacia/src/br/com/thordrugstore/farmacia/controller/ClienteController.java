@@ -9,7 +9,7 @@ import br.com.thordrugstore.farmacia.DAO.ClienteDAO;
 import br.com.thordrugstore.farmacia.model.Cliente;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ClienteController {
 
-    public static boolean salvar(String nome, String cpf, String data, String email, String telefone, String endereco, String complemento, String cidade, String uf) {
+    public static boolean salvar(String nome, String cpf, Date data, String email, String telefone, String endereco, String complemento, String cidade, String uf) {
         Cliente obj = new Cliente();
 
         //obj.setCodcli(codcli);

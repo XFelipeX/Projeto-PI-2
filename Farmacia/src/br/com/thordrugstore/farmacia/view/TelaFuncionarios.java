@@ -132,18 +132,18 @@ public class TelaFuncionarios extends javax.swing.JFrame {
         for (Funcionario f : listaFuncionarios) {
             tabela.addRow(new Object[]{f.getCodfunc(), f.getIdUsuario(), f.getSenha(), f.getNome(), f.getCpf(), f.getLogradouro(), f.getNum(), f.getComplemento(), f.getUf(), f.getTelefone(), f.getEmail(), f.getFuncao(), f.getSalario(), f.getPerfil()});
         }
-        tblFuncionarios.getColumnModel().getColumn(0).setPreferredWidth(50); //
-        tblFuncionarios.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblFuncionarios.getColumnModel().getColumn(0).setPreferredWidth(40); //
+        tblFuncionarios.getColumnModel().getColumn(1).setPreferredWidth(70);
         tblFuncionarios.getColumnModel().getColumn(2).setPreferredWidth(50);
-        tblFuncionarios.getColumnModel().getColumn(3).setPreferredWidth(50);
-        tblFuncionarios.getColumnModel().getColumn(4).setPreferredWidth(50);
-        tblFuncionarios.getColumnModel().getColumn(5).setPreferredWidth(50);
-        tblFuncionarios.getColumnModel().getColumn(6).setPreferredWidth(50);
-        tblFuncionarios.getColumnModel().getColumn(7).setPreferredWidth(50);
-        tblFuncionarios.getColumnModel().getColumn(8).setPreferredWidth(50);
-        tblFuncionarios.getColumnModel().getColumn(9).setPreferredWidth(50);
-        tblFuncionarios.getColumnModel().getColumn(10).setPreferredWidth(50);
-        tblFuncionarios.getColumnModel().getColumn(11).setPreferredWidth(50);
+        tblFuncionarios.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tblFuncionarios.getColumnModel().getColumn(4).setPreferredWidth(70);
+        tblFuncionarios.getColumnModel().getColumn(5).setPreferredWidth(100);
+        tblFuncionarios.getColumnModel().getColumn(6).setPreferredWidth(40);
+        tblFuncionarios.getColumnModel().getColumn(7).setPreferredWidth(100);
+        tblFuncionarios.getColumnModel().getColumn(8).setPreferredWidth(40);
+        tblFuncionarios.getColumnModel().getColumn(9).setPreferredWidth(70);
+        tblFuncionarios.getColumnModel().getColumn(10).setPreferredWidth(100);
+        tblFuncionarios.getColumnModel().getColumn(11).setPreferredWidth(80);
         tblFuncionarios.getColumnModel().getColumn(12).setPreferredWidth(50);
         tblFuncionarios.getColumnModel().getColumn(13).setPreferredWidth(50);
     }
@@ -308,6 +308,11 @@ public class TelaFuncionarios extends javax.swing.JFrame {
             }
         });
 
+        txtCpf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtCpfMouseExited(evt);
+            }
+        });
         txtCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCpfActionPerformed(evt);
@@ -576,7 +581,9 @@ public class TelaFuncionarios extends javax.swing.JFrame {
         try {
             if (txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || txtEmail.getText().isEmpty() || txtFuncao.getText().isEmpty() || txtSenha.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
-            } else {
+            }else if(txtUf.getText().length()>2){
+                JOptionPane.showMessageDialog(null, "O campo UF não pode conter mais que dois caracteres!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            }else {
                 funcionario.setCodfunc(Integer.parseInt(txtCodigo.getText()));
                 funcionario.setNome(txtNome.getText());
                 funcionario.setIdUsuario(txtId.getText());
@@ -598,9 +605,8 @@ public class TelaFuncionarios extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Error dados não atualizados!");
                 }
             }
-        } catch (Exception e) {
-            System.out.println(e);
-            e.printStackTrace();
+        } catch (NullPointerException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "O campo salário não pode ser nulo, insira um valor maior ou igual a zero!","Atenção",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
@@ -642,7 +648,7 @@ public class TelaFuncionarios extends javax.swing.JFrame {
 
     private void txtEmailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseExited
         // TODO add your handling code here:
-        validaString(txtEmail.getText());
+        //validaString(txtEmail.getText());
     }//GEN-LAST:event_txtEmailMouseExited
 
     private void txtFuncaoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFuncaoMouseExited
@@ -658,8 +664,10 @@ public class TelaFuncionarios extends javax.swing.JFrame {
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         try {
             if (txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || txtEmail.getText().isEmpty() || txtFuncao.getText().isEmpty() || txtSenha.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
-            } else {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            }else if(txtUf.getText().length()>2){
+                JOptionPane.showMessageDialog(null, "O campo UF não pode conter mais que dois caracteres!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            }else {
 
                 String nome = txtNome.getText();
                 String user = txtId.getText();
@@ -683,8 +691,8 @@ public class TelaFuncionarios extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Falha no cadastro!");
                 }
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        } catch (NullPointerException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "O campo salário não pode ser nulo, insira um valor maior ou igual a zero!","Atenção",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
@@ -754,6 +762,10 @@ public class TelaFuncionarios extends javax.swing.JFrame {
     private void txtComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComplementoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtComplementoActionPerformed
+
+    private void txtCpfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCpfMouseExited
+        validaNumerico(txtCpf.getText());
+    }//GEN-LAST:event_txtCpfMouseExited
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

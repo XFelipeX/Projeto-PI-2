@@ -12,12 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.sql.Date;
-
 import javax.swing.JOptionPane;
 
 
@@ -44,7 +41,7 @@ public class ClienteDAO {
                 pst.setString(1, p.getNome());
                 pst.setString(2, p.getCpf());
                 //pst.setDate(3, new Date(p.getDataNascimento().getTime()));
-                pst.setString(3, p.getDataNascimento());
+                pst.setDate(3,new Date(p.getDataNascimento().getTime()));
                 pst.setString(4, p.getEmail());
                 pst.setString(5, p.getTelefone());
                 pst.setString(6, p.getEndereco());
@@ -97,7 +94,7 @@ public class ClienteDAO {
             pst.setString(1, p.getNome());
             pst.setString(2, p.getCpf());
             //pst.setDate(3, new Date(p.getDataNascimento().getTime()));
-            pst.setString(3, p.getDataNascimento());
+            pst.setDate(3,new Date(p.getDataNascimento().getDate()));
             pst.setString(4, p.getEmail());
             pst.setString(5, p.getTelefone());
             pst.setString(6, p.getEndereco());
@@ -184,7 +181,7 @@ public class ClienteDAO {
                 c.setCodcli(resultado.getInt("cod_cli"));
                 c.setNome(resultado.getString("nome"));
                 c.setCpf(resultado.getString("cpf"));
-                c.setDataNascimento(resultado.getString("data_nascimento"));
+                c.setDataNascimento(resultado.getDate("data_nascimento"));
                 c.setEmail(resultado.getString("email"));
                 c.setTelefone(resultado.getString("telefone"));
                 c.setEndereco(resultado.getString("endereco"));
@@ -232,7 +229,7 @@ public class ClienteDAO {
                 c.setCodcli(resultado.getInt("cod_cli"));
                 c.setNome(resultado.getString("nome"));
                 c.setCpf(resultado.getString("cpf"));
-                c.setDataNascimento(resultado.getString("data_nascimento"));
+                c.setDataNascimento(resultado.getDate("data_nascimento"));
                 c.setEmail(resultado.getString("email"));
                 c.setTelefone(resultado.getString("telefone"));
                 c.setEndereco(resultado.getString("endereco"));

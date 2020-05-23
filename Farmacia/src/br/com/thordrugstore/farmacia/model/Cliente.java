@@ -5,7 +5,7 @@
  */
 package br.com.thordrugstore.farmacia.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -15,7 +15,7 @@ public class Cliente {
     private int codcli;
     private String nome;
     private String cpf;
-    private String dataNascimento;
+    private Date dataNascimento;
     private String email;
     private String telefone;
     private String endereco;
@@ -24,7 +24,16 @@ public class Cliente {
     private String uf;
     
     public Cliente(){
-        
+        this.codcli = 0;
+        this.nome = "";
+        this.cpf = "";
+        this.complemento = "";
+        this.cidade = "";
+        this.uf = "";
+        this.endereco = "";
+        this.telefone = "";
+        this.email = "";
+        this.dataNascimento = new Date();
     }
     public int getCodcli() {
         return codcli;
@@ -50,11 +59,11 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public String getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
