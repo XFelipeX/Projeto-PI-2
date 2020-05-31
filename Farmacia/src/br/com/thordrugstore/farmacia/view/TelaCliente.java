@@ -188,7 +188,6 @@ public class TelaCliente extends javax.swing.JFrame {
         btnPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(841, 695));
         setSize(new java.awt.Dimension(0, 0));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -526,7 +525,7 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(859, 742));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

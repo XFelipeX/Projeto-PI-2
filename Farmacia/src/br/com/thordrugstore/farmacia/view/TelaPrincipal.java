@@ -62,17 +62,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        Desktop.setPreferredSize(new java.awt.Dimension(652, 640));
+        Desktop.setPreferredSize(new java.awt.Dimension(666, 726));
+        Desktop.setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
         Desktop.setLayout(DesktopLayout);
         DesktopLayout.setHorizontalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 652, Short.MAX_VALUE)
+            .addGap(0, 666, Short.MAX_VALUE)
         );
         DesktopLayout.setVerticalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGap(0, 710, Short.MAX_VALUE)
         );
 
         lblUsuario.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
@@ -196,11 +197,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblData)
                     .addComponent(lblUsuario))
-                .addGap(0, 139, Short.MAX_VALUE))
+                .addGap(0, 125, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Desktop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Desktop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(lblUsuario)
@@ -221,8 +222,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // menu Cliente
         TelaCliente novoArquivo = new TelaCliente();
         
-        //Defino o tamanho da janela e adiciono ao desktopPanel
-        novoArquivo.setPreferredSize(new Dimension(800,500));
+        //Defino o tamanho da janela e adiciono ao desktopPanel [859, 742]
+        novoArquivo.setPreferredSize(new Dimension(859,742));
         novoArquivo.setLocationRelativeTo(this);
         
         //Habilitar a view
@@ -247,7 +248,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuServicosActionPerformed
 
     private void menuServCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuServCompraActionPerformed
-        TelaCompra compra = new TelaCompra();
+        TelaVenda compra = new TelaVenda();
         compra.setVisible(true);
         Desktop.add(compra);
     }//GEN-LAST:event_menuServCompraActionPerformed

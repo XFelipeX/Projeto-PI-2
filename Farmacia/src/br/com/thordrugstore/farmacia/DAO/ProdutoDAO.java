@@ -40,7 +40,7 @@ public class ProdutoDAO {
                
                 pst.setString(1, x.getNomeProduto());
                 pst.setString(2, x.getDescricao());
-                pst.setFloat(3,  x.getValor());
+                pst.setDouble(3,  x.getValor());
                 pst.setInt(4, x.getQtdProduto());
                 
 
@@ -79,7 +79,7 @@ public class ProdutoDAO {
         Connection conexao = null;
         String sql = null;
         PreparedStatement pst = null;
-        sql = "update produtos set nome_prod =?,desc_prod =?,val_unit =?,qtd_prod =? where codp =? ";
+        sql = "update produtos set nome_prod =?,desc_prod =?,val_unit =?,qtd_prod =? where cod_produto =? ";
 
         try {
             conexao = ModuloConexao.conector();
@@ -87,7 +87,7 @@ public class ProdutoDAO {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, x.getNomeProduto());
             pst.setString(2, x.getDescricao());
-            pst.setFloat(3,  x.getValor());
+            pst.setDouble(3,  x.getValor());
             pst.setInt(4, x.getQtdProduto());
           
             pst.setInt(5, x.getCodProduto());
@@ -118,7 +118,7 @@ public class ProdutoDAO {
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement pst = null;
-        String sql = "delete from produtos where codp =?";
+        String sql = "delete from produtos where cod_produto =?";
         try {
             conexao = ModuloConexao.conector();
             pst = conexao.prepareStatement(sql);
@@ -166,7 +166,7 @@ public class ProdutoDAO {
 
             while (resultado.next()) {
                 Produto x = new Produto();
-                x.setCodProduto(resultado.getInt("codp"));
+                x.setCodProduto(resultado.getInt("cod_produto"));
                 x.setNomeProduto(resultado.getString("nome_prod"));
                 x.setDescricao(resultado.getString("desc_prod"));
                 x.setValor(resultado.getFloat("val_unit"));
@@ -209,7 +209,7 @@ public class ProdutoDAO {
             while (resultado.next()) {
                 Produto x = new Produto();
                
-                x.setCodProduto(resultado.getInt("codp"));
+                x.setCodProduto(resultado.getInt("cod_produto"));
                 x.setNomeProduto(resultado.getString("nome_prod"));
                 x.setDescricao(resultado.getString("desc_prod"));
                 x.setValor(resultado.getFloat("val_unit"));

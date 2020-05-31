@@ -14,7 +14,7 @@ public class Produto {
     private int codProduto;
     private String nomeProduto;
     private String descricao;
-    private float valor;
+    private double valor;
     private int qtdProduto;
 
     public int getCodProduto() {
@@ -41,7 +41,7 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public float getValor() {
+    public double getValor() {
         return valor;
     }
 
@@ -56,5 +56,8 @@ public class Produto {
     public void setQtdProduto(int qtdProduto) {
         this.qtdProduto = qtdProduto;
     }
-    
+    @Override
+    public String toString() {
+        return getNomeProduto();
+    }
 }
