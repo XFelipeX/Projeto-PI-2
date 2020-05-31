@@ -23,9 +23,8 @@ public class TelaFornecedor extends javax.swing.JFrame {
 
     public TelaFornecedor() {
         initComponents();
-
+        setLocationRelativeTo(null);
         fornecedor = new Fornecedor();
-
         carregarTabela();
     }
 
