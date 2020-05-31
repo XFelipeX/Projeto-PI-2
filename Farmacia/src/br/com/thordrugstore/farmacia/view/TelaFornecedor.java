@@ -196,6 +196,11 @@ public class TelaFornecedor extends javax.swing.JFrame {
                 txtRazaoSocialMouseExited(evt);
             }
         });
+        txtRazaoSocial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRazaoSocialActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Endereço:");
 
@@ -234,9 +239,9 @@ public class TelaFornecedor extends javax.swing.JFrame {
 
         jLabel11.setText("Complemento:");
 
-        txtComplemento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtComplementoMouseExited(evt);
+        txtComplemento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtComplementoActionPerformed(evt);
             }
         });
 
@@ -484,10 +489,6 @@ public class TelaFornecedor extends javax.swing.JFrame {
         validaNumerico(txtCnpj.getText());
     }//GEN-LAST:event_txtCnpjMouseExited
 
-    private void txtComplementoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtComplementoMouseExited
-        validaString(txtComplemento.getText());
-    }//GEN-LAST:event_txtComplementoMouseExited
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             if (txtRazaoSocial.getText().isEmpty() || txtCnpj.getText().isEmpty() || txtTelComercial1.getText().isEmpty()) {
@@ -595,6 +596,14 @@ public class TelaFornecedor extends javax.swing.JFrame {
     private void txtCodFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodFornecedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodFornecedorActionPerformed
+
+    private void txtRazaoSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRazaoSocialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRazaoSocialActionPerformed
+
+    private void txtComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComplementoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtComplementoActionPerformed
 
     /**
      * @param args the command line arguments
