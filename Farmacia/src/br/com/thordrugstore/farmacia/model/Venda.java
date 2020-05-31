@@ -1,5 +1,6 @@
 package br.com.thordrugstore.farmacia.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class Venda {
     private Date data;
     private String pagamento;
     private List<ItemVenda> itens;
+    private List<ItemVenda> itensRemover;
     
     public Venda(){
         this.codigoCompra = 0;
@@ -24,7 +26,7 @@ public class Venda {
         this.desconto = 0;
         this.data = new Date();
         this.pagamento = null;
-        this.itens = null;
+        this.itens = new ArrayList<>();
     }
 
     public Venda(int codigoCompra, Cliente cliente, float valorBruto, float desconto, Date data, String pagamento, List<ItemVenda> itens) {
@@ -110,5 +112,23 @@ public class Venda {
     public void addItem(ItemVenda itemVenda) {
         itens.add(itemVenda);
     }
+
+    public List<ItemVenda> getItensRemover() {
+        return itensRemover;
+    }
+
+    public void setItensRemover(List<ItemVenda> itensRemover) {
+        this.itensRemover = itensRemover;
+    }
    
+    public void removeItem(ItemVenda itemVenda) {
+        itens.remove(itemVenda);
+        if (itemVenda.getCodigoItemVenda()!= 0) {
+            itensRemover.add(itemVenda);
+        }
+    }
+
+    public int quantidadeItens() {
+        return itens.size();
+    }
 }

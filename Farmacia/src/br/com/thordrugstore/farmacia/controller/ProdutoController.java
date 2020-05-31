@@ -19,7 +19,7 @@ import javax.swing.JTable;
 public class ProdutoController {
     
     
-     public static boolean salvar(String nomeProduto, String descricao, float valor, int qtdProduto) {
+     public static boolean salvar(String nomeProduto, String descricao, Double valor, int qtdProduto) {
         Produto obj = new Produto();
 
         obj.setNomeProduto(nomeProduto);

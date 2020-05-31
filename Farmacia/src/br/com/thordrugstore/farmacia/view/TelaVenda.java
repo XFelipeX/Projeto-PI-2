@@ -10,6 +10,7 @@ import br.com.thordrugstore.farmacia.model.Cliente;
 import br.com.thordrugstore.farmacia.model.ItemVenda;
 import br.com.thordrugstore.farmacia.model.Produto;
 import br.com.thordrugstore.farmacia.model.Venda;
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -50,6 +51,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -296,19 +298,18 @@ public class TelaVenda extends javax.swing.JInternalFrame {
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtcodigoProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel13)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtvalorUnitario, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel8))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(spinquantidadeProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                                .addComponent(txtnomeProduto)))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtvalorUnitario, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(spinquantidadeProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                            .addComponent(txtnomeProduto))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnpesquisarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
@@ -484,7 +485,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         p.setCodProduto(Integer.parseInt(txtcodigoProduto.getText()));
         p.setNomeProduto(txtnomeProduto.getText());
         p.setQtdProduto((int) spinquantidadeProduto.getValue());
-        p.setValor(Float.parseFloat(txtvalorUnitario.getValue().toString()));
+        p.setValor(Double.parseDouble(txtvalorUnitario.getValue().toString()));
 
         ItemVenda item = new ItemVenda();
         item.setProduto(p);
@@ -502,6 +503,10 @@ public class TelaVenda extends javax.swing.JInternalFrame {
 
         tabela.addRow(new String[]{codigo, nome, qtd, valorUnitario, valorTotal});
         
+        venda.addItem(item);
+        DecimalFormat formatar = new DecimalFormat("#.##");
+        String total = formatar.format(venda.getValorTotal());
+        lblTotal.setText(total);
     }//GEN-LAST:event_btnadicionarProdutoActionPerformed
 
     private void btnnovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnovaVendaActionPerformed
@@ -538,6 +543,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
     public javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JSpinner spinquantidadeProduto;
     private javax.swing.JTable tblVenda;

@@ -70,7 +70,8 @@ public class TelaFuncionarios extends javax.swing.JFrame {
 
     public void setarCampos() {
         
-        int setar = tblFuncionarios.getSelectedRow();
+        try {
+            int setar = tblFuncionarios.getSelectedRow();
         txtCodigo.setText(tblFuncionarios.getModel().getValueAt(setar, 0).toString());
         txtId.setText(tblFuncionarios.getModel().getValueAt(setar, 1).toString());
         txtSenha.setText(tblFuncionarios.getModel().getValueAt(setar, 2).toString());
@@ -85,6 +86,9 @@ public class TelaFuncionarios extends javax.swing.JFrame {
         txtFuncao.setText(tblFuncionarios.getModel().getValueAt(setar, 11).toString());
         txtSalario.setText(tblFuncionarios.getModel().getValueAt(setar, 12).toString());
         cboFuncionarioPerfil.setSelectedItem(tblFuncionarios.getModel().getValueAt(setar, 13).toString());
+        } catch (Exception e) {
+        }
+        
 
         //a linha abaixo desabilita o botao adicionar
         btnAdicionar.setEnabled(false);

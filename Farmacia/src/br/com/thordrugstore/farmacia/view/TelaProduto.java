@@ -9,6 +9,7 @@ import br.com.thordrugstore.farmacia.DAO.ProdutoDAO;
 import br.com.thordrugstore.farmacia.controller.FornecedorController;
 import br.com.thordrugstore.farmacia.controller.ProdutoController;
 import br.com.thordrugstore.farmacia.model.Produto;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -321,11 +322,12 @@ public class TelaProduto extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
                 
             }else {
+                DecimalFormat formatar = new DecimalFormat("#.##");
                 //int codProduto = Integer.parseInt(txtCodigo.getText());
                 String nomeProduto = txtNome.getText();
                 String descricao = txtDescricao.getText();
                 //tive q fazer isso nao sei como q explica
-                float valor = Float.parseFloat(txtValor.getText());
+                Double valor = Double.parseDouble(formatar.format(txtValor.getText()));
                 int qtdProduto = Integer.parseInt(txtQtdProduto.getText());
                            
                 if (ProdutoController.salvar(nomeProduto,descricao, valor, qtdProduto)) {
@@ -354,10 +356,11 @@ public class TelaProduto extends javax.swing.JFrame {
             if (txtNome.getText().isEmpty() || txtValor.getText().isEmpty() || txtQtdProduto.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
             } else {
+                DecimalFormat formatar = new DecimalFormat("#.##");
                 produto.setCodProduto(Integer.parseInt(txtCodigo.getText()));
                 produto.setNomeProduto(txtNome.getText());
                 produto.setDescricao(txtDescricao.getText());
-                produto.setValor(Float.parseFloat(txtValor.getText()));
+                produto.setValor(Double.parseDouble(formatar.format(txtValor.getText())));
                 produto.setQtdProduto(Integer.parseInt(txtQtdProduto.getText()));
                 
                 if (ProdutoController.atualizar(tblProdutos, produto)) {

@@ -169,7 +169,7 @@ public class ProdutoDAO {
                 x.setCodProduto(resultado.getInt("cod_produto"));
                 x.setNomeProduto(resultado.getString("nome_prod"));
                 x.setDescricao(resultado.getString("desc_prod"));
-                x.setValor(resultado.getFloat("val_unit"));
+                x.setValor(resultado.getDouble("val_unit"));
                 x.setQtdProduto(resultado.getInt("qtd_prod"));
                 
 
@@ -212,7 +212,7 @@ public class ProdutoDAO {
                 x.setCodProduto(resultado.getInt("cod_produto"));
                 x.setNomeProduto(resultado.getString("nome_prod"));
                 x.setDescricao(resultado.getString("desc_prod"));
-                x.setValor(resultado.getFloat("val_unit"));
+                x.setValor(resultado.getDouble("val_unit"));
                 x.setQtdProduto(resultado.getInt("qtd_prod"));
                 
                 produtos.add(x);

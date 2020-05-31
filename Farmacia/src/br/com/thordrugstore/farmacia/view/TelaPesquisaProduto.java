@@ -163,7 +163,7 @@ public class TelaPesquisaProduto extends javax.swing.JDialog {
             Produto produto = new Produto();
             produto.setCodProduto((int) tblProdutos.getModel().getValueAt(linhaSelecionada, 0));
             produto.setNomeProduto(tblProdutos.getModel().getValueAt(linhaSelecionada, 1).toString());
-            produto.setValor(Float.parseFloat(tblProdutos.getModel().getValueAt(linhaSelecionada, 3).toString()));
+            produto.setValor(Double.parseDouble(tblProdutos.getModel().getValueAt(linhaSelecionada, 3).toString()));
 
             if (parent instanceof TelaVenda) {
                 TelaVenda lv = (TelaVenda) parent;
