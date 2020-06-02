@@ -69,26 +69,25 @@ public class TelaFuncionarios extends javax.swing.JFrame {
     }
 
     public void setarCampos() {
-        
+
         try {
             int setar = tblFuncionarios.getSelectedRow();
-        txtCodigo.setText(tblFuncionarios.getModel().getValueAt(setar, 0).toString());
-        txtId.setText(tblFuncionarios.getModel().getValueAt(setar, 1).toString());
-        txtSenha.setText(tblFuncionarios.getModel().getValueAt(setar, 2).toString());
-        txtNome.setText(tblFuncionarios.getModel().getValueAt(setar, 3).toString());
-        txtCpf.setText(tblFuncionarios.getModel().getValueAt(setar, 4).toString());
-        txtLogradouro.setText(tblFuncionarios.getModel().getValueAt(setar, 5).toString());
-        txtNum.setText(tblFuncionarios.getModel().getValueAt(setar, 6).toString());
-        txtComplemento.setText(tblFuncionarios.getModel().getValueAt(setar, 7).toString());
-        txtUf.setText(tblFuncionarios.getModel().getValueAt(setar, 8).toString());
-        txtTelefone.setText(tblFuncionarios.getModel().getValueAt(setar, 9).toString());
-        txtEmail.setText(tblFuncionarios.getModel().getValueAt(setar, 10).toString());
-        txtFuncao.setText(tblFuncionarios.getModel().getValueAt(setar, 11).toString());
-        txtSalario.setText(tblFuncionarios.getModel().getValueAt(setar, 12).toString());
-        cboFuncionarioPerfil.setSelectedItem(tblFuncionarios.getModel().getValueAt(setar, 13).toString());
+            txtCodigo.setText(tblFuncionarios.getModel().getValueAt(setar, 0).toString());
+            txtId.setText(tblFuncionarios.getModel().getValueAt(setar, 1).toString());
+            txtSenha.setText(tblFuncionarios.getModel().getValueAt(setar, 2).toString());
+            txtNome.setText(tblFuncionarios.getModel().getValueAt(setar, 3).toString());
+            txtCpf.setText(tblFuncionarios.getModel().getValueAt(setar, 4).toString());
+            txtLogradouro.setText(tblFuncionarios.getModel().getValueAt(setar, 5).toString());
+            txtNum.setText(tblFuncionarios.getModel().getValueAt(setar, 6).toString());
+            txtComplemento.setText(tblFuncionarios.getModel().getValueAt(setar, 7).toString());
+            txtUf.setText(tblFuncionarios.getModel().getValueAt(setar, 8).toString());
+            txtTelefone.setText(tblFuncionarios.getModel().getValueAt(setar, 9).toString());
+            txtEmail.setText(tblFuncionarios.getModel().getValueAt(setar, 10).toString());
+            txtFuncao.setText(tblFuncionarios.getModel().getValueAt(setar, 11).toString());
+            txtSalario.setText(tblFuncionarios.getModel().getValueAt(setar, 12).toString());
+            cboFuncionarioPerfil.setSelectedItem(tblFuncionarios.getModel().getValueAt(setar, 13).toString());
         } catch (Exception e) {
         }
-        
 
         //a linha abaixo desabilita o botao adicionar
         btnAdicionar.setEnabled(false);
@@ -114,7 +113,7 @@ public class TelaFuncionarios extends javax.swing.JFrame {
     }
 
     public void carregarTabela() {
-      ArrayList<Funcionario> listaFuncionarios;
+        ArrayList<Funcionario> listaFuncionarios;
         listaFuncionarios = FuncionarioDAO.pesquisar(txtFuncionarioPesquisa.getText());
         DefaultTableModel tabela = new DefaultTableModel();
         tabela.addColumn("COD");
@@ -585,9 +584,9 @@ public class TelaFuncionarios extends javax.swing.JFrame {
         try {
             if (txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || txtEmail.getText().isEmpty() || txtFuncao.getText().isEmpty() || txtSenha.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
-            }else if(txtUf.getText().length()>2){
+            } else if (txtUf.getText().length() > 2) {
                 JOptionPane.showMessageDialog(null, "O campo UF não pode conter mais que dois caracteres!", "Atenção", JOptionPane.WARNING_MESSAGE);
-            }else {
+            } else {
                 funcionario.setCodfunc(Integer.parseInt(txtCodigo.getText()));
                 funcionario.setNome(txtNome.getText());
                 funcionario.setIdUsuario(txtId.getText());
@@ -610,7 +609,7 @@ public class TelaFuncionarios extends javax.swing.JFrame {
                 }
             }
         } catch (NullPointerException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "O campo salário não pode ser nulo, insira um valor maior ou igual a zero!","Atenção",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "O campo salário não pode ser nulo, insira um valor maior ou igual a zero!", "Atenção", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
@@ -669,9 +668,9 @@ public class TelaFuncionarios extends javax.swing.JFrame {
         try {
             if (txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || txtEmail.getText().isEmpty() || txtFuncao.getText().isEmpty() || txtSenha.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios!", "Atenção", JOptionPane.WARNING_MESSAGE);
-            }else if(txtUf.getText().length()>2){
+            } else if (txtUf.getText().length() > 2) {
                 JOptionPane.showMessageDialog(null, "O campo UF não pode conter mais que dois caracteres!", "Atenção", JOptionPane.WARNING_MESSAGE);
-            }else {
+            } else {
 
                 String nome = txtNome.getText();
                 String user = txtId.getText();
@@ -696,7 +695,7 @@ public class TelaFuncionarios extends javax.swing.JFrame {
                 }
             }
         } catch (NullPointerException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "O campo salário não pode ser nulo, insira um valor maior ou igual a zero!","Atenção",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "O campo salário não pode ser nulo, insira um valor maior ou igual a zero!", "Atenção", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
@@ -756,7 +755,7 @@ public class TelaFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void tblFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFuncionariosMouseClicked
-      setarCampos();
+        setarCampos();
     }//GEN-LAST:event_tblFuncionariosMouseClicked
 
     private void txtSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalarioActionPerformed

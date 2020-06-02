@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author Marcus
@@ -23,18 +22,18 @@ import javax.swing.table.DefaultTableModel;
 public class TelaProduto extends javax.swing.JFrame {
 
     Produto produto;
-    
+
     public TelaProduto() {
         initComponents();
-        
+
         produto = new Produto();
-        
+
         carregarTabela();
-        
+
     }
-    
+
     public void validaNumerico(String confirma) {
-    try {           
+        try {
             if (!confirma.matches("[0-9]*")) {
                 JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
             }
@@ -44,7 +43,7 @@ public class TelaProduto extends javax.swing.JFrame {
     }
 
     public void validaString(String confirma) {
-         try {
+        try {
             if (confirma != null) {
                 if (!confirma.matches("[A-z]*")) {
                     JOptionPane.showMessageDialog(null, "Este campo não pode ser preenchido com números");
@@ -54,56 +53,53 @@ public class TelaProduto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-    
-     public void carregarTabela() {
-        
-         ArrayList<Produto> listaProdutos = ProdutoDAO.pesquisar();
 
-           
+    public void carregarTabela() {
 
-             DefaultTableModel tabela = new DefaultTableModel();
-        	tabela.addColumn("codp");
-        	tabela.addColumn("nome_prod");
-        	tabela.addColumn("desc_prod");
-        	tabela.addColumn("val_unit");
-        	tabela.addColumn("qtd_prod");
+        ArrayList<Produto> listaProdutos = ProdutoDAO.pesquisar();
 
-            	tblProdutos.setModel(tabela);
+        DefaultTableModel tabela = new DefaultTableModel();
+        tabela.addColumn("codp");
+        tabela.addColumn("nome_prod");
+        tabela.addColumn("desc_prod");
+        tabela.addColumn("val_unit");
+        tabela.addColumn("qtd_prod");
 
-        	tabela.setRowCount(0);
-            
-            for (Produto x : listaProdutos) {
+        tblProdutos.setModel(tabela);
+
+        tabela.setRowCount(0);
+
+        for (Produto x : listaProdutos) {
             tabela.addRow(new Object[]{x.getCodProduto(), x.getNomeProduto(), x.getDescricao(), x.getValor(), x.getQtdProduto()});
-            }
-           	tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
-        	tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(50);
-        	tblProdutos.getColumnModel().getColumn(2).setPreferredWidth(50);
-        	tblProdutos.getColumnModel().getColumn(3).setPreferredWidth(50);
-        	tblProdutos.getColumnModel().getColumn(4).setPreferredWidth(50);
+        }
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblProdutos.getColumnModel().getColumn(2).setPreferredWidth(50);
+        tblProdutos.getColumnModel().getColumn(3).setPreferredWidth(50);
+        tblProdutos.getColumnModel().getColumn(4).setPreferredWidth(50);
     }
 
-     public void setarCampos() {
+    public void setarCampos() {
         int setar = tblProdutos.getSelectedRow();
         txtCodigo.setText(tblProdutos.getModel().getValueAt(setar, 0).toString());
         txtNome.setText(tblProdutos.getModel().getValueAt(setar, 1).toString());
         txtDescricao.setText(tblProdutos.getModel().getValueAt(setar, 2).toString());
-        txtQtdProduto.setText(tblProdutos.getModel().getValueAt(setar, 3).toString());
-        txtValor.setText(tblProdutos.getModel().getValueAt(setar, 4).toString());
-        
-        btnAtualizar.setEnabled(false);
+        txtQtdProduto.setText(tblProdutos.getModel().getValueAt(setar, 4).toString());
+        txtValor.setText(tblProdutos.getModel().getValueAt(setar, 3).toString());
+
+        btnIncluir.setEnabled(false);
     }
-     
-     public void limparCampos() {
+
+    public void limparCampos() {
         txtCodigo.setText(null);
         txtNome.setText(null);
         txtDescricao.setText(null);
         txtQtdProduto.setText(null);
         txtValor.setText(null);
-        
-        btnAtualizar.setEnabled(true);
+
+        btnIncluir.setEnabled(true);
     }
-     
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -120,7 +116,6 @@ public class TelaProduto extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         txtDescricao = new javax.swing.JTextField();
         txtQtdProduto = new javax.swing.JTextField();
-        txtValor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -128,6 +123,7 @@ public class TelaProduto extends javax.swing.JFrame {
         btnIncluir = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+        txtValor = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProdutos = new javax.swing.JTable();
         btnPesquisar = new javax.swing.JButton();
@@ -140,12 +136,6 @@ public class TelaProduto extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel6.setText("* Qtd. Produto:");
-
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Cod. Produto:");
 
@@ -185,23 +175,22 @@ public class TelaProduto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(10, 10, 10)
+                                .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(54, 54, 54)
+                                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(8, 8, 8)
                                 .addComponent(txtQtdProduto))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
@@ -235,9 +224,9 @@ public class TelaProduto extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtQtdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6))
+                        .addComponent(jLabel6)
+                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -257,18 +246,17 @@ public class TelaProduto extends javax.swing.JFrame {
                 "Código", "Nome", "Descrição", "Valor", "Quantidade"
             }
         ));
+        tblProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProdutosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProdutos);
 
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
-            }
-        });
-
-        txtPesquisarNomeProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPesquisarNomeProdutoActionPerformed(evt);
             }
         });
 
@@ -307,38 +295,31 @@ public class TelaProduto extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(748, 598));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoActionPerformed
-
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
-            
-        
         try {
-            if (txtNome.getText().isEmpty() || txtDescricao.getText().isEmpty()) {
+            if (txtNome.getText().isEmpty() || txtQtdProduto.getText().isEmpty() || txtValor.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
-                
-            }else {
-                DecimalFormat formatar = new DecimalFormat("#.##");
+            } else {
+                DecimalFormat formatar = new DecimalFormat("#,###.00");
                 //int codProduto = Integer.parseInt(txtCodigo.getText());
                 String nomeProduto = txtNome.getText();
                 String descricao = txtDescricao.getText();
                 //tive q fazer isso nao sei como q explica
-                Double valor = Double.parseDouble(formatar.format(txtValor.getText()));
+                String aux = formatar.format(Double.parseDouble(txtValor.getText()));
+                Double valor = Double.parseDouble(aux.replace(",", "."));
                 int qtdProduto = Integer.parseInt(txtQtdProduto.getText());
-                           
-                if (ProdutoController.salvar(nomeProduto,descricao, valor, qtdProduto)) {
+
+                if (ProdutoController.salvar(nomeProduto, descricao, valor, qtdProduto)) {
                     JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
                     limparCampos();
                 } else {
-
                     JOptionPane.showMessageDialog(this, "Falha no cadastro!");
                 }
             }
-            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -346,23 +327,26 @@ public class TelaProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-         if (ProdutoController.excluir(Integer.valueOf(txtCodigo.getText()))) {
-            limparCampos();
-        };
+        if (!txtCodigo.getText().equals("")) {
+            if (ProdutoController.excluir(Integer.valueOf(txtCodigo.getText()))) {
+                limparCampos();
+            };
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-         try {
+        try {
             if (txtNome.getText().isEmpty() || txtValor.getText().isEmpty() || txtQtdProduto.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
             } else {
-                DecimalFormat formatar = new DecimalFormat("#.##");
+                DecimalFormat formatar = new DecimalFormat("#,###.00");
                 produto.setCodProduto(Integer.parseInt(txtCodigo.getText()));
                 produto.setNomeProduto(txtNome.getText());
                 produto.setDescricao(txtDescricao.getText());
-                produto.setValor(Double.parseDouble(formatar.format(txtValor.getText())));
+                String aux = formatar.format(Double.parseDouble(txtValor.getText()));
+                produto.setValor(Double.parseDouble(aux.replace(",", ".")));
                 produto.setQtdProduto(Integer.parseInt(txtQtdProduto.getText()));
-                
+
                 if (ProdutoController.atualizar(tblProdutos, produto)) {
                     JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
                     limparCampos();
@@ -373,77 +357,71 @@ public class TelaProduto extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e);
         }
-        
+
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
 
-
-         ArrayList<Produto> listaProduto;
+        ArrayList<Produto> listaProduto;
         try {
             listaProduto = ProdutoDAO.pesquisar(txtPesquisarNomeProduto.getText());
 
             DefaultTableModel tabela = new DefaultTableModel();
-            
+
             tabela.addColumn("codp");
             tabela.addColumn("nome_prod");
             tabela.addColumn("desc_prod");
             tabela.addColumn("val_unit");
             tabela.addColumn("qtd_prod");
-            
 
             tblProdutos.setModel(tabela);
 
             tabela.setRowCount(0);
-            
-            for(Produto x : listaProduto){
+
+            for (Produto x : listaProduto) {
                 tabela.addRow(new Object[]{x.getCodProduto(), x.getNomeProduto(), x.getDescricao(), x.getValor(), x.getQtdProduto()});
             }
-            
+
             tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
             tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(50);
             tblProdutos.getColumnModel().getColumn(2).setPreferredWidth(50);
             tblProdutos.getColumnModel().getColumn(3).setPreferredWidth(50);
             tblProdutos.getColumnModel().getColumn(4).setPreferredWidth(50);
-            
 
         } catch (ParseException ex) {
 
         }
 
-
-
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void txtPesquisarNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarNomeProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPesquisarNomeProdutoActionPerformed
+    private void tblProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutosMouseClicked
+        setarCampos();
+    }//GEN-LAST:event_tblProdutosMouseClicked
 
     /**
      * @param args the command line arguments
-     */                                           
-
-    private void jTextField1MouseExited(java.awt.event.MouseEvent evt) {                                          
+     */
+    private void jTextField1MouseExited(java.awt.event.MouseEvent evt) {
         validaNumerico(txtCodigo.getText());
-    }                                         
+    }
 
-    private void jTextField2MouseExited(java.awt.event.MouseEvent evt) {                                          
+    private void jTextField2MouseExited(java.awt.event.MouseEvent evt) {
         validaString(txtNome.getText());
-    }                                         
+    }
 
-    private void jTextField3MouseExited(java.awt.event.MouseEvent evt) {                                       
+    private void jTextField3MouseExited(java.awt.event.MouseEvent evt) {
         validaString(txtDescricao.getText());
-    }                     
+    }
 
-    private void jTextField4MouseExited(java.awt.event.MouseEvent evt) {                                        
+    private void jTextField4MouseExited(java.awt.event.MouseEvent evt) {
         validaNumerico(txtValor.getText());
-    }                                       
+    }
 
-    private void jTextField5MouseExited(java.awt.event.MouseEvent evt) {                                           
+    private void jTextField5MouseExited(java.awt.event.MouseEvent evt) {
         validaNumerico(txtQtdProduto.getText());
-    }                                          
-    
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -495,8 +473,7 @@ public class TelaProduto extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisarNomeProduto;
     private javax.swing.JTextField txtQtdProduto;
-    private javax.swing.JTextField txtValor;
+    private javax.swing.JFormattedTextField txtValor;
     // End of variables declaration//GEN-END:variables
-
 
 }

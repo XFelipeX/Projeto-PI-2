@@ -15,6 +15,7 @@ public class ItemVenda {
     private Produto produto;
     private int quantidade;
     private Double valorUnitario;
+    private Double valorTotal;
 
     public ItemVenda() {
         this.codigoItemVenda = 0;
@@ -87,4 +88,13 @@ public class ItemVenda {
         }
         return false;
     }
+
+    public Double getValorTotal() {
+        return this.getValorUnitario()*this.quantidade;
+    }
+
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+    
 }

@@ -27,7 +27,11 @@ public class ProdutoController {
         obj.setValor(valor);
         obj.setQtdProduto(qtdProduto);
 
-        return ProdutoDAO.salvar(obj);
+        if(ProdutoDAO.salvar(obj)){
+            return true;
+        }else{
+            return false;
+        }
 
     }
 

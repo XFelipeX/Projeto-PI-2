@@ -33,9 +33,9 @@ public class VendaDAO {
                 pst = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 pst.setInt(1, p.getCliente().getCodcli());
                 pst.setDate(2,new Date(p.getData().getTime()));
-                pst.setFloat(3, p.getValorBruto());
-                pst.setFloat(4, p.getTotal());
-                pst.setFloat(5, p.getDesconto());
+                pst.setDouble(3, p.getValorBruto());
+                pst.setDouble(4, p.getTotal());
+                pst.setDouble(5, p.getDesconto());
                 pst.setString(6, p.getPagamento());
 
                 int adicionado = pst.executeUpdate();

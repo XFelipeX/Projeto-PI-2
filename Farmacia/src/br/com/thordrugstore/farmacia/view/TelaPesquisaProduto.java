@@ -28,8 +28,22 @@ public class TelaPesquisaProduto extends javax.swing.JDialog {
         super();
         this.parent = parent;
         initComponents();
+        carregarTabela();
     }
+    
+    public void carregarTabela(){
+        ArrayList<Produto> listaProduto;
+        try {
+            listaProduto = ProdutoDAO.pesquisar(txtnomeProduto.getText());
 
+            DefaultTableModel tabela = (DefaultTableModel) tblProdutos.getModel();
+
+            for (Produto x : listaProduto) {
+                tabela.addRow(new Object[]{x.getCodProduto(), x.getNomeProduto(), x.getDescricao(), x.getValor(), x.getQtdProduto()});
+            }
+        } catch (Exception ex) {
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +60,7 @@ public class TelaPesquisaProduto extends javax.swing.JDialog {
         btnPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Produtos");
 
         jLabel1.setText("Pesquisa Produto");
 
@@ -54,11 +69,11 @@ public class TelaPesquisaProduto extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "COD", "Nome", "Desc", "Valor", "QTD"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -73,13 +88,15 @@ public class TelaPesquisaProduto extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tblProdutos);
         if (tblProdutos.getColumnModel().getColumnCount() > 0) {
             tblProdutos.getColumnModel().getColumn(0).setResizable(false);
-            tblProdutos.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+            tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(70);
             tblProdutos.getColumnModel().getColumn(1).setResizable(false);
-            tblProdutos.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+            tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(100);
             tblProdutos.getColumnModel().getColumn(2).setResizable(false);
-            tblProdutos.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+            tblProdutos.getColumnModel().getColumn(2).setPreferredWidth(100);
             tblProdutos.getColumnModel().getColumn(3).setResizable(false);
-            tblProdutos.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+            tblProdutos.getColumnModel().getColumn(3).setPreferredWidth(70);
+            tblProdutos.getColumnModel().getColumn(4).setResizable(false);
+            tblProdutos.getColumnModel().getColumn(4).setPreferredWidth(70);
         }
 
         btnPesquisar.setText("Pesquisar");
@@ -130,15 +147,7 @@ public class TelaPesquisaProduto extends javax.swing.JDialog {
         try {
             listaProduto = ProdutoDAO.pesquisar(txtnomeProduto.getText());
 
-            DefaultTableModel tabela = new DefaultTableModel();
-
-            tabela.addColumn("codp");
-            tabela.addColumn("nome_prod");
-            tabela.addColumn("desc_prod");
-            tabela.addColumn("val_unit");
-            tabela.addColumn("qtd_prod");
-
-            tblProdutos.setModel(tabela);
+            DefaultTableModel tabela = (DefaultTableModel) tblProdutos.getModel();
 
             tabela.setRowCount(0);
 
@@ -146,16 +155,8 @@ public class TelaPesquisaProduto extends javax.swing.JDialog {
                 tabela.addRow(new Object[]{x.getCodProduto(), x.getNomeProduto(), x.getDescricao(), x.getValor(), x.getQtdProduto()});
             }
 
-            tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(50);
-            tblProdutos.getColumnModel().getColumn(2).setPreferredWidth(50);
-            tblProdutos.getColumnModel().getColumn(3).setPreferredWidth(50);
-            tblProdutos.getColumnModel().getColumn(4).setPreferredWidth(50);
-
         } catch (Exception ex) {
-
         }
-
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void tblProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutosMouseClicked
@@ -172,8 +173,6 @@ public class TelaPesquisaProduto extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(this, "Campo de destino inválido.", "Alerta", JOptionPane.WARNING_MESSAGE);
             }
-
-        
     }//GEN-LAST:event_tblProdutosMouseClicked
 
     /**
