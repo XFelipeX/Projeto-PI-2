@@ -23,9 +23,8 @@ public class TelaFornecedor extends javax.swing.JFrame {
 
     public TelaFornecedor() {
         initComponents();
-
+        setLocationRelativeTo(null);
         fornecedor = new Fornecedor();
-
         carregarTabela();
     }
 
@@ -196,6 +195,11 @@ public class TelaFornecedor extends javax.swing.JFrame {
                 txtRazaoSocialMouseExited(evt);
             }
         });
+        txtRazaoSocial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRazaoSocialActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Endereço:");
 
@@ -234,9 +238,9 @@ public class TelaFornecedor extends javax.swing.JFrame {
 
         jLabel11.setText("Complemento:");
 
-        txtComplemento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtComplementoMouseExited(evt);
+        txtComplemento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtComplementoActionPerformed(evt);
             }
         });
 
@@ -484,10 +488,6 @@ public class TelaFornecedor extends javax.swing.JFrame {
         validaNumerico(txtCnpj.getText());
     }//GEN-LAST:event_txtCnpjMouseExited
 
-    private void txtComplementoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtComplementoMouseExited
-        validaString(txtComplemento.getText());
-    }//GEN-LAST:event_txtComplementoMouseExited
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             if (txtRazaoSocial.getText().isEmpty() || txtCnpj.getText().isEmpty() || txtTelComercial1.getText().isEmpty()) {
@@ -529,22 +529,33 @@ public class TelaFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        fornecedor.setFonecedorcod(Integer.parseInt(txtCodFornecedor.getText()));
-        fornecedor.setRazaoSocial(txtRazaoSocial.getText());
-        fornecedor.setCnpj(txtCnpj.getText());
-        fornecedor.setTelComercial1(txtTelComercial1.getText());
-        fornecedor.setTelComercial2(txtTelComercial2.getText());
-        fornecedor.setCelular(txtCelular.getText());
-        fornecedor.setEndereco(txtEndereco.getText());
-        fornecedor.setComplemento(txtComplemento.getText());
-        fornecedor.setCidade(txtCidade.getText());
-        fornecedor.setUf(txtUf.getText());
+        try {
+            if (txtRazaoSocial.getText().isEmpty() || txtCnpj.getText().isEmpty() || txtTelComercial1.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preencha os campos obrigatorios");
+            } else if (txtUf.getText().length() > 2) {
+                JOptionPane.showMessageDialog(null, "O campo UF não pode conter mais que dois caracteres!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            } else {
 
-        if (FornecedorController.atualizar(tblFornecedores, fornecedor)) {
-
+                fornecedor.setFonecedorcod(Integer.parseInt(txtCodFornecedor.getText()));
+                fornecedor.setRazaoSocial(txtRazaoSocial.getText());
+                fornecedor.setCnpj(txtCnpj.getText());
+                fornecedor.setTelComercial1(txtTelComercial1.getText());
+                fornecedor.setTelComercial2(txtTelComercial2.getText());
+                fornecedor.setCelular(txtCelular.getText());
+                fornecedor.setEndereco(txtEndereco.getText());
+                fornecedor.setComplemento(txtComplemento.getText());
+                fornecedor.setCidade(txtCidade.getText());
+                fornecedor.setUf(txtUf.getText());
+                if (FornecedorController.atualizar(tblFornecedores, fornecedor)) {
+                    JOptionPane.showMessageDialog(null, "Fornecedor cadastrado com sucesso!");
+                    limparCampos();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error dados não atualizados");
+                }
+            }
+        } catch (NullPointerException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "O campo salário não pode ser nulo, insira um valor maior ou igual a zero!", "Atenção", JOptionPane.ERROR_MESSAGE);
         }
-
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -595,6 +606,14 @@ public class TelaFornecedor extends javax.swing.JFrame {
     private void txtCodFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodFornecedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodFornecedorActionPerformed
+
+    private void txtRazaoSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRazaoSocialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRazaoSocialActionPerformed
+
+    private void txtComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComplementoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtComplementoActionPerformed
 
     /**
      * @param args the command line arguments
