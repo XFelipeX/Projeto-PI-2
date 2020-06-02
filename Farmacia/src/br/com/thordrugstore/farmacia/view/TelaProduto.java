@@ -137,6 +137,18 @@ public class TelaProduto extends javax.swing.JFrame {
 
         jLabel6.setText("* Qtd. Produto:");
 
+        txtNome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtNomeMouseExited(evt);
+            }
+        });
+
+        txtQtdProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtQtdProdutoMouseExited(evt);
+            }
+        });
+
         jLabel2.setText("Cod. Produto:");
 
         jLabel3.setText("* Nome:");
@@ -399,29 +411,17 @@ public class TelaProduto extends javax.swing.JFrame {
         setarCampos();
     }//GEN-LAST:event_tblProdutosMouseClicked
 
+    private void txtNomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNomeMouseExited
+        validaString(txtNome.getText());
+    }//GEN-LAST:event_txtNomeMouseExited
+
+    private void txtQtdProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtQtdProdutoMouseExited
+        validaNumerico(txtQtdProduto.getText());
+    }//GEN-LAST:event_txtQtdProdutoMouseExited
+
     /**
      * @param args the command line arguments
      */
-    private void jTextField1MouseExited(java.awt.event.MouseEvent evt) {
-        validaNumerico(txtCodigo.getText());
-    }
-
-    private void jTextField2MouseExited(java.awt.event.MouseEvent evt) {
-        validaString(txtNome.getText());
-    }
-
-    private void jTextField3MouseExited(java.awt.event.MouseEvent evt) {
-        validaString(txtDescricao.getText());
-    }
-
-    private void jTextField4MouseExited(java.awt.event.MouseEvent evt) {
-        validaNumerico(txtValor.getText());
-    }
-
-    private void jTextField5MouseExited(java.awt.event.MouseEvent evt) {
-        validaNumerico(txtQtdProduto.getText());
-    }
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
