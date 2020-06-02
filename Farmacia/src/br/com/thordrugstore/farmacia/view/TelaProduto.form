@@ -234,6 +234,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtValor">
+          <Events>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtValorMouseExited"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

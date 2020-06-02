@@ -34,7 +34,17 @@ public class TelaProduto extends javax.swing.JFrame {
 
     public void validaNumerico(String confirma) {
         try {
-            if (!confirma.matches("[0-9]*")) {
+            confirma = confirma.replace(".", "");
+            boolean temNumero = true;
+            for (int i = 0; i < confirma.length(); i++) {
+                if (Character.isDigit(confirma.charAt(i))) {
+                    temNumero = true;
+                } else {
+                    temNumero = false;
+                    break;
+                }
+            }
+            if (temNumero == false) {
                 JOptionPane.showMessageDialog(null, "Preencha o campo com valor numérico", "Atenção", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
@@ -45,8 +55,17 @@ public class TelaProduto extends javax.swing.JFrame {
     public void validaString(String confirma) {
         try {
             if (confirma != null) {
-                if (!confirma.matches("[A-z]*")) {
-                    JOptionPane.showMessageDialog(null, "Este campo não pode ser preenchido com números");
+                boolean temLetra = true;
+                for (int i = 0; i < confirma.length(); i++) {
+                    if (Character.isLetter(confirma.charAt(i))) {
+                        temLetra = true;
+                    } else {
+                        temLetra = false;
+                        break;
+                    }
+                }
+                if (temLetra == false) {
+                    JOptionPane.showMessageDialog(null, "O campo não pode ser preenchido com numeros", "Atenção", JOptionPane.WARNING_MESSAGE);
                 }
             }
         } catch (Exception e) {
@@ -175,6 +194,12 @@ public class TelaProduto extends javax.swing.JFrame {
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
+            }
+        });
+
+        txtValor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtValorMouseExited(evt);
             }
         });
 
@@ -418,6 +443,10 @@ public class TelaProduto extends javax.swing.JFrame {
     private void txtQtdProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtQtdProdutoMouseExited
         validaNumerico(txtQtdProduto.getText());
     }//GEN-LAST:event_txtQtdProdutoMouseExited
+
+    private void txtValorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtValorMouseExited
+        validaNumerico(txtValor.getText());
+    }//GEN-LAST:event_txtValorMouseExited
 
     /**
      * @param args the command line arguments
