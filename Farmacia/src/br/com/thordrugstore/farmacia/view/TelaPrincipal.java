@@ -162,7 +162,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         menuServCompra.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        menuServCompra.setText("Compra");
+        menuServCompra.setText("Venda");
         menuServCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuServCompraActionPerformed(evt);

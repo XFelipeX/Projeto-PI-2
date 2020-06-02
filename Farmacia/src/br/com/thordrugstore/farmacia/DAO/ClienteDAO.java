@@ -259,4 +259,46 @@ public class ClienteDAO {
         }
         return clientes;
     }
+    
+    public static ArrayList<Cliente> pesquisaSimples(String nome) throws ParseException {
+         ResultSet resultado = null;
+        Connection conexao = null;
+        PreparedStatement pst = null;
+        String sql = "select cod_cli,nome,cpf from clientes where nome like ?;";
+        ArrayList<Cliente> clientes = new ArrayList<>();
+
+        try {
+            conexao = ModuloConexao.conector();
+            pst = conexao.prepareStatement(sql);
+
+            pst.setString(1, "%" + nome + '%');
+
+            resultado = pst.executeQuery();
+
+            while (resultado.next()) {
+                Cliente c = new Cliente();
+                c.setCodcli(resultado.getInt("cod_cli"));
+                c.setNome(resultado.getString("nome"));
+                c.setCpf(resultado.getString("cpf"));
+                clientes.add(c);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            clientes = null;
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+
+            } catch (SQLException ex) {
+            }
+
+        }
+        return clientes;
+    } 
 }

@@ -56,7 +56,9 @@ public class TelaVenda extends javax.swing.JInternalFrame {
     }
 
     public void setCliente(Cliente cliente) {
-        txtnomeCliente.setValue(cliente);
+        txtnomeCliente.setValue(cliente.getNome());
+        txtcodigoCliente.setText(String.valueOf(cliente.getCodcli()));
+        txtcpfCliente.setText(cliente.getCpf());
     }
 
     public void setProduto(Produto produto) {
@@ -127,6 +129,11 @@ public class TelaVenda extends javax.swing.JInternalFrame {
 
         btnpesquisarCliente.setText("Pesquisar");
         btnpesquisarCliente.setEnabled(false);
+        btnpesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpesquisarClienteActionPerformed(evt);
+            }
+        });
 
         jLabel15.setText("Código:");
 
@@ -367,25 +374,26 @@ public class TelaVenda extends javax.swing.JInternalFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tblVenda.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblVenda);
         if (tblVenda.getColumnModel().getColumnCount() > 0) {
+            tblVenda.getColumnModel().getColumn(0).setResizable(false);
             tblVenda.getColumnModel().getColumn(0).setPreferredWidth(70);
-            tblVenda.getColumnModel().getColumn(0).setHeaderValue("COD");
+            tblVenda.getColumnModel().getColumn(1).setResizable(false);
             tblVenda.getColumnModel().getColumn(1).setPreferredWidth(100);
-            tblVenda.getColumnModel().getColumn(1).setHeaderValue("Nome Produto");
+            tblVenda.getColumnModel().getColumn(2).setResizable(false);
             tblVenda.getColumnModel().getColumn(2).setPreferredWidth(50);
-            tblVenda.getColumnModel().getColumn(2).setHeaderValue("QTD");
+            tblVenda.getColumnModel().getColumn(3).setResizable(false);
             tblVenda.getColumnModel().getColumn(3).setPreferredWidth(70);
-            tblVenda.getColumnModel().getColumn(3).setHeaderValue("Valor Unitário");
+            tblVenda.getColumnModel().getColumn(4).setResizable(false);
             tblVenda.getColumnModel().getColumn(4).setPreferredWidth(70);
-            tblVenda.getColumnModel().getColumn(4).setHeaderValue("Total");
         }
 
         jLabel9.setText("Itens na sacola:");
@@ -573,6 +581,11 @@ public class TelaVenda extends javax.swing.JInternalFrame {
             lblTotal.setText(formatar.format(venda.getTotal()));
         }
     }//GEN-LAST:event_btnaplicarDescontoActionPerformed
+
+    private void btnpesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarClienteActionPerformed
+        TelaPesquisaCliente buscaCliente = new TelaPesquisaCliente(this);
+        buscaCliente.setVisible(true);
+    }//GEN-LAST:event_btnpesquisarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
