@@ -74,11 +74,11 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código  Venda", "Código Cliente", "Data", "Hora", "Descrição  Produto", "Valor Unitário", "Total de Produtos", "Valor Total de Vendas"
+                "Código  Venda", "Código Cliente", "Data", "Descrição  Produto", "Valor Unitário", "Total de Produtos", "Valor Total de Vendas"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false
+                true, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -94,7 +94,6 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
             jTable1.getColumnModel().getColumn(6).setResizable(false);
-            jTable1.getColumnModel().getColumn(7).setResizable(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
