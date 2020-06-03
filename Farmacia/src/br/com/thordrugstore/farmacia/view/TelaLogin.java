@@ -95,6 +95,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Senha  :");
 
+        txtSenha.setBackground(new java.awt.Color(240, 240, 240));
         txtSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +107,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuário:");
 
+        txtUsuario.setBackground(new java.awt.Color(240, 240, 240));
         txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
