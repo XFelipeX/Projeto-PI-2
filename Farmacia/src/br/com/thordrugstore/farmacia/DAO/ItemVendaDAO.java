@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.thordrugstore.farmacia.DAO;
 
 import br.com.thordrugstore.farmacia.model.Cliente;
@@ -27,7 +22,7 @@ public class ItemVendaDAO {
         Connection conexao = null;
         String sql = null;
         PreparedStatement pst = null;
-        sql = "insert into itemvenda(cod_venda,cod_produto,qtd,valor_unitario)"
+        sql = "insert into itemvenda(cod_vend,cod_prod,qtd,valor_unitario)"
                 + "values(?,?,?,?)";
         try {
             conexao = ModuloConexao.conector();

@@ -17,19 +17,16 @@ import javax.swing.JOptionPane;
  */
 public class ItemVendaController {
 
-    public static ItemVenda salvar(Produto produto, Venda venda, int qtd, double valorUnitario) {
+    public static Boolean salvar(Venda venda, Produto produto,int qtd,Double valorUnitario) {
         ItemVenda item = new ItemVenda();
-        item.setProduto(produto);
         item.setVenda(venda);
-
+        item.setProduto(produto);
         item.setQuantidade(qtd);
         item.setValorUnitario(valorUnitario);
         if(ItemVendaDAO.salvar(item)){
-            JOptionPane.showMessageDialog(null, "Produto adicionado com sucesso!");
+            return true;
         }else{
-            JOptionPane.showMessageDialog(null, "Produto não adicionado!");
-            return null;
+            return false;
         }
-        return item;
     }
 }

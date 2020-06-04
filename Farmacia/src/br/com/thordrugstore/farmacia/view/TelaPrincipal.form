@@ -211,7 +211,7 @@
     <Container class="javax.swing.JDesktopPane" name="Desktop">
       <Properties>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[673, 689]"/>
+          <Dimension value="[714, 711]"/>
         </Property>
         <Property name="requestFocusEnabled" type="boolean" value="false"/>
       </Properties>

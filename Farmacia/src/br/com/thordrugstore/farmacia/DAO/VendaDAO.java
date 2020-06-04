@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.thordrugstore.farmacia.DAO;
 
 import br.com.thordrugstore.farmacia.model.Venda;
@@ -15,17 +10,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author lipes
- */
+
 public class VendaDAO {
     public static boolean salvar(Venda p) {
         boolean retorno = false;
         Connection conexao = null;
         String sql = null;
         PreparedStatement pst = null;
-        sql = "insert into compra(cod_cliente,data_compra,valor_bruto,total,desconto,pagamento)"
+        sql = "insert into vendas(cod_cliente,data_compra,valor_bruto,total,desconto,pagamento)"
                 + "values(?,?,?,?,?,?)";
         try {
             conexao = ModuloConexao.conector();
@@ -46,7 +38,7 @@ public class VendaDAO {
                     if (generatedKeys.next()) {
                         p.setCodigoCompra(generatedKeys.getInt(1));
                     } else {
-                        throw new SQLException("Falha ao obter o ID do cliente.");
+                        throw new SQLException("Falha ao obter o ID");
                     }
                 } else {
                     retorno = false;
@@ -65,6 +57,5 @@ public class VendaDAO {
         }
         return retorno;
     }
-
-    
+   
 }

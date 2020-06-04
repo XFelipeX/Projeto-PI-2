@@ -1,12 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.thordrugstore.farmacia.DAO;
 
-import br.com.thordrugstore.farmacia.model.Cliente;
-import br.com.thordrugstore.farmacia.model.Fornecedor;
 import br.com.thordrugstore.farmacia.model.Produto;
 import br.com.thordrugstore.farmacia.utils.ModuloConexao;
 import java.sql.Connection;
@@ -17,13 +10,9 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-/**
- *
- * @author Marcus
- */
+
 public class ProdutoDAO {
-    
-    
+        
     public static boolean salvar(Produto x) {
         boolean retorno = false;
         Connection conexao = null;
@@ -33,16 +22,12 @@ public class ProdutoDAO {
                 + "values(?,?,?,?)";
         try {
             conexao = ModuloConexao.conector();
-            if (x.getNomeProduto().isEmpty() || x.getDescricao().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios");
-            } else {
                 pst = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                
                 pst.setString(1, x.getNomeProduto());
                 pst.setString(2, x.getDescricao());
                 pst.setDouble(3,  x.getValor());
                 pst.setInt(4, x.getQtdProduto());
-                
 
                 int adicionado = pst.executeUpdate();
 
@@ -53,13 +38,10 @@ public class ProdutoDAO {
                         x.setCodProduto(generatedKeys.getInt(1));
                     } else {
                         throw new SQLException("Falha ao obter o ID do produto.");
-                    }
-                    //JOptionPane.showMessageDialog(null, "Fornecedor adicionado com sucesso");                
+                    }                
                 } else {
                     retorno = false;
-                    //JOptionPane.showMessageDialog(null, "Error Fornecedor não adicionado");
                 }
-            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         } finally {
@@ -113,7 +95,39 @@ public class ProdutoDAO {
         }
         return retorno;
     }
+    public static boolean atualizarQtd(Produto p){
+         boolean retorno = false;
+        Connection conexao = null;
+        String sql = null;
+        PreparedStatement pst = null;
+        sql = "update produtos set qtd_prod =? where cod_produto =? ";
 
+        try {
+            conexao = ModuloConexao.conector();
+            pst = conexao.prepareStatement(sql);
+            pst.setInt(1, p.getQtdProduto());        
+            pst.setInt(2, p.getCodProduto());
+
+            int adicionado = pst.executeUpdate();
+
+            if (adicionado > 0) {
+                retorno = true;
+            } else {
+                retorno = false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                conexao.close();
+            } catch (SQLException ex) {
+            }
+        }
+        return retorno;
+    }
     public static boolean excluir(int id) {
         boolean retorno = false;
         Connection conexao = null;
@@ -127,11 +141,9 @@ public class ProdutoDAO {
             int adicionado = pst.executeUpdate();
 
             if (adicionado > 0) {
-                retorno = true;
-                JOptionPane.showMessageDialog(null, "Produto apagado com sucesso!");
+                retorno = true;                
             } else {
-                retorno = false;
-                JOptionPane.showMessageDialog(null, "Error! Não foi possível apagar o produto.");
+                retorno = false;               
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -145,7 +157,6 @@ public class ProdutoDAO {
             } catch (SQLException ex) {
             }
         }
-
         return retorno;
     }
 
@@ -172,7 +183,6 @@ public class ProdutoDAO {
                 x.setValor(resultado.getDouble("val_unit"));
                 x.setQtdProduto(resultado.getInt("qtd_prod"));
                 
-
                 produtos.add(x);
             }
         } catch (SQLException ex) {
@@ -236,5 +246,39 @@ public class ProdutoDAO {
         return produtos;
     }
     
-    
+    public static Produto pesquisaSimples(int cod){
+        ResultSet resultado = null;
+        Connection conexao = null;
+        PreparedStatement pst = null;
+        String sql = "select qtd_prod from produtos where cod_produto = ?;";
+        try {
+            conexao = ModuloConexao.conector();
+            pst = conexao.prepareStatement(sql);
+
+            pst.setInt(1,  cod);
+
+            resultado = pst.executeQuery();
+
+            if(resultado.next()) {
+                Produto x = new Produto();
+                x.setQtdProduto(resultado.getInt("qtd_prod"));           
+                return x;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+
+            } catch (SQLException ex) {
+            }
+        }
+        return null;
+    }
 }

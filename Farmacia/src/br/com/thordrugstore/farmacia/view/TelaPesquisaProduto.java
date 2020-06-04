@@ -142,7 +142,7 @@ public class TelaPesquisaProduto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        ArrayList<Produto> listaProduto;
+       ArrayList<Produto> listaProduto;
         try {
             listaProduto = ProdutoDAO.pesquisar(txtnomeProduto.getText());
 
@@ -164,6 +164,7 @@ public class TelaPesquisaProduto extends javax.swing.JDialog {
             produto.setCodProduto((int) tblProdutos.getModel().getValueAt(linhaSelecionada, 0));
             produto.setNomeProduto(tblProdutos.getModel().getValueAt(linhaSelecionada, 1).toString());
             produto.setValor(Double.parseDouble(tblProdutos.getModel().getValueAt(linhaSelecionada, 3).toString()));
+            produto.setQtdProduto((int)tblProdutos.getModel().getValueAt(linhaSelecionada, 4));
 
             if (parent instanceof TelaVenda) {
                 TelaVenda lv = (TelaVenda) parent;

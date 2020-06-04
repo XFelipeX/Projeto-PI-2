@@ -62,7 +62,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        Desktop.setPreferredSize(new java.awt.Dimension(673, 689));
+        Desktop.setPreferredSize(new java.awt.Dimension(714, 711));
         Desktop.setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);

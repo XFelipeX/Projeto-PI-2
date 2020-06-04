@@ -1,14 +1,10 @@
 package br.com.thordrugstore.farmacia.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- *
- * @author lipes
- */
+
 public class Venda {
     private int codigoCompra;
     private Cliente cliente;
@@ -64,6 +60,13 @@ public class Venda {
 
     public void setValorBruto(Double valorBruto) {
         this.valorBruto = valorBruto;
+    }
+    
+    public void somarValorBruto(Double valorBruto){
+        this.valorBruto+=valorBruto;
+    }
+    public void subtrairValorBruto(Double valorBruto){
+        this.valorBruto-=valorBruto;
     }
 
     public Double getDesconto() {
@@ -134,5 +137,8 @@ public class Venda {
     }
     public int quantidadeItens() {
         return itens.size();
+    }
+    public int quantidadeItensRemover() {
+        return itensRemover.size();
     }
 }

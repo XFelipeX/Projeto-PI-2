@@ -1,27 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.thordrugstore.farmacia.controller;
 
 import br.com.thordrugstore.farmacia.DAO.ProdutoDAO;
 import br.com.thordrugstore.farmacia.model.Produto;
-import java.text.ParseException;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-/**
- *
- * @author Marcus
- */
-public class ProdutoController {
-    
-    
+
+public class ProdutoController { 
      public static boolean salvar(String nomeProduto, String descricao, Double valor, int qtdProduto) {
         Produto obj = new Produto();
-
         obj.setNomeProduto(nomeProduto);
         obj.setDescricao(descricao);
         obj.setValor(valor);
@@ -32,7 +19,6 @@ public class ProdutoController {
         }else{
             return false;
         }
-
     }
 
     public static boolean atualizar(JTable tblProdutos, Produto produto) {
@@ -43,28 +29,19 @@ public class ProdutoController {
                 retorno = true;
             }else{
                 retorno = false;
-            }
-           
-            
+            }                     
         }else{
             retorno = false;
         }
-
         return retorno;
-
     }
-
-    public static ArrayList<Produto> pesquisar() {
-        ArrayList<Produto> listaProdutos = ProdutoDAO.pesquisar();
-
-        
-        return listaProdutos;
-    }
-    public static ArrayList<Produto> pesquisar(String nomeProduto) throws ParseException{
-        ArrayList<Produto> listaProdutos = ProdutoDAO.pesquisar(nomeProduto);
-
-        
-        return listaProdutos;
+    
+    public static boolean atualizarQtd(Produto p){
+        if(ProdutoDAO.atualizarQtd(p)){
+            return true;
+        }else{
+            return false;
+        }
     }
     public static boolean excluir(int id){
         int i = JOptionPane.showConfirmDialog(null, "Tem certeza que quer excluir?","Atenção",JOptionPane.YES_NO_OPTION);
@@ -73,11 +50,5 @@ public class ProdutoController {
         }
                
         return false;
-    }
-
-//    public static boolean salvar(String nomeProduto, String descricao, String valor, String qtdProduto) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-
-    
+    }  
 }
