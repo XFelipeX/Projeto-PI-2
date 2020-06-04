@@ -223,7 +223,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaCliente novoArquivo = new TelaCliente();
         
         //Defino o tamanho da janela e adiciono ao desktopPanel [859, 742]
-        novoArquivo.setPreferredSize(new Dimension(859,742));
+        novoArquivo.setPreferredSize(new Dimension(725,742));
         novoArquivo.setLocationRelativeTo(this);
         
         //Habilitar a view
