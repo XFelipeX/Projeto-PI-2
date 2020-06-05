@@ -30,7 +30,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCad = new javax.swing.JMenu();
         menuCadFun = new javax.swing.JMenuItem();
         menuCadCli = new javax.swing.JMenuItem();
-        menuCadFor = new javax.swing.JMenuItem();
         menuCadPro = new javax.swing.JMenuItem();
         menuRel = new javax.swing.JMenu();
         menuRelCli = new javax.swing.JMenuItem();
@@ -91,16 +90,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         menuCad.add(menuCadCli);
-
-        menuCadFor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_MASK));
-        menuCadFor.setText("Fornecedor");
-        menuCadFor.setEnabled(false);
-        menuCadFor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCadForActionPerformed(evt);
-            }
-        });
-        menuCad.add(menuCadFor);
 
         menuCadPro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
         menuCadPro.setText("Produto");
@@ -201,11 +190,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void menuCadForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadForActionPerformed
-        TelaFornecedor fornecedor = new TelaFornecedor();
-        fornecedor.setVisible(true);
-    }//GEN-LAST:event_menuCadForActionPerformed
 
     private void menuCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadCliActionPerformed
         // menu Cliente
@@ -311,7 +295,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menuAju;
     public javax.swing.JMenu menuCad;
     private javax.swing.JMenuItem menuCadCli;
-    public javax.swing.JMenuItem menuCadFor;
     public javax.swing.JMenuItem menuCadFun;
     private javax.swing.JMenuItem menuCadPro;
     private javax.swing.JMenu menuOpc;

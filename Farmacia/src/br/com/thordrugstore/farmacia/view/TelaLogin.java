@@ -43,7 +43,6 @@ public class TelaLogin extends javax.swing.JFrame {
                     principal.setVisible(true);
                     principal.menuCadFun.setEnabled(true);
                     principal.menuRel.setEnabled(true);
-                    principal.menuCadFor.setEnabled(true);
                     principal.lblUsuario.setText(rs.getString(4));
                     principal.lblUsuario.setForeground(Color.red);
                     this.dispose();

@@ -6,7 +6,6 @@
 package br.com.thordrugstore.farmacia.view;
 
 import br.com.thordrugstore.farmacia.DAO.ProdutoDAO;
-import br.com.thordrugstore.farmacia.controller.FornecedorController;
 import br.com.thordrugstore.farmacia.controller.ProdutoController;
 import br.com.thordrugstore.farmacia.model.Produto;
 import java.text.DecimalFormat;
