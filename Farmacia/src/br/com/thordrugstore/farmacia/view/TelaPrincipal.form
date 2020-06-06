@@ -75,7 +75,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MenuRelMen">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio Mensal"/>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio Venda"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuRelMenActionPerformed"/>

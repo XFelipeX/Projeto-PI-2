@@ -114,7 +114,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuRel.add(menuRelCli);
 
-        MenuRelMen.setText("Relatório Mensal");
+        MenuRelMen.setText("Relatório Venda");
         MenuRelMen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuRelMenActionPerformed(evt);
@@ -233,6 +233,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void MenuRelMenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRelMenActionPerformed
         TelaRelatorioVendas mensal = new TelaRelatorioVendas();
+        mensal.setLocationRelativeTo(null);
         mensal.setVisible(true);
     }//GEN-LAST:event_MenuRelMenActionPerformed
 
