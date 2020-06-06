@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.thordrugstore.farmacia.controller;
 
 import br.com.thordrugstore.farmacia.DAO.ItemVendaDAO;
 import br.com.thordrugstore.farmacia.model.ItemVenda;
 import br.com.thordrugstore.farmacia.model.Produto;
 import br.com.thordrugstore.farmacia.model.Venda;
-import javax.swing.JOptionPane;
 
 /**
  *

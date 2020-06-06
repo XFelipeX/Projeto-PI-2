@@ -7,7 +7,6 @@ package br.com.thordrugstore.farmacia.controller;
 
 import br.com.thordrugstore.farmacia.DAO.FuncionarioDAO;
 import br.com.thordrugstore.farmacia.model.Funcionario;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 

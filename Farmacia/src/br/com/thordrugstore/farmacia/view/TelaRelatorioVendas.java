@@ -1,20 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.thordrugstore.farmacia.view;
 
 import br.com.thordrugstore.farmacia.DAO.ClienteDAO;
+import br.com.thordrugstore.farmacia.DAO.ItemVendaDAO;
+import br.com.thordrugstore.farmacia.DAO.ProdutoDAO;
 import br.com.thordrugstore.farmacia.DAO.VendaDAO;
 import br.com.thordrugstore.farmacia.model.Cliente;
+import br.com.thordrugstore.farmacia.model.ItemVenda;
+import br.com.thordrugstore.farmacia.model.Produto;
 import br.com.thordrugstore.farmacia.model.Venda;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -76,6 +73,11 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
             }
         });
         tblVendas.getTableHeader().setReorderingAllowed(false);
+        tblVendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblVendasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblVendas);
         if (tblVendas.getColumnModel().getColumnCount() > 0) {
             tblVendas.getColumnModel().getColumn(0).setResizable(false);
@@ -185,6 +187,7 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblItens.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblItens);
         if (tblItens.getColumnModel().getColumnCount() > 0) {
             tblItens.getColumnModel().getColumn(0).setResizable(false);
@@ -229,6 +232,7 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
 
     private void btnpesquisarCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarCodActionPerformed
         ArrayList<Venda> vendas;
+        //senao for vazio...
         if (!txtCod.getText().equals("")) {
             vendas = VendaDAO.pesquisar(Integer.parseInt(txtCod.getText()));
         } else {
@@ -265,6 +269,7 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
                 //convertendo para Date
                 data = formato2.parse(txtData.getText().trim());
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
             }
             //formatando para o padrao sql
             String dataconvertida = formato.format(data);
@@ -292,6 +297,27 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnpesquisarDataActionPerformed
+
+    private void tblVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVendasMouseClicked
+        ArrayList<Produto> produtos = ProdutoDAO.pesquisar();
+        //pegando todos os itens da venda
+        int linha = tblVendas.getSelectedRow();
+        int codVenda = Integer.parseInt(tblVendas.getModel().getValueAt(linha, 0).toString());
+        ArrayList<ItemVenda> itens;
+        itens = ItemVendaDAO.pesquisar(codVenda);
+        
+        DefaultTableModel tabela = (DefaultTableModel)tblItens.getModel();
+        
+        tabela.setRowCount(0);
+        for(ItemVenda i: itens){
+            for(Produto p: produtos){
+                if(p.getCodProduto()==i.getProduto().getCodProduto()){
+                    i.getProduto().setNomeProduto(p.getNomeProduto());
+                }
+            }
+            tabela.addRow(new Object[]{i.getCodigoItemVenda(),i.getProduto().getNomeProduto(),i.getQuantidade(),i.getValorUnitario()});
+        }
+    }//GEN-LAST:event_tblVendasMouseClicked
 
     /**
      * @param args the command line arguments
