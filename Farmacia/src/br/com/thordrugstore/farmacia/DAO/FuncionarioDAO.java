@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.thordrugstore.farmacia.DAO;
 
 import br.com.thordrugstore.farmacia.model.Funcionario;
@@ -12,16 +7,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author lipes
+ * Classe para interagir com o banco de dados
+ * @author Felipe
+ * @see controller.FuncionarioController
  */
 public class FuncionarioDAO {
-
+    /**
+     * Método para salvar funcionario no banco de dados
+     * @param f objeto do tipo Funcionario
+     * @see model.Funcionario
+     * @return boolean true = sucesso , false = falha
+     */
     public static boolean salvar(Funcionario f) {
         boolean retorno = false;
         Connection conexao = null;
@@ -75,7 +75,11 @@ public class FuncionarioDAO {
         }
         return retorno;
     }
-
+    /**
+     * Método para atualizar funcionario no banco de dados
+     * @param f objeto do tipo Funcionario
+     * @return boolean true = sucesso , false = falha
+     */
     public static boolean atualizar(Funcionario f) {
         boolean retorno = false;
         Connection conexao = null;
@@ -123,7 +127,11 @@ public class FuncionarioDAO {
         }
         return retorno;
     }
-
+    /**
+     * Método para excluir um funcionário do banco de dados
+     * @param id chave primária/código do funcionário do tipo inteiro
+     * @return boolean true = sucesso , false = falha
+     */
     public static boolean excluir(int id) {
         boolean retorno = false;
         Connection conexao = null;
@@ -158,7 +166,11 @@ public class FuncionarioDAO {
 
         return retorno;
     }
-
+    /**
+     * Método para pesquisar um funcionário por nome
+     * @param nome do funcionário do tipo String
+     * @return uma lista com os objetos Funcionario do tipo ArrayList
+     */
     public static ArrayList<Funcionario> pesquisar(String nome) {
         ResultSet resultado = null;
         Connection conexao = null;
@@ -211,7 +223,10 @@ public class FuncionarioDAO {
         }
         return funcionarios;
     }
-
+    /**
+     * Método para pesquisar um funcionário
+     * @return uma lista com os objetos Funcionario do tipo ArrayList
+     */
     public static ArrayList<Funcionario> pesquisar() {
         ResultSet resultado = null;
         Connection conexao = null;
