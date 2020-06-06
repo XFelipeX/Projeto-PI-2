@@ -5,6 +5,18 @@
  */
 package br.com.thordrugstore.farmacia.view;
 
+import br.com.thordrugstore.farmacia.DAO.ClienteDAO;
+import br.com.thordrugstore.farmacia.DAO.VendaDAO;
+import br.com.thordrugstore.farmacia.model.Cliente;
+import br.com.thordrugstore.farmacia.model.Venda;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author lipes
@@ -52,7 +64,7 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código  Venda", "Código Cliente", "Valor Bruto", "Desconto", "Total", "Data", "Pagamento"
+                "Código  Venda", " Cliente", "Valor Bruto", "Desconto", "Total", "Data", "Pagamento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -88,8 +100,18 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
         }
 
         btnpesquisarData.setText("Pesquisar");
+        btnpesquisarData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpesquisarDataActionPerformed(evt);
+            }
+        });
 
         btnpesquisarCod.setText("Pesquisar");
+        btnpesquisarCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpesquisarCodActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -204,6 +226,72 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnpesquisarCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarCodActionPerformed
+        ArrayList<Venda> vendas;
+        if (!txtCod.getText().equals("")) {
+            vendas = VendaDAO.pesquisar(Integer.parseInt(txtCod.getText()));
+        } else {
+            vendas = VendaDAO.pesquisar();
+        }
+        ArrayList<Cliente> clientes = ClienteDAO.pesquisar();
+        DefaultTableModel tabela = (DefaultTableModel) tblVendas.getModel();
+
+        tabela.setRowCount(0);
+        if (vendas.size() >= 0) {
+            for (Venda v : vendas) {
+                //pegando o nome do cliente
+                for (Cliente c : clientes) {
+                    if (c.getCodcli() == v.getCliente().getCodcli()) {
+                        v.getCliente().setNome(c.getNome());
+                    }
+                }
+                //adicionando informacoes da venda na tabela
+                tabela.addRow(new Object[]{v.getCodigoCompra(), v.getCliente().getNome(), v.getValorBruto(), v.getDesconto(), v.getTotal(), v.getData(), v.getPagamento()});
+            }
+        }
+
+    }//GEN-LAST:event_btnpesquisarCodActionPerformed
+
+    private void btnpesquisarDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarDataActionPerformed
+        ArrayList<Venda> vendas;
+        String datatexto = txtData.getText().replace("/", "").trim();
+        //se nao for vazio 
+        if (!datatexto.equals("")) {
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+            SimpleDateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
+            Date data = null;
+            try {
+                //convertendo para Date
+                data = formato2.parse(txtData.getText().trim());
+            } catch (Exception e) {
+            }
+            //formatando para o padrao sql
+            String dataconvertida = formato.format(data);
+            vendas = VendaDAO.pesquisar(dataconvertida);
+            //limpando o campo de texto
+            txtData.setText(null);
+        } else {
+            vendas = VendaDAO.pesquisar();
+        }
+        
+        ArrayList<Cliente> clientes = ClienteDAO.pesquisar();
+        DefaultTableModel tabela = (DefaultTableModel) tblVendas.getModel();
+        
+        tabela.setRowCount(0);
+        if (vendas.size() >= 0) {
+            for (Venda v : vendas) {
+                //pegando o nome do cliente
+                for (Cliente c : clientes) {
+                    if (c.getCodcli() == v.getCliente().getCodcli()) {
+                        v.getCliente().setNome(c.getNome());
+                    }
+                }
+                //adicionando informacoes da venda na tabela
+                tabela.addRow(new Object[]{v.getCodigoCompra(), v.getCliente().getNome(), v.getValorBruto(), v.getDesconto(), v.getTotal(), v.getData(), v.getPagamento()});
+            }
+        }
+    }//GEN-LAST:event_btnpesquisarDataActionPerformed
 
     /**
      * @param args the command line arguments
