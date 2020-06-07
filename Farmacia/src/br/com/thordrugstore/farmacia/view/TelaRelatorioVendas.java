@@ -65,6 +65,7 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
         tblItens = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel3.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel3.setText("Vendas:");
@@ -147,11 +148,6 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
         }
 
         btnpesquisaPeriodo.setText("Pequisar");
-        btnpesquisaPeriodo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnpesquisaPeriodoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -254,16 +250,14 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -371,50 +365,6 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
             tabela.addRow(new Object[]{i.getCodigoItemVenda(),i.getProduto().getNomeProduto(),i.getQuantidade(),i.getValorUnitario()});
         }
     }//GEN-LAST:event_tblVendasMouseClicked
-
-    private void btnpesquisaPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisaPeriodoActionPerformed
-        ArrayList<Venda> vendas;
-        String dataInicio = txtdataInicio.getText().replace("/", "").trim();
-        String dataFim = txtdataFinal.getText().replace("/", "").trim();
-        //se nao for vazio
-        if ((!dataInicio.equals("")) && (!dataFim.equals(""))) {
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-            SimpleDateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
-            Date dataA = null;
-            Date dataB = null;
-            try {
-                //convertendo para Date
-                dataA = formato2.parse(txtdataInicio.getText().trim());
-                dataB = formato2.parse(txtdataFinal.getText().trim());
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
-            }
-            //formatando para o padrao sql
-            String dataconvertidaInicial = formato.format(dataA);
-            String dataconvertidaFinal = formato.format(dataB);
-            vendas = VendaDAO.pesquisarPeriodo(dataconvertidaInicial,dataconvertidaFinal);
-        } else {
-            vendas = VendaDAO.pesquisar();
-        }
-
-        ArrayList<Cliente> clientes = ClienteDAO.pesquisar();
-        DefaultTableModel tabela = (DefaultTableModel) tblVendas.getModel();
-
-        tabela.setRowCount(0);
-        if (vendas.size() >= 0) {
-            for (Venda v : vendas) {
-                //pegando o nome do cliente
-                for (Cliente c : clientes) {
-                    if (c.getCodcli() == v.getCliente().getCodcli()) {
-                        v.getCliente().setNome(c.getNome());
-                    }
-                }
-                //adicionando informacoes da venda na tabela
-                tabela.addRow(new Object[]{v.getCodigoCompra(), v.getCliente().getNome(), v.getValorBruto(), v.getDesconto(), v.getTotal(), v.getData(), v.getPagamento()});
-            }
-        }
-        limpaTabelaItens();
-    }//GEN-LAST:event_btnpesquisaPeriodoActionPerformed
 
     /**
      * @param args the command line arguments
