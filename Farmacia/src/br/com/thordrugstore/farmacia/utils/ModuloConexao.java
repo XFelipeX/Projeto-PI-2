@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.thordrugstore.farmacia.utils;
 
 import java.sql.Connection;
@@ -10,13 +5,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
- * @author lipes
+ *  Classe para gerenciar a conexao com o banco de dados
+ * @author Felipe
  */
 public class ModuloConexao {
 
     public static Connection CONEXAO;
-
+    /**
+     * Método para fazer a conexão com o banco de dados
+     * @return uma conexao do tipo Connection
+     */
     public static Connection conector() {
         java.sql.Connection conexao = null;
         //chamando o driver importado da biblioteca
@@ -35,10 +33,12 @@ public class ModuloConexao {
         }
 
     }
-
+    /**
+     * Método para encerrar a conexão com o banco de dados
+     * @return boolean true = sucesso , false = falha
+     */
     public static boolean fecharConexao() {
         boolean retorno = false;
-
         try {
             if (CONEXAO != null) {
                 if (!CONEXAO.isClosed()) {
@@ -50,7 +50,6 @@ public class ModuloConexao {
         } catch (SQLException e) {
             retorno = false;
         }
-
         return retorno;
     }
 }

@@ -214,6 +214,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void menuRelCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelCliActionPerformed
         TelaRelatorioCliente cliente = new TelaRelatorioCliente();
+        cliente.setLocationRelativeTo(null);
         cliente.setVisible(true);
     }//GEN-LAST:event_menuRelCliActionPerformed
 
