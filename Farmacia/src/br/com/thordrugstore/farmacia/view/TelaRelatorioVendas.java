@@ -393,8 +393,6 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
             String dataconvertidaInicial = formato.format(dataA);
             String dataconvertidaFinal = formato.format(dataB);
             vendas = VendaDAO.pesquisarPeriodo(dataconvertidaInicial,dataconvertidaFinal);
-            //limpando o campo de texto
-            txtData.setText(null);
         } else {
             vendas = VendaDAO.pesquisar();
         }
