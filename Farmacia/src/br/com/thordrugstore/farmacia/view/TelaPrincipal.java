@@ -114,6 +114,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuRel.add(menuRelCli);
 
+        MenuRelMen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK));
         MenuRelMen.setText("Relatório Venda");
         MenuRelMen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

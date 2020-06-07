@@ -26,6 +26,14 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
     public TelaRelatorioVendas() {
         initComponents();
     }
+    private void limpaTabelaItens(){
+        DefaultTableModel tabela = (DefaultTableModel)tblItens.getModel();
+        
+        tabela.setRowCount(0);
+        for(int i=0;i<tabela.getRowCount();i++){
+            tabela.removeRow(0);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -265,6 +273,7 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
                 tabela.addRow(new Object[]{v.getCodigoCompra(), v.getCliente().getNome(), v.getValorBruto(), v.getDesconto(), v.getTotal(), v.getData(), v.getPagamento()});
             }
         }
+        limpaTabelaItens();
     }//GEN-LAST:event_btnpesquisarCodActionPerformed
 
     private void btnpesquisarDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarDataActionPerformed
@@ -306,6 +315,7 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
                 tabela.addRow(new Object[]{v.getCodigoCompra(), v.getCliente().getNome(), v.getValorBruto(), v.getDesconto(), v.getTotal(), v.getData(), v.getPagamento()});
             }
         }
+        limpaTabelaItens();
     }//GEN-LAST:event_btnpesquisarDataActionPerformed
 
     private void tblVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVendasMouseClicked

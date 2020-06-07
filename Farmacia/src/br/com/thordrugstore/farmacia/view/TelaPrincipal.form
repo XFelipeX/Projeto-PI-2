@@ -75,6 +75,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MenuRelMen">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Alt+V"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Relat&#xf3;rio Venda"/>
               </Properties>
               <Events>
