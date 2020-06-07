@@ -13,10 +13,16 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Classe para interagir com o banco de dados
  * @author lipes
+ * @see controller.ItemVendaController
  */
 public class ItemVendaDAO {
+    /**
+     * Método para salvar um item de venda no banco de dados
+     * @param i objeto do tipo ItemVenda
+     * @return boolean true = sucesso, false = falha
+     */
     public static boolean salvar(ItemVenda i) {
         boolean retorno = false;
         Connection conexao = null;
@@ -60,7 +66,11 @@ public class ItemVendaDAO {
         }
         return retorno;
     }
-
+    /**
+     * Método para pesquisar todas os itens de Vendas
+     * @param cod chave primaria/codigo de item de venda do tipo ArrayList
+     * @return boolean true = sucesso, false = falha
+     */
     public static ArrayList<ItemVenda> pesquisar(int cod) {
         ResultSet resultado = null;
         Connection conexao = null;

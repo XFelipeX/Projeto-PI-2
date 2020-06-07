@@ -1,6 +1,9 @@
 package br.com.thordrugstore.farmacia.model;
 
-
+/**
+ * Classe que representa o ItemVenda
+ * @author JHK
+ */
 public class ItemVenda {
     private int codigoItemVenda;
     private Venda venda;
