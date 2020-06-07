@@ -666,11 +666,10 @@ public class TelaVenda extends javax.swing.JInternalFrame {
 
     private void btnaplicarDescontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaplicarDescontoActionPerformed
         if (!txtDesconto.getText().equals("")) {
-            Double desconto = Double.parseDouble(txtDesconto.getText());
+            Double desconto = Double.parseDouble(txtDesconto.getText().replace(",", "."));
             if (venda.getTotal() > 0 && desconto <= venda.getTotal() && venda.getDesconto() == 0 && desconto>0) {
                 if ((!txtDesconto.getText().equals("")) && (tblVenda.getRowCount() > 0)) {
                     DecimalFormat formatar = new DecimalFormat("#,###.00");
-                    desconto = Double.parseDouble(txtDesconto.getText());
                     venda.setDesconto(desconto);
                     venda.subtrairTotal(desconto);
                     lblTotal.setText(formatar.format(venda.getTotal()));

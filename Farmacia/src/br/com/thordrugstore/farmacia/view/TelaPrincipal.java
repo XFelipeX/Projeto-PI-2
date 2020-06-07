@@ -93,6 +93,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuCadPro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
         menuCadPro.setText("Produto");
+        menuCadPro.setEnabled(false);
         menuCadPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuCadProActionPerformed(evt);
@@ -299,7 +300,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public javax.swing.JMenu menuCad;
     private javax.swing.JMenuItem menuCadCli;
     public javax.swing.JMenuItem menuCadFun;
-    private javax.swing.JMenuItem menuCadPro;
+    public javax.swing.JMenuItem menuCadPro;
     private javax.swing.JMenu menuOpc;
     public javax.swing.JMenu menuRel;
     private javax.swing.JMenuItem menuRelCli;

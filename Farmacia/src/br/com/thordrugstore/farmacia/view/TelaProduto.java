@@ -34,6 +34,7 @@ public class TelaProduto extends javax.swing.JFrame {
     public void validaNumerico(String confirma) {
         try {
             confirma = confirma.replace(".", "");
+            confirma = confirma.replace(",", "");
             boolean temNumero = true;
             for (int i = 0; i < confirma.length(); i++) {
                 if (Character.isDigit(confirma.charAt(i))) {
@@ -132,7 +133,6 @@ public class TelaProduto extends javax.swing.JFrame {
         txtCodigo = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
         txtDescricao = new javax.swing.JTextField();
-        txtQtdProduto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -140,8 +140,9 @@ public class TelaProduto extends javax.swing.JFrame {
         btnIncluir = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        txtValor = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
+        txtValor = new javax.swing.JFormattedTextField();
+        txtQtdProduto = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         txtPesquisarNomeProduto = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
@@ -157,6 +158,7 @@ public class TelaProduto extends javax.swing.JFrame {
         jLabel6.setText("* Qtd. Produto:");
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtCodigo.setEnabled(false);
 
         txtNome.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtNome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -166,13 +168,6 @@ public class TelaProduto extends javax.swing.JFrame {
         });
 
         txtDescricao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        txtQtdProduto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtQtdProduto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtQtdProdutoMouseExited(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -211,15 +206,13 @@ public class TelaProduto extends javax.swing.JFrame {
             }
         });
 
-        txtValor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtValorMouseExited(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cadastro de Produto");
+
+        txtValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
+        txtQtdProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -237,29 +230,31 @@ public class TelaProduto extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 1, Short.MAX_VALUE))
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtQtdProduto)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtQtdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,8 +276,8 @@ public class TelaProduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtQtdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -347,9 +342,7 @@ public class TelaProduto extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -369,13 +362,9 @@ public class TelaProduto extends javax.swing.JFrame {
             if (txtNome.getText().isEmpty() || txtQtdProduto.getText().isEmpty() || txtValor.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
             } else {
-                DecimalFormat formatar = new DecimalFormat("#,###.00");
-                //int codProduto = Integer.parseInt(txtCodigo.getText());
                 String nomeProduto = txtNome.getText();
                 String descricao = txtDescricao.getText();
-                //tive q fazer isso nao sei como q explica
-                String aux = formatar.format(Double.parseDouble(txtValor.getText()));
-                Double valor = Double.parseDouble(aux.replace(",", "."));
+                Double valor = Double.parseDouble(txtValor.getText().replace(",", "."));
                 int qtdProduto = Integer.parseInt(txtQtdProduto.getText());
 
                 if (ProdutoController.salvar(nomeProduto, descricao, valor, qtdProduto)) {
@@ -404,12 +393,10 @@ public class TelaProduto extends javax.swing.JFrame {
             if (txtNome.getText().isEmpty() || txtValor.getText().isEmpty() || txtQtdProduto.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
             } else {
-                DecimalFormat formatar = new DecimalFormat("#,###.00");
                 produto.setCodProduto(Integer.parseInt(txtCodigo.getText()));
                 produto.setNomeProduto(txtNome.getText());
                 produto.setDescricao(txtDescricao.getText());
-                String aux = formatar.format(Double.parseDouble(txtValor.getText()));
-                produto.setValor(Double.parseDouble(aux.replace(",", ".")));
+                produto.setValor(Double.parseDouble(txtValor.getText().replace(",", ".")));
                 produto.setQtdProduto(Integer.parseInt(txtQtdProduto.getText()));
 
                 if (ProdutoController.atualizar(tblProdutos, produto)) {
@@ -468,14 +455,6 @@ public class TelaProduto extends javax.swing.JFrame {
         validaString(txtNome.getText());
     }//GEN-LAST:event_txtNomeMouseExited
 
-    private void txtQtdProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtQtdProdutoMouseExited
-        validaNumerico(txtQtdProduto.getText());
-    }//GEN-LAST:event_txtQtdProdutoMouseExited
-
-    private void txtValorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtValorMouseExited
-        validaNumerico(txtValor.getText());
-    }//GEN-LAST:event_txtValorMouseExited
-
     /**
      * @param args the command line arguments
      */
@@ -530,7 +509,7 @@ public class TelaProduto extends javax.swing.JFrame {
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisarNomeProduto;
-    private javax.swing.JTextField txtQtdProduto;
+    private javax.swing.JFormattedTextField txtQtdProduto;
     private javax.swing.JFormattedTextField txtValor;
     // End of variables declaration//GEN-END:variables
 
