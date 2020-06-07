@@ -11,7 +11,18 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+/**
+ *Classe para interagir com o banco de dados
+ * 
+ * @see controller.ProdutoController
+ **/
 public class ProdutoDAO {
+    /**
+     *Método para salvar produto no banco de dados
+     * @param x objeto do tipo Produto
+     * @see model.Produto
+     * @return boolean true = sucesso, false = falha
+     **/
         
     public static boolean salvar(Produto x) {
         boolean retorno = false;
@@ -55,7 +66,11 @@ public class ProdutoDAO {
         }
         return retorno;
     }
-
+    /**
+     * Método para atualizar produtos no banco de dados
+     * @param x objeto do tipo Produto
+     * @return boolean true = sucesso, false = falha
+     */
     public static boolean atualizar(Produto x) {
         boolean retorno = false;
         Connection conexao = null;
@@ -95,6 +110,11 @@ public class ProdutoDAO {
         }
         return retorno;
     }
+    /**
+     * Método para atualizar quantidade de produto do banco de dados
+     * @param p objeto do tipo produto
+     * @return boolean true = sucesso, false = falha
+     */
     public static boolean atualizarQtd(Produto p){
          boolean retorno = false;
         Connection conexao = null;
@@ -128,6 +148,11 @@ public class ProdutoDAO {
         }
         return retorno;
     }
+    /**
+     * Método para excluir um produto do banco de dados
+     * @param id chave primária/ código de produto do tipo inteiro
+     * @return boolean true = sucesso, false = falha
+     */
     public static boolean excluir(int id) {
         boolean retorno = false;
         Connection conexao = null;
@@ -159,7 +184,11 @@ public class ProdutoDAO {
         }
         return retorno;
     }
-
+    /**
+     * Método para pesquisar um produto por nome
+     * @param nomeProduto do produto do tipo String
+     * @return uma lista com os objetos Produto do tipo ArrayList 
+     */
     public static ArrayList<Produto> pesquisar(String nomeProduto) throws ParseException {
         ResultSet resultado = null;
         Connection conexao = null;
@@ -202,7 +231,10 @@ public class ProdutoDAO {
         }
         return produtos;
     }
-
+/**
+ * Método para pesquisar um produto
+ * @return uma lista com os objetos produtos do tipo ArrayList
+ */
     public static ArrayList<Produto> pesquisar() {
         ResultSet resultado = null;
         Connection conexao = null;
@@ -245,7 +277,10 @@ public class ProdutoDAO {
         }
         return produtos;
     }
-    
+    /**
+     * Método para pesquisar quantidade de produto
+     * @return uma lista com os objetos quantidade de produto do tipo ArrayList
+     */
     public static Produto pesquisaSimples(int cod){
         ResultSet resultado = null;
         Connection conexao = null;
