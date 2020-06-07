@@ -105,7 +105,7 @@ public class VendaDAO {
         return vendas;
     }
     
-    public static ArrayList<Venda> pesquisar(int cod) {
+    public static ArrayList<Venda> pesquisaPorVenda(int cod) {
         ResultSet resultado = null;
         Connection conexao = null;
         PreparedStatement pst = null;
@@ -161,6 +161,51 @@ public class VendaDAO {
             conexao = ModuloConexao.conector();
             pst = conexao.prepareStatement(sql);
             pst.setString(1, data);
+            resultado = pst.executeQuery();
+
+            while (resultado.next()) {
+                Venda x = new Venda();               
+                x.setCodigoCompra(resultado.getInt("cod_venda"));
+                Cliente cliente = new Cliente();
+                x.setCliente(cliente);
+                x.getCliente().setCodcli(resultado.getInt("cod_cliente"));
+                x.setValorBruto(resultado.getDouble("valor_bruto"));
+                x.setDesconto(resultado.getDouble("desconto"));
+                x.setTotal(resultado.getDouble("total"));
+                x.setData(resultado.getDate("data_compra"));
+                x.setPagamento(resultado.getString("pagamento"));
+                
+                vendas.add(x);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            vendas = null;
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+
+            } catch (SQLException ex) {
+            }
+        }
+        return vendas;
+    }
+    
+    public static ArrayList<Venda> pesquisaPorCliente(int cod) {
+        ResultSet resultado = null;
+        Connection conexao = null;
+        PreparedStatement pst = null;
+        String sql = "select * from vendas where cod_cliente=?;";
+        ArrayList<Venda> vendas = new ArrayList<>();
+
+        try {
+            conexao = ModuloConexao.conector();
+            pst = conexao.prepareStatement(sql);
+            pst.setInt(1, cod);
             resultado = pst.executeQuery();
 
             while (resultado.next()) {

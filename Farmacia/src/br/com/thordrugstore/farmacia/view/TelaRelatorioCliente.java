@@ -5,6 +5,17 @@
  */
 package br.com.thordrugstore.farmacia.view;
 
+import br.com.thordrugstore.farmacia.DAO.ClienteDAO;
+import br.com.thordrugstore.farmacia.DAO.ItemVendaDAO;
+import br.com.thordrugstore.farmacia.DAO.ProdutoDAO;
+import br.com.thordrugstore.farmacia.DAO.VendaDAO;
+import br.com.thordrugstore.farmacia.model.Cliente;
+import br.com.thordrugstore.farmacia.model.ItemVenda;
+import br.com.thordrugstore.farmacia.model.Produto;
+import br.com.thordrugstore.farmacia.model.Venda;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author lipes
@@ -17,7 +28,15 @@ public class TelaRelatorioCliente extends javax.swing.JFrame {
     public TelaRelatorioCliente() {
         initComponents();
     }
-
+    
+    private void limpaTabelaItens(){
+        DefaultTableModel tabela = (DefaultTableModel)tblItens.getModel();
+        
+        tabela.setRowCount(0);
+        for(int i=0;i<tabela.getRowCount();i++){
+            tabela.removeRow(0);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,47 +47,58 @@ public class TelaRelatorioCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblVendas = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        txtcodVenda = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        btnvendaPesquisa = new javax.swing.JButton();
+        btnclientePesquisa = new javax.swing.JButton();
+        txtcodCliente = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblItens = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código de Venda", "Código do Cliente", "Data", "Hora", "Qtd Produtos", "Valor Total de Compra"
+                "Código Venda", "Cliente", "Valor Bruto", "Desconto", "Total", "Data", "Pagamento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
+        tblVendas.getTableHeader().setReorderingAllowed(false);
+        tblVendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblVendasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblVendas);
+        if (tblVendas.getColumnModel().getColumnCount() > 0) {
+            tblVendas.getColumnModel().getColumn(0).setResizable(false);
+            tblVendas.getColumnModel().getColumn(1).setResizable(false);
+            tblVendas.getColumnModel().getColumn(2).setResizable(false);
+            tblVendas.getColumnModel().getColumn(3).setResizable(false);
+            tblVendas.getColumnModel().getColumn(4).setResizable(false);
+            tblVendas.getColumnModel().getColumn(5).setResizable(false);
+            tblVendas.getColumnModel().getColumn(6).setResizable(false);
         }
 
         jPanel2.setBackground(new java.awt.Color(37, 116, 169));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtcodVenda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -82,11 +112,24 @@ public class TelaRelatorioCliente extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Código de venda:");
 
-        jButton1.setText("Pesquisar");
+        btnvendaPesquisa.setText("Pesquisar");
+        btnvendaPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnvendaPesquisaActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Pesquisar");
+        btnclientePesquisa.setText("Pesquisar");
+        btnclientePesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnclientePesquisaActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtcodCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel4.setText("Vendas:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -104,12 +147,15 @@ public class TelaRelatorioCliente extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                            .addComponent(jTextField3))
+                            .addComponent(txtcodVenda, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                            .addComponent(txtcodCliente))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))))
+                            .addComponent(btnvendaPesquisa)
+                            .addComponent(btnclientePesquisa)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -120,33 +166,152 @@ public class TelaRelatorioCliente extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(txtcodVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnvendaPesquisa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addContainerGap(38, Short.MAX_VALUE))
+                    .addComponent(txtcodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnclientePesquisa))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jLabel5.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel5.setText("Itens:");
+
+        tblItens.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "COD Item", "Produto", "Quantidade", "Valor Unitário"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblItens.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tblItens);
+        if (tblItens.getColumnModel().getColumnCount() > 0) {
+            tblItens.getColumnModel().getColumn(0).setResizable(false);
+            tblItens.getColumnModel().getColumn(1).setResizable(false);
+            tblItens.getColumnModel().getColumn(2).setResizable(false);
+            tblItens.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnclientePesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclientePesquisaActionPerformed
+        ArrayList<Venda> vendas;       
+        if (!txtcodCliente.getText().equals("")) {
+            vendas = VendaDAO.pesquisaPorCliente(Integer.parseInt(txtcodCliente.getText()));
+        } else {
+            vendas = VendaDAO.pesquisar();
+        }
+        ArrayList<Cliente> clientes = ClienteDAO.pesquisar();
+        DefaultTableModel tabela = (DefaultTableModel) tblVendas.getModel();
+
+        tabela.setRowCount(0);
+        if (vendas.size() >= 0) {
+            for (Venda v : vendas) {
+                //pegando o nome do cliente
+                for (Cliente c : clientes) {
+                    if (c.getCodcli() == v.getCliente().getCodcli()) {
+                        v.getCliente().setNome(c.getNome());
+                    }
+                }
+                //adicionando informacoes da venda na tabela
+                tabela.addRow(new Object[]{v.getCodigoCompra(), v.getCliente().getNome(), v.getValorBruto(), v.getDesconto(), v.getTotal(), v.getData(), v.getPagamento()});
+            }
+        }
+        limpaTabelaItens();
+        txtcodCliente.setText(null);
+    }//GEN-LAST:event_btnclientePesquisaActionPerformed
+
+    private void btnvendaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvendaPesquisaActionPerformed
+        ArrayList<Venda> vendas;
+        //senao for vazio...
+        if (!txtcodVenda.getText().equals("")) {
+            vendas = VendaDAO.pesquisaPorVenda(Integer.parseInt(txtcodVenda.getText()));
+        } else {
+            vendas = VendaDAO.pesquisar();
+        }
+        ArrayList<Cliente> clientes = ClienteDAO.pesquisar();
+        DefaultTableModel tabela = (DefaultTableModel) tblVendas.getModel();
+
+        tabela.setRowCount(0);
+        if (vendas.size() >= 0) {
+            for (Venda v : vendas) {
+                //pegando o nome do cliente
+                for (Cliente c : clientes) {
+                    if (c.getCodcli() == v.getCliente().getCodcli()) {
+                        v.getCliente().setNome(c.getNome());
+                    }
+                }
+                //adicionando informacoes da venda na tabela
+                tabela.addRow(new Object[]{v.getCodigoCompra(), v.getCliente().getNome(), v.getValorBruto(), v.getDesconto(), v.getTotal(), v.getData(), v.getPagamento()});
+            }
+        }
+        limpaTabelaItens();
+        txtcodVenda.setText(null);
+    }//GEN-LAST:event_btnvendaPesquisaActionPerformed
+
+    private void tblVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVendasMouseClicked
+        ArrayList<Produto> produtos = ProdutoDAO.pesquisar();
+        //pegando todos os itens da venda
+        int linha = tblVendas.getSelectedRow();
+        int codVenda = Integer.parseInt(tblVendas.getModel().getValueAt(linha, 0).toString());
+        ArrayList<ItemVenda> itens;
+        itens = ItemVendaDAO.pesquisar(codVenda);
+
+        DefaultTableModel tabela = (DefaultTableModel)tblItens.getModel();
+
+        tabela.setRowCount(0);
+        for(ItemVenda i: itens){
+            for(Produto p: produtos){
+                if(p.getCodProduto()==i.getProduto().getCodProduto()){
+                    i.getProduto().setNomeProduto(p.getNomeProduto());
+                }
+            }
+            tabela.addRow(new Object[]{i.getCodigoItemVenda(),i.getProduto().getNomeProduto(),i.getQuantidade(),i.getValorUnitario()});
+        }
+    }//GEN-LAST:event_tblVendasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -185,15 +350,19 @@ public class TelaRelatorioCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnclientePesquisa;
+    private javax.swing.JButton btnvendaPesquisa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblItens;
+    private javax.swing.JTable tblVendas;
+    private javax.swing.JTextField txtcodCliente;
+    private javax.swing.JTextField txtcodVenda;
     // End of variables declaration//GEN-END:variables
 }

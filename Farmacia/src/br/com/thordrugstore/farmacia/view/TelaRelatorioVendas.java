@@ -253,7 +253,7 @@ public class TelaRelatorioVendas extends javax.swing.JFrame {
         ArrayList<Venda> vendas;
         //senao for vazio...
         if (!txtCod.getText().equals("")) {
-            vendas = VendaDAO.pesquisar(Integer.parseInt(txtCod.getText()));
+            vendas = VendaDAO.pesquisaPorVenda(Integer.parseInt(txtCod.getText()));
         } else {
             vendas = VendaDAO.pesquisar();
         }
