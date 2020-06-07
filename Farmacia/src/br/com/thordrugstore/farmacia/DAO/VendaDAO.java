@@ -264,4 +264,55 @@ public class VendaDAO {
         }
         return vendas;
     }
+    /**
+     * Método para pesquisar uma venda por Periodo especificado
+     * @param dataInicio do tipo String
+     * @param dataFim do tipo String
+     * @return retorna uma lista de objetos Venda do tipo ArrayList
+     */
+    public static ArrayList<Venda> pesquisarPeriodo(String dataInicio,String dataFim) {
+        ResultSet resultado = null;
+        Connection conexao = null;
+        PreparedStatement pst = null;
+        String sql = "select * from vendas where data_compra between ? and ?";
+        ArrayList<Venda> vendas = new ArrayList<>();
+
+        try {
+            conexao = ModuloConexao.conector();
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, dataInicio);
+            pst.setString(2, dataFim);
+            resultado = pst.executeQuery();
+
+            while (resultado.next()) {
+                Venda x = new Venda();               
+                x.setCodigoCompra(resultado.getInt("cod_venda"));
+                Cliente cliente = new Cliente();
+                x.setCliente(cliente);
+                x.getCliente().setCodcli(resultado.getInt("cod_cliente"));
+                x.setValorBruto(resultado.getDouble("valor_bruto"));
+                x.setDesconto(resultado.getDouble("desconto"));
+                x.setTotal(resultado.getDouble("total"));
+                x.setData(resultado.getDate("data_compra"));
+                x.setPagamento(resultado.getString("pagamento"));
+                
+                vendas.add(x);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            vendas = null;
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+
+            } catch (SQLException ex) {
+            }
+        }
+        return vendas;
+    }
 }
