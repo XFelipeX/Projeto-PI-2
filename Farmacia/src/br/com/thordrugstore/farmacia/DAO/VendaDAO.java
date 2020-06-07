@@ -12,8 +12,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-
+/**
+ * Classe para interagir com o banco de dados
+ * @author Felipe
+ * @see controller.VendaController
+ */
 public class VendaDAO {
+    /**
+     * Método para salvar uma Venda no banco de dados
+     * @param p objeto do tipo Venda
+     * @see model.Venda
+     * @return boolean true = sucesso , false = falha
+     */
     public static boolean salvar(Venda p) {
         boolean retorno = false;
         Connection conexao = null;
@@ -59,7 +69,10 @@ public class VendaDAO {
         }
         return retorno;
     }
-
+    /**
+     * Método para pesquisar todas as vendas
+     * @return retorna uma lista de objetos Venda do tipo ArrayList
+     */
     public static ArrayList<Venda> pesquisar() {
         ResultSet resultado = null;
         Connection conexao = null;
@@ -104,7 +117,11 @@ public class VendaDAO {
         }
         return vendas;
     }
-    
+    /**
+     * Método para pesquisar uma venda pelo código
+     * @param cod chave primaria/codigo da venda do tipo inteiro
+     * @return retorna uma lista de objetos Venda do tipo ArrayList
+     */
     public static ArrayList<Venda> pesquisaPorVenda(int cod) {
         ResultSet resultado = null;
         Connection conexao = null;
@@ -149,7 +166,11 @@ public class VendaDAO {
         }
         return vendas;
     }
-   
+    /**
+     * Método para pesquisar a venda por data
+     * @param data em formato String
+     * @return retorna uma lista de objetos Venda do tipo ArrayList
+     */
     public static ArrayList<Venda> pesquisar(String data) {
         ResultSet resultado = null;
         Connection conexao = null;
@@ -194,7 +215,11 @@ public class VendaDAO {
         }
         return vendas;
     }
-    
+    /**
+     * Método para pesquisar uma venda por Cliente
+     * @param cod chave primaria/codigo do tipo inteiro
+     * @return retorna uma lista de objetos Venda do tipo ArrayList
+     */
     public static ArrayList<Venda> pesquisaPorCliente(int cod) {
         ResultSet resultado = null;
         Connection conexao = null;

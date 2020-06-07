@@ -4,7 +4,10 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * Classe que representa a venda
+ * @author Felipe
+ */
 public class Venda {
     private int codigoCompra;
     private Cliente cliente;
