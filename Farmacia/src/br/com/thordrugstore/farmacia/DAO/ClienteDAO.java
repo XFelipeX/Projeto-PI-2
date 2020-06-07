@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.thordrugstore.farmacia.DAO;
 
 import br.com.thordrugstore.farmacia.model.Cliente;
@@ -17,13 +12,19 @@ import java.util.ArrayList;
 import java.sql.Date;
 import javax.swing.JOptionPane;
 
-
 /**
+ * Classe para interagir com o banco de dados
  *
  * @author lipes
+ * @see controller.ClienteController
  */
 public class ClienteDAO {
-
+    /**
+     * Método para salvar cliente no banco de dados
+     * @param p objeto do tipo Cliente
+     * @see model.Cliente
+     * @return boolean true = sucesso, false = falha
+     */
     public static boolean salvar(Cliente p) {
         boolean retorno = false;
         Connection conexao = null;
@@ -41,7 +42,7 @@ public class ClienteDAO {
                 pst.setString(1, p.getNome());
                 pst.setString(2, p.getCpf());
                 //pst.setDate(3, new Date(p.getDataNascimento().getTime()));
-                pst.setDate(3,new Date(p.getDataNascimento().getTime()));
+                pst.setDate(3, new Date(p.getDataNascimento().getTime()));
                 pst.setString(4, p.getEmail());
                 pst.setString(5, p.getTelefone());
                 pst.setString(6, p.getEndereco());
@@ -79,7 +80,11 @@ public class ClienteDAO {
         }
         return retorno;
     }
-
+    /**
+    * Método para atualizar cliente no banco de dados 
+    * @param p objeto do tipo Cliente
+    * @return boolean true = sucesso, false = falha
+    */
     public static boolean atualizar(Cliente p) {
         boolean retorno = false;
         Connection conexao = null;
@@ -94,7 +99,7 @@ public class ClienteDAO {
             pst.setString(1, p.getNome());
             pst.setString(2, p.getCpf());
             //pst.setDate(3, new Date(p.getDataNascimento().getTime()));
-            pst.setDate(3,new Date(p.getDataNascimento().getDate()));
+            pst.setDate(3, new Date(p.getDataNascimento().getDate()));
             pst.setString(4, p.getEmail());
             pst.setString(5, p.getTelefone());
             pst.setString(6, p.getEndereco());
@@ -125,7 +130,11 @@ public class ClienteDAO {
         }
         return retorno;
     }
-
+    /**
+     * Método para excluir um cliente do banco de dados
+     * @param id chave primária/código do cliente do tipo inteiro
+     * @return boolean true = sucesso , false = falha
+     */
     public static boolean excluir(int id) {
         boolean retorno = false;
         Connection conexao = null;
@@ -160,7 +169,11 @@ public class ClienteDAO {
 
         return retorno;
     }
-
+    /**
+     * Método para pesquisar um cliente por nome
+     * @param nome do cliente do tipo String
+     * @return uma lista com os objetos Cliente do tipo ArrayList 
+     */
     public static ArrayList<Cliente> pesquisar(String nome) throws ParseException {
         ResultSet resultado = null;
         Connection conexao = null;
@@ -210,7 +223,10 @@ public class ClienteDAO {
         }
         return clientes;
     }
-
+    /**
+     * Método para pesquisar um cliente
+     * @return uma lista com os objetos Cliente do tipo ArrayList
+     */
     public static ArrayList<Cliente> pesquisar() {
         ResultSet resultado = null;
         Connection conexao = null;
@@ -259,9 +275,12 @@ public class ClienteDAO {
         }
         return clientes;
     }
-    
+    /**
+     * Método para pesquisar codigo, nome e cpf do cliente
+     * @return uma lista com os objetos codigo, nome e cpf do cliente do tipo ArrayList
+     */
     public static ArrayList<Cliente> pesquisaSimples(String nome) throws ParseException {
-         ResultSet resultado = null;
+        ResultSet resultado = null;
         Connection conexao = null;
         PreparedStatement pst = null;
         String sql = "select cod_cli,nome,cpf from clientes where nome like ?;";
@@ -300,5 +319,5 @@ public class ClienteDAO {
 
         }
         return clientes;
-    } 
+    }
 }
