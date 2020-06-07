@@ -38,10 +38,8 @@ public class ClienteDAO {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios");
             } else {
                 pst = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                //pst.setInt(1, p.getCodcli());
                 pst.setString(1, p.getNome());
                 pst.setString(2, p.getCpf());
-                //pst.setDate(3, new Date(p.getDataNascimento().getTime()));
                 pst.setDate(3, new Date(p.getDataNascimento().getTime()));
                 pst.setString(4, p.getEmail());
                 pst.setString(5, p.getTelefone());
@@ -60,10 +58,8 @@ public class ClienteDAO {
                     } else {
                         throw new SQLException("Falha ao obter o ID do cliente.");
                     }
-                    //JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso");
                 } else {
                     retorno = false;
-                    //JOptionPane.showMessageDialog(null, "Error cliente não adicionado");
                 }
             }
         } catch (Exception e) {
@@ -98,8 +94,7 @@ public class ClienteDAO {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, p.getNome());
             pst.setString(2, p.getCpf());
-            //pst.setDate(3, new Date(p.getDataNascimento().getTime()));
-            pst.setDate(3, new Date(p.getDataNascimento().getDate()));
+            pst.setDate(3, new Date(p.getDataNascimento().getTime()));
             pst.setString(4, p.getEmail());
             pst.setString(5, p.getTelefone());
             pst.setString(6, p.getEndereco());

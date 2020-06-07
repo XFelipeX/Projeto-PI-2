@@ -1,24 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.thordrugstore.farmacia.view;
 
 import br.com.thordrugstore.farmacia.DAO.ClienteDAO;
 import br.com.thordrugstore.farmacia.controller.ClienteController;
 import br.com.thordrugstore.farmacia.model.Cliente;
-
 import java.text.ParseException;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,16 +22,13 @@ public class TelaCliente extends javax.swing.JFrame {
 
     public TelaCliente() {
         initComponents();
-        
         setLocationRelativeTo(null);
         cliente = new Cliente();
-
         carregarTabela();
     }
 
-    public void validaNumerico(String confirma) {//!confirma.matches("[0-9]*")
+    public void validaNumerico(String confirma) {
         try {
-            //int x = Integer.parseInt(confirma);
             boolean temNumero = true;
             for (int i = 0; i < confirma.length(); i++) {
                 if (Character.isDigit(confirma.charAt(i))) {
@@ -98,30 +85,28 @@ public class TelaCliente extends javax.swing.JFrame {
         tblClientes.setModel(tabela);
 
         tabela.setRowCount(0);
-
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         for (Cliente c : listaClientes) {
-            tabela.addRow(new Object[]{c.getCodcli(), c.getNome(), c.getCpf(), c.getDataNascimento(), c.getEmail(), c.getTelefone(), c.getEndereco(), c.getComplemento(), c.getCidade(), c.getUf()});
+            tabela.addRow(new Object[]{c.getCodcli(), c.getNome(), c.getCpf(), formato.format(c.getDataNascimento()), c.getEmail(), c.getTelefone(), c.getEndereco(), c.getComplemento(), c.getCidade(), c.getUf()});
         }
-        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(50); //
+        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(30);
         tblClientes.getColumnModel().getColumn(1).setPreferredWidth(50);
         tblClientes.getColumnModel().getColumn(2).setPreferredWidth(50);
-        tblClientes.getColumnModel().getColumn(3).setPreferredWidth(50);
+        tblClientes.getColumnModel().getColumn(3).setPreferredWidth(70);
         tblClientes.getColumnModel().getColumn(4).setPreferredWidth(50);
         tblClientes.getColumnModel().getColumn(5).setPreferredWidth(50);
         tblClientes.getColumnModel().getColumn(6).setPreferredWidth(50);
         tblClientes.getColumnModel().getColumn(7).setPreferredWidth(50);
         tblClientes.getColumnModel().getColumn(8).setPreferredWidth(50);
-        tblClientes.getColumnModel().getColumn(9).setPreferredWidth(50);
+        tblClientes.getColumnModel().getColumn(9).setPreferredWidth(30);
     }
 
     public void setarCampos() throws ParseException {
-        
         int setar = tblClientes.getSelectedRow();
         txtCodCli.setText(tblClientes.getModel().getValueAt(setar, 0).toString());
         txtCliNome.setText(tblClientes.getModel().getValueAt(setar, 1).toString());
         txtCliCpf.setText(tblClientes.getModel().getValueAt(setar, 2).toString());
-        txtCliData.setText(tblClientes.getModel().getValueAt(setar, 3).toString().replace("-", ""));
-        txtCliData.setText(tblClientes.getModel().getValueAt(setar, 3).toString().replace("-", ""));
+        txtCliData.setText(tblClientes.getModel().getValueAt(setar, 3).toString().replace("-", "/"));
         txtCliEmail.setText(tblClientes.getModel().getValueAt(setar, 4).toString());
         txtCliTelefone.setText(tblClientes.getModel().getValueAt(setar, 5).toString());
         txtCliEndereco.setText(tblClientes.getModel().getValueAt(setar, 6).toString());
@@ -245,11 +230,6 @@ public class TelaCliente extends javax.swing.JFrame {
         jLabel5.setText("Data de nascimento:");
 
         txtCliEmail.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtCliEmail.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtCliEmailMouseExited(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -543,7 +523,6 @@ public class TelaCliente extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Atenção", JOptionPane.WARNING_MESSAGE);
 
             } else {
-                //int codcli = Integer.parseInt(txtCodCli.getText());
                 String nome = txtCliNome.getText();
                 String cpf = txtCliCpf.getText();
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -556,9 +535,7 @@ public class TelaCliente extends javax.swing.JFrame {
                 String complemento = txtCliComplemento.getText();
                 String cidade = txtCliCidade.getText();
                 String uf = txtCliUf.getText();
-                //  System.out.println(data);
-                //String dataFormatada = formatarData(data);
-                //System.out.println(dataFormatada);
+
                 if (ClienteController.salvar(nome, cpf, data, email, telefone, endereco, complemento, cidade, uf)) {
                     JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
                     limparCampos();
@@ -571,10 +548,6 @@ public class TelaCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnAdicionarActionPerformed
-
-    private void txtCliEmailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliEmailMouseExited
-        //validaString(txtCliEmail.getText());
-    }//GEN-LAST:event_txtCliEmailMouseExited
 
     private void txtCliTelefoneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliTelefoneMouseExited
         validaNumerico(txtCliTelefone.getText());
@@ -620,22 +593,22 @@ public class TelaCliente extends javax.swing.JFrame {
 
             tblClientes.setModel(tabela);
 
-            //tblClientes.removeColumn(tblClientes.getColumnModel().getColumn(0));
             tabela.setRowCount(0);
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             for (Cliente c : listaClientes) {
-                tabela.addRow(new Object[]{c.getCodcli(), c.getNome(), c.getCpf(), c.getDataNascimento(), c.getEmail(), c.getTelefone(), c.getEndereco(), c.getComplemento(), c.getCidade(), c.getUf()});
+                tabela.addRow(new Object[]{c.getCodcli(), c.getNome(), c.getCpf(), formato.format(c.getDataNascimento()), c.getEmail(), c.getTelefone(), c.getEndereco(), c.getComplemento(), c.getCidade(), c.getUf()});
             }
 
-            tblClientes.getColumnModel().getColumn(0).setPreferredWidth(50); //
+            tblClientes.getColumnModel().getColumn(0).setPreferredWidth(30);
             tblClientes.getColumnModel().getColumn(1).setPreferredWidth(50);
             tblClientes.getColumnModel().getColumn(2).setPreferredWidth(50);
-            tblClientes.getColumnModel().getColumn(3).setPreferredWidth(50);
+            tblClientes.getColumnModel().getColumn(3).setPreferredWidth(70);
             tblClientes.getColumnModel().getColumn(4).setPreferredWidth(50);
             tblClientes.getColumnModel().getColumn(5).setPreferredWidth(50);
             tblClientes.getColumnModel().getColumn(6).setPreferredWidth(50);
             tblClientes.getColumnModel().getColumn(7).setPreferredWidth(50);
             tblClientes.getColumnModel().getColumn(8).setPreferredWidth(50);
-            tblClientes.getColumnModel().getColumn(9).setPreferredWidth(50);
+            tblClientes.getColumnModel().getColumn(9).setPreferredWidth(30);
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -666,11 +639,9 @@ public class TelaCliente extends javax.swing.JFrame {
                 cliente.setCodcli(Integer.parseInt(txtCodCli.getText()));
                 cliente.setNome(txtCliNome.getText());
                 cliente.setCpf(txtCliCpf.getText());
-                //cliente.setDataNascimento(new Date(Integer.parseInt(txtCliData.getText().replace("/", ""))));
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                Date dataFormatada = formato.parse(txtCliData.getText());
-                cliente.setDataNascimento(dataFormatada);
-                Date data = cliente.getDataNascimento();
+                Date data = formato.parse(txtCliData.getText());
+                cliente.setDataNascimento(data);
                 cliente.setEmail(txtCliEmail.getText());
                 cliente.setTelefone(txtCliTelefone.getText());
                 cliente.setEndereco(txtCliEndereco.getText());
@@ -685,10 +656,7 @@ public class TelaCliente extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e);
         }
-
-
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     /**
