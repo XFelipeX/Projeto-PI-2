@@ -366,7 +366,7 @@ public class TelaProduto extends javax.swing.JFrame {
                 String nomeProduto = txtNome.getText();
                 String descricao = txtDescricao.getText();
                 Double valor = Double.parseDouble(txtValor.getText().replace(",", "."));
-                int qtdProduto = Integer.parseInt(txtQtdProduto.getText());
+                int qtdProduto = Integer.parseInt(txtQtdProduto.getText().replace(".", ""));
 
                 if (ProdutoController.salvar(nomeProduto, descricao, valor, qtdProduto)) {
                     JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
