@@ -1,8 +1,12 @@
 package br.com.thordrugstore.farmacia.view;
 
 import br.com.thordrugstore.farmacia.DAO.ClienteDAO;
+import br.com.thordrugstore.farmacia.DAO.ItemVendaDAO;
+import br.com.thordrugstore.farmacia.DAO.VendaDAO;
 import br.com.thordrugstore.farmacia.controller.ClienteController;
 import br.com.thordrugstore.farmacia.model.Cliente;
+import br.com.thordrugstore.farmacia.model.ItemVenda;
+import br.com.thordrugstore.farmacia.model.Venda;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -596,6 +600,16 @@ public class TelaCliente extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         if (!txtCodCli.getText().equals("")) {
+            //excluindo os relatorios de venda desse cliente
+            ArrayList<Venda> vendasCliente = VendaDAO.pesquisaPorCliente(Integer.valueOf(txtCodCli.getText()));
+            for(Venda v: vendasCliente){
+                for(ItemVenda i: v.getItens()){
+                    //excluindo os itens da venda
+                    ItemVendaDAO.excluir(i.getVenda().getCodigoCompra());
+                }
+                //excluindo a venda
+                VendaDAO.excluir(v.getCodigoCompra());
+            }
             if (ClienteController.excluir(Integer.valueOf(txtCodCli.getText()))) {
                 limparCampos();
             };

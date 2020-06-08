@@ -1,9 +1,11 @@
 package br.com.thordrugstore.farmacia.controller;
 
+import br.com.thordrugstore.farmacia.DAO.ItemVendaDAO;
 import br.com.thordrugstore.farmacia.DAO.VendaDAO;
 import br.com.thordrugstore.farmacia.model.Cliente;
 import br.com.thordrugstore.farmacia.model.Venda;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  * Classe que controla o fluxo de dados da classe Venda
@@ -36,4 +38,17 @@ public class VendaController {
            return 0;
        }
     }   
+    
+    /**
+     * Método para excluir uma venda chamando na DAO
+     * @param id chave estrangeira do tipo inteiro
+     * @return boolean true = sucesso, false = falha
+     */
+    public static boolean excluir(int id){
+        int i = JOptionPane.showConfirmDialog(null, "Tem certeza que quer excluir?","Atenção",JOptionPane.YES_NO_OPTION);
+        if(i==JOptionPane.YES_OPTION){
+            return ItemVendaDAO.excluir(id);
+        }              
+        return false;
+    } 
 }

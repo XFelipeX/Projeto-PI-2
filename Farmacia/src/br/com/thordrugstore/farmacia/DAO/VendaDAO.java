@@ -264,6 +264,8 @@ public class VendaDAO {
         }
         return vendas;
     }
+    
+    
     /**
      * Método para pesquisar uma venda por Periodo especificado
      * @param dataInicio do tipo String
@@ -314,5 +316,41 @@ public class VendaDAO {
             }
         }
         return vendas;
+    }
+    /**
+     * Método para excluir uma Venda
+     * @param id chave estrangeira/primaria do tipo inteiro
+     * @return true = sucesso, false = falha
+     */
+    public static boolean excluir(int id) {
+        boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement pst = null;
+        String sql = "delete from vendas where cod_venda =?";
+        try {
+            conexao = ModuloConexao.conector();
+            pst = conexao.prepareStatement(sql);
+            pst.setInt(1, id);
+
+            int adicionado = pst.executeUpdate();
+
+            if (adicionado > 0) {
+                retorno = true;                
+            } else {
+                retorno = false;               
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                conexao.close();
+
+            } catch (SQLException ex) {
+            }
+        }
+        return retorno;
     }
 }

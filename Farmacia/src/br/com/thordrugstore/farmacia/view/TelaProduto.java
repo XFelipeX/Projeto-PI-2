@@ -5,9 +5,15 @@
  */
 package br.com.thordrugstore.farmacia.view;
 
+import br.com.thordrugstore.farmacia.DAO.ItemVendaDAO;
 import br.com.thordrugstore.farmacia.DAO.ProdutoDAO;
+import br.com.thordrugstore.farmacia.DAO.VendaDAO;
+import br.com.thordrugstore.farmacia.controller.ItemVendaController;
 import br.com.thordrugstore.farmacia.controller.ProdutoController;
+import br.com.thordrugstore.farmacia.controller.VendaController;
+import br.com.thordrugstore.farmacia.model.ItemVenda;
 import br.com.thordrugstore.farmacia.model.Produto;
+import br.com.thordrugstore.farmacia.model.Venda;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -382,7 +388,12 @@ public class TelaProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        if (!txtCodigo.getText().equals("")) {
+          if (!txtCodigo.getText().equals("")) {
+            ArrayList<ItemVenda> vendasProduto = ItemVendaDAO.pesquisarPorProduto(Integer.parseInt(txtCodigo.getText()));
+            for(ItemVenda i: vendasProduto){
+                ItemVendaController.excluir(i.getCodigoItemVenda());
+                VendaController.excluir(i.getVenda().getCodigoCompra());
+            }
             if (ProdutoController.excluir(Integer.valueOf(txtCodigo.getText()))) {
                 limparCampos();
             };

@@ -115,4 +115,91 @@ public class ItemVendaDAO {
         }
         return itens;
     }
+    
+    /**
+     * Método para pesquisar todas os itens de Vendas
+     * @param cod chave primaria/codigo de item de venda do tipo ArrayList
+     * @return boolean true = sucesso, false = falha
+     */
+    public static ArrayList<ItemVenda> pesquisarPorProduto(int cod) {
+        ResultSet resultado = null;
+        Connection conexao = null;
+        PreparedStatement pst = null;
+        String sql = "select * from itemvenda where cod_prod=?;";
+        ArrayList<ItemVenda> itens = new ArrayList<>();
+
+        try {
+            conexao = ModuloConexao.conector();
+            pst = conexao.prepareStatement(sql);
+            pst.setInt(1, cod);
+            resultado = pst.executeQuery();
+
+            while (resultado.next()) {
+                ItemVenda x = new ItemVenda();               
+                x.setCodigoItemVenda(resultado.getInt("cod_itemvenda"));
+                Produto p = new Produto();
+                Venda v = new Venda();
+                x.setProduto(p);
+                x.getProduto().setCodProduto(resultado.getInt("cod_prod"));
+                x.setVenda(v);
+                x.getVenda().setCodigoCompra(resultado.getInt("cod_vend"));
+                x.setQuantidade(resultado.getInt("qtd"));
+                x.setValorUnitario(resultado.getDouble("valor_unitario"));
+                
+                itens.add(x);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            itens = null;
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+
+            } catch (SQLException ex) {
+            }
+        }
+        return itens;
+    }
+    
+    /**
+     * Método para excluir os itens da venda
+     * @param id chave primária do tipo inteiro
+     * @return true = sucesso, false = falha
+     */
+    public static boolean excluir(int id) {
+        boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement pst = null;
+        String sql = "delete from itemvenda where cod_itemvenda =?";
+        try {
+            conexao = ModuloConexao.conector();
+            pst = conexao.prepareStatement(sql);
+            pst.setInt(1, id);
+
+            int adicionado = pst.executeUpdate();
+
+            if (adicionado > 0) {
+                retorno = true;                
+            } else {
+                retorno = false;               
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                conexao.close();
+
+            } catch (SQLException ex) {
+            }
+        }
+        return retorno;
+    }
 }
