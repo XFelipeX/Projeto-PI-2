@@ -42,7 +42,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("X - Sistema ");
+        setTitle("FarmaThor - Sistema de Vendas para Farmácia");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {

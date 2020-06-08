@@ -152,7 +152,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="X - Sistema "/>
+    <Property name="title" type="java.lang.String" value="FarmaThor - Sistema de Vendas para Farm&#xe1;cia"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
