@@ -297,11 +297,10 @@
         <Component class="javax.swing.JComboBox" name="cboPagamento">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="3">
                 <StringItem index="0" value="Dinheiro"/>
                 <StringItem index="1" value="Cr&#xe9;dito"/>
                 <StringItem index="2" value="D&#xe9;bito"/>
-                <StringItem index="3" value=" "/>
               </StringArray>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>

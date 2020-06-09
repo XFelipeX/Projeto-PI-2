@@ -567,7 +567,12 @@ public class TelaCliente extends javax.swing.JFrame {
                 String nome = txtCliNome.getText();
                 String cpf = txtCliCpf.getText();
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                Date dataFormatada = formato.parse(txtCliData.getText());
+                Date dataFormatada;
+                if(txtCliData.getText().equals("  /  /    ")){
+                    dataFormatada = formato.parse("22/12/2222");
+                }else{
+                   dataFormatada = formato.parse(txtCliData.getText()); 
+                }            
                 cliente.setDataNascimento(dataFormatada);
                 Date data = cliente.getDataNascimento();
                 String email = txtCliEmail.getText();

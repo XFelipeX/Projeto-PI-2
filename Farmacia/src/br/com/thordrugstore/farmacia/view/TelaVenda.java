@@ -231,7 +231,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
 
         txtvalorBruto.setEnabled(false);
 
-        cboPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dinheiro", "Crédito", "Débito", " " }));
+        cboPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dinheiro", "Crédito", "Débito" }));
         cboPagamento.setEnabled(false);
         cboPagamento.setFocusable(false);
 
@@ -267,7 +267,6 @@ public class TelaVenda extends javax.swing.JInternalFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel17)
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtvalorBruto)
                             .addComponent(txtDesconto)
