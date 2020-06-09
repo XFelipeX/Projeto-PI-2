@@ -1,21 +1,24 @@
 package br.com.thordrugstore.farmacia;
 
 import br.com.thordrugstore.farmacia.view.TelaLogin;
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 public class Main {
     public static void main(String[] args) {
+         
          try {
-            UIManager.setLookAndFeel(new WindowsLookAndFeel());
+for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+    if ("Nimbus".equals(info.getName())) {
+        UIManager.setLookAndFeel(info.getClassName());
              TelaLogin telaInicial = new TelaLogin();
             telaInicial.setVisible(true);
-            
-        } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        break;
+    }
+}
+} catch (Exception e) {
+   // If Nimbus is not available, you can set the GUI to another look and feel.
+}
+        
     }        
 }
